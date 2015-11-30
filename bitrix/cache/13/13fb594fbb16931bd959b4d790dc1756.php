@@ -1,0 +1,7 @@
+<?
+if($INCLUDE_FROM_CACHE!='Y')return false;
+$datecreate = '001433840453';
+$dateexpire = '001433883653';
+$ser_content = 'a:2:{s:7:"CONTENT";s:0:"";s:4:"VARS";a:2:{s:3:"SEL";a:0:{}s:6:"VIEWED";a:5:{i:0;a:8:{s:10:"PRODUCT_ID";s:4:"2568";s:4:"NAME";s:170:"DVR ВИДЕОРЕГИСТРАТОРЫ СТАЦИОНАРНЫЕ  16 канальный 960H - Высокого разрешения Видеорегистратор DS316";s:5:"PRICE";s:8:"60200.00";s:8:"CURRENCY";s:3:"KZT";s:4:"RATE";s:6:"1.0000";s:13:"CURRENCY_RATE";s:1:"1";s:10:"VIEW_COUNT";i:4;s:10:"SORT_PRICE";d:60200;}i:1;a:8:{s:10:"PRODUCT_ID";s:4:"2722";s:4:"NAME";s:44:"Ноутбук ASUS X555LD (90NB0622-M12840)";s:5:"PRICE";s:9:"139900.00";s:8:"CURRENCY";s:3:"KZT";s:4:"RATE";s:6:"1.0000";s:13:"CURRENCY_RATE";s:1:"1";s:10:"VIEW_COUNT";i:3;s:10:"SORT_PRICE";d:139900;}i:2;a:8:{s:10:"PRODUCT_ID";s:4:"4205";s:4:"NAME";s:51:"Антивирус Kaspersky Internet Security 2015";s:5:"PRICE";s:8:"10300.00";s:8:"CURRENCY";s:3:"KZT";s:4:"RATE";s:6:"1.0000";s:13:"CURRENCY_RATE";s:1:"1";s:10:"VIEW_COUNT";i:3;s:10:"SORT_PRICE";d:10300;}i:3;a:8:{s:10:"PRODUCT_ID";s:4:"2008";s:4:"NAME";s:68:"Насосное оборудование Wilo-TOP-S 50/4 DM PN 6/10";s:5:"PRICE";s:9:"117140.00";s:8:"CURRENCY";s:3:"KZT";s:4:"RATE";s:6:"1.0000";s:13:"CURRENCY_RATE";s:1:"1";s:10:"VIEW_COUNT";i:2;s:10:"SORT_PRICE";d:117140;}i:4;a:8:{s:10:"PRODUCT_ID";s:4:"2565";s:4:"NAME";s:126:"DVR ВИДЕОРЕГИСТРАТОРЫ СТАЦИОНАРНЫЕ  16 канальный Видеорегистратор DSR116";s:5:"PRICE";s:8:"48600.00";s:8:"CURRENCY";s:3:"KZT";s:4:"RATE";s:6:"1.0000";s:13:"CURRENCY_RATE";s:1:"1";s:10:"VIEW_COUNT";i:2;s:10:"SORT_PRICE";d:48600;}}}}';
+return true;
+?>

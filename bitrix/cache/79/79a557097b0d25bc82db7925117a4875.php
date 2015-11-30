@@ -1,0 +1,7 @@
+<?
+if($INCLUDE_FROM_CACHE!='Y')return false;
+$datecreate = '001443514674';
+$dateexpire = '001443557874';
+$ser_content = 'a:2:{s:7:"CONTENT";s:0:"";s:4:"VARS";a:2:{s:3:"SEL";a:0:{}s:6:"VIEWED";a:5:{i:0;a:8:{s:10:"PRODUCT_ID";s:4:"2141";s:4:"NAME";s:116:"Циркуляционные насосы для систем отопления Wilo-Stratos Stratos 50/1-6 PN 6/10";s:5:"PRICE";s:9:"183040.00";s:8:"CURRENCY";s:3:"KZT";s:4:"RATE";s:6:"1.0000";s:13:"CURRENCY_RATE";s:1:"1";s:10:"VIEW_COUNT";i:9;s:10:"SORT_PRICE";d:183040;}i:1;a:8:{s:10:"PRODUCT_ID";s:4:"3191";s:4:"NAME";s:66:"Сохранение, перенос информации за 1GB";s:5:"PRICE";s:6:"200.00";s:8:"CURRENCY";s:3:"KZT";s:4:"RATE";s:6:"1.0000";s:13:"CURRENCY_RATE";s:1:"1";s:10:"VIEW_COUNT";i:9;s:10:"SORT_PRICE";d:200;}i:2;a:8:{s:10:"PRODUCT_ID";s:4:"1997";s:4:"NAME";s:69:"Насосное оборудование Wilo-TOP-S 30/10 EM PN 6/10";s:5:"PRICE";s:8:"72140.00";s:8:"CURRENCY";s:3:"KZT";s:4:"RATE";s:6:"1.0000";s:13:"CURRENCY_RATE";s:1:"1";s:10:"VIEW_COUNT";i:8;s:10:"SORT_PRICE";d:72140;}i:3;a:8:{s:10:"PRODUCT_ID";s:4:"2979";s:4:"NAME";s:52:"Аккумуляторная батарея ТР12-7";s:5:"PRICE";s:7:"3500.00";s:8:"CURRENCY";s:3:"KZT";s:4:"RATE";s:6:"1.0000";s:13:"CURRENCY_RATE";s:1:"1";s:10:"VIEW_COUNT";i:6;s:10:"SORT_PRICE";d:3500;}i:4;a:8:{s:10:"PRODUCT_ID";s:4:"3126";s:4:"NAME";s:63:"Memory HP/4 Gb/DDR3/1333 MHz/2Rx8/PC3L-10600E/CAS-9 Low Voltage";s:5:"PRICE";s:8:"17978.76";s:8:"CURRENCY";s:3:"KZT";s:4:"RATE";s:6:"1.0000";s:13:"CURRENCY_RATE";s:1:"1";s:10:"VIEW_COUNT";i:6;s:10:"SORT_PRICE";d:17978.75999999999839928932487964630126953125;}}}}';
+return true;
+?>

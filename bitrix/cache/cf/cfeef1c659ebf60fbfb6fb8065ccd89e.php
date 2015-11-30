@@ -1,0 +1,7 @@
+<?
+if($INCLUDE_FROM_CACHE!='Y')return false;
+$datecreate = '001437365362';
+$dateexpire = '001437408562';
+$ser_content = 'a:2:{s:7:"CONTENT";s:0:"";s:4:"VARS";a:2:{s:3:"SEL";a:0:{}s:6:"VIEWED";a:5:{i:0;a:8:{s:10:"PRODUCT_ID";s:4:"4476";s:4:"NAME";s:19:"Летний душ";s:5:"PRICE";s:8:"62000.00";s:8:"CURRENCY";s:3:"KZT";s:4:"RATE";s:6:"1.0000";s:13:"CURRENCY_RATE";s:1:"1";s:10:"VIEW_COUNT";i:17;s:10:"SORT_PRICE";d:62000;}i:1;a:8:{s:10:"PRODUCT_ID";s:4:"4468";s:4:"NAME";s:35:"МФУ Epson Workforce Pro  WP-4540";s:5:"PRICE";s:8:"53145.00";s:8:"CURRENCY";s:3:"KZT";s:4:"RATE";s:6:"1.0000";s:13:"CURRENCY_RATE";s:1:"1";s:10:"VIEW_COUNT";i:13;s:10:"SORT_PRICE";d:53145;}i:2;a:8:{s:10:"PRODUCT_ID";s:4:"4471";s:4:"NAME";s:33:"Принтер Epson Workforce 30";s:5:"PRICE";s:8:"31343.00";s:8:"CURRENCY";s:3:"KZT";s:4:"RATE";s:6:"1.0000";s:13:"CURRENCY_RATE";s:1:"1";s:10:"VIEW_COUNT";i:13;s:10:"SORT_PRICE";d:31343;}i:3;a:8:{s:10:"PRODUCT_ID";s:4:"4467";s:4:"NAME";s:32:"МФУ Epson Workforce WF-2530WF";s:5:"PRICE";s:8:"29394.00";s:8:"CURRENCY";s:3:"KZT";s:4:"RATE";s:6:"1.0000";s:13:"CURRENCY_RATE";s:1:"1";s:10:"VIEW_COUNT";i:12;s:10:"SORT_PRICE";d:29394;}i:4;a:8:{s:10:"PRODUCT_ID";s:4:"4465";s:4:"NAME";s:35:"МФУ Epson Expression Home XP-100";s:5:"PRICE";s:8:"23845.00";s:8:"CURRENCY";s:3:"KZT";s:4:"RATE";s:6:"1.0000";s:13:"CURRENCY_RATE";s:1:"1";s:10:"VIEW_COUNT";i:11;s:10:"SORT_PRICE";d:23845;}}}}';
+return true;
+?>

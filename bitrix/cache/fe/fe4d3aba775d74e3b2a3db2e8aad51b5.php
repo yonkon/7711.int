@@ -1,0 +1,7 @@
+<?
+if($INCLUDE_FROM_CACHE!='Y')return false;
+$datecreate = '001434597828';
+$dateexpire = '001434641028';
+$ser_content = 'a:2:{s:7:"CONTENT";s:0:"";s:4:"VARS";a:2:{s:3:"SEL";a:0:{}s:6:"VIEWED";a:5:{i:0;a:8:{s:10:"PRODUCT_ID";s:4:"4207";s:4:"NAME";s:15:"McAfee LiveSafe";s:5:"PRICE";s:7:"4990.00";s:8:"CURRENCY";s:3:"KZT";s:4:"RATE";s:6:"1.0000";s:13:"CURRENCY_RATE";s:1:"1";s:10:"VIEW_COUNT";i:7;s:10:"SORT_PRICE";d:4990;}i:1;a:8:{s:10:"PRODUCT_ID";s:4:"4206";s:4:"NAME";s:55:"Kaspersky Internet Security 2015 продление BOX";s:5:"PRICE";s:7:"6990.00";s:8:"CURRENCY";s:3:"KZT";s:4:"RATE";s:6:"1.0000";s:13:"CURRENCY_RATE";s:1:"1";s:10:"VIEW_COUNT";i:5;s:10:"SORT_PRICE";d:6990;}i:2;a:8:{s:10:"PRODUCT_ID";s:4:"2568";s:4:"NAME";s:170:"DVR ВИДЕОРЕГИСТРАТОРЫ СТАЦИОНАРНЫЕ  16 канальный 960H - Высокого разрешения Видеорегистратор DS316";s:5:"PRICE";s:8:"60200.00";s:8:"CURRENCY";s:3:"KZT";s:4:"RATE";s:6:"1.0000";s:13:"CURRENCY_RATE";s:1:"1";s:10:"VIEW_COUNT";i:4;s:10:"SORT_PRICE";d:60200;}i:3;a:8:{s:10:"PRODUCT_ID";s:4:"3770";s:4:"NAME";s:16:"Acer Iconia A210";s:5:"PRICE";s:8:"61742.70";s:8:"CURRENCY";s:3:"KZT";s:4:"RATE";s:6:"1.0000";s:13:"CURRENCY_RATE";s:1:"1";s:10:"VIEW_COUNT";i:4;s:10:"SORT_PRICE";d:61742.699999999997089616954326629638671875;}i:4;a:8:{s:10:"PRODUCT_ID";s:4:"3771";s:4:"NAME";s:16:"Acer Iconia A211";s:5:"PRICE";s:8:"72032.22";s:8:"CURRENCY";s:3:"KZT";s:4:"RATE";s:6:"1.0000";s:13:"CURRENCY_RATE";s:1:"1";s:10:"VIEW_COUNT";i:4;s:10:"SORT_PRICE";d:72032.22000000000116415321826934814453125;}}}}';
+return true;
+?>
