@@ -1,0 +1,1 @@
+<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/softeffect.xls/admin/xls_data_import.php");?>
