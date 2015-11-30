@@ -1,0 +1,196 @@
+table.edit-table div.block-title {
+	background: none repeat scroll 0 0 #FFFFFF;
+	border-bottom: 1px solid #dce7ed;
+	border-top: 1px solid #dce7ed;
+	color: #000000;
+	font-size: 12px;
+	font-weight: bold;
+	height: 24px;
+	margin: 5px -27px;
+	padding: 5px 0 9px;
+	text-shadow: 0 1px 0 #FFFFFF;
+}
+
+.edit-tab-4step div.block-title {
+	margin: -9px -9px 5px !important;
+}
+
+table.edit-table div.block-title-first {
+	border-top: 0 none!important;
+	margin-top: -30px!important;
+}
+
+table.edit-table div.block-title-inner {
+	background: url("/bitrix/panel/main/images/bx-admin-sprite-small.png") repeat-x scroll 0 -2472px transparent;
+	border: 1px solid #b8c1dd;
+	height: 16px;
+	padding: 5px 10px 4px;
+}
+
+table.edit-table input[type="submit"], table.edit-table input[type="button"] {
+	cursor: pointer;
+}
+
+table.edit-tab-title {
+	display: none;
+}
+
+table.xls_table_property {
+	border-top: 1px solid #BDC6E0!important;
+}
+table.xls_table_property thead td {
+	cursor: pointer;
+	border-bottom: 1px solid #000;
+}
+table.xls_table_property thead td.sorttable_nosort {
+	cursor: auto;
+}
+table.xls_table_property tr td, table.xls_table_property th {
+	border-bottom: 1px solid #dce7ed;
+	border-right: 1px solid #dce7ed;
+}
+table.xls_table_property th {
+	font-size: 14px;
+	padding: 3px;
+	width: 250px;
+}
+table.xls_table_property tr:hover td {
+	background-color: #f2f5f6;
+}
+table.xls_table_property tr td {
+	padding: 3px 5px;
+	vertical-align: middle;
+}
+
+table.xls_table_property tr.head td {
+	background: #E6E9F4 url("/bitrix/themes/.default/images/listhead.gif") center top repeat-x !important;
+	border-right: 1px solid #BDC6E0 !important;
+	border-bottom: 1px solid #BDC6E0 !important;
+	cursor: default !important;
+	padding: 4px !important;
+	font-size: 11px;
+	text-shadow: 0 1px 0 #FFF;
+	vertical-align: middle;
+}
+
+table.xls_table_property .mark {
+	font-size: 20px;
+	position: relative;
+	top: 3px;
+}
+
+.box-select-descr {
+	float: left;
+	padding: 6px 20px 6px 0px;
+}
+
+.box-select-descr-rowcols {
+	padding-top: 10px;
+}
+
+.input-col-row {
+	width: 30px;
+}
+
+.input-max-depth {
+	width: 90px;
+}
+
+div.table-div {
+	margin: -8px -27px -27px -26px;
+}
+
+#XLS_STEP4_MODE_REQUIRE, #XLS_STEP4_MODE_DESCR {
+	/*padding-left: 15px; */
+}
+
+#XLS_STEP4_MODE_REQUIRE {
+	padding-top: 5px;
+}
+
+img.skip-wait {
+	position: relative;
+	top: 4px;
+}
+
+div.step5-progress-bar, div#step5-error {
+	float: left;
+	border: 1px solid #b5c990;
+	background-color: #E9F1D9;
+	padding: 20px;
+	border-radius: 5px;
+	text-shadow: 0 1px 0px #fff;
+	color: #32520f;
+	line-height: 20px;
+}
+
+div#step5-error {
+	border: 1px solid #c99090;
+	background-color: #f1d9d9;
+	color: #520f0f;
+	display: none;
+}
+
+div#step5-error b {
+	font-weight: normal;
+}
+
+div.step5-progress-bar span, div#step5-error span {
+	color: #000;
+	font-weight: bold;
+}
+
+.adm-detail-content-item-block {
+	padding: 25px!important;
+}
+
+.adm-detail-content-item-block.notminititle {
+	padding: 5px 25px 25px 25px!important;
+}
+
+.demo_mode {
+	padding: 20px 15px 5px;
+	font-weight: bold;
+	color: red;
+}
+
+.set-prop {
+	text-decoration: none;
+	font-size: 16px;
+	font-size: 30px;
+	line-height: 1px;
+	position: relative;
+	top: 5px;
+}
+
+.set-prop:hover {
+	text-decoration: none;
+}
+
+div.diffdays {
+	border: 1px solid #ced7d8;
+	background: #fff;
+	padding: 5px;
+	margin-bottom: 5px;
+	width: 680px;
+}
+
+div.diffdays p {
+	margin-top: 0;
+	margin-left: 5px;
+}
+
+div.diffdays img {
+	padding-right: 10px;
+}
+
+div.profile_select {
+	float:left;
+	padding-right:20px;
+}
+
+div.profile_select input, div.profile_select a {
+	margin-top: 7px;
+	width: 20px;
+	margin-right: 10px;
+}
