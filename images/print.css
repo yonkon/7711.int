@@ -1,0 +1,14 @@
+.header_wrap, #panel, div#navigation, .header_inner_bottom_line_container.left-menu, .bx_lb, .bx_item_list_you_looked_horizontal.col4.bx_blue, .bottom_wrap, .footer_wrap, .bx_content_section h4, div#catalog_store_amount_div, div#jivo_top_wrap, .item_price, .item_buttons, .bx_slider_conteiner, span.item_section_name_gray, .bigdata_recommended_products_container, .pechat_div, .schetchik {
+  display: none;
+}
+
+.item_info_section, .bx_item_detail .bx_item_container .bx_rb {
+  width: 100% !important;
+  clear: both !important;
+}
+
+.item_section_name_gray, .bx_item_section_name_gray  {
+font-size: 20px !important;
+color: #000 !important;
+margin-bottom: 10px;
+}
