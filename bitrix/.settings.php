@@ -27,7 +27,7 @@ return array (
   array (
     'value' => 
     array (
-      'debug' => false,
+      'debug' => true,
       'handled_errors_types' => 4437,
       'exception_errors_types' => 4437,
       'ignore_silence' => false,
@@ -47,7 +47,7 @@ return array (
         'host' => 'localhost',
         'database' => '7711kz',
         'login' => 'root',
-        'password' => '103103103!',
+        'password' => '103103103',
 //        'database' => 'v_9619_shop1',
 //        'login' => 'v_9619_shop1',
 //        'password' => 'Qweszxc123!',

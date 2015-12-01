@@ -2,9 +2,9 @@
 define("DBPersistent", false);
 $DBType = "mysql";
 $DBHost = "localhost";
-$DBLogin = "v_9619_shop1";
-$DBPassword = "Qweszxc123!";
-$DBName = "v_9619_shop1";
+$DBLogin = "root";
+$DBPassword = "103103103";
+$DBName = "7711kz";
 $DBDebug = false;
 $DBDebugToFile = false;
 
