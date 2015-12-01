@@ -22,6 +22,14 @@ window.onload=startList;
 
 
 <h2 class="cat_le">Каталог товаров</h2>
+<div class="menu_header" data-tab="cat_by_catalog" data-tabinit="mha1" style="background-position: 68px 10px;">
+  <div class="menu_header_red">
+    <a href="#" class="mha1">Категори</a>
+    <a href="#" class="mha2 active">Бренды</a>
+    <a href="#" class="mha3">Дисконт</a>
+    <div class="clear"></div>
+  </div>
+</div>
 <div id="menu_body">
 	<ul>
 		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.kz/upload/medialibrary/f35/komp.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png">
