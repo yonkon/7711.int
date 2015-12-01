@@ -1,0 +1,1 @@
+<?define("vampirus_kkb_TEMPORARY_CACHE", "dWIEUCxmBAdtACplBTFQfg4j");?>

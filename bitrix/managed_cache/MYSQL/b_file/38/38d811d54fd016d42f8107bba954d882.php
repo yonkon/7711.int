@@ -1,0 +1,7 @@
+<?
+if($INCLUDE_FROM_CACHE!='Y')return false;
+$datecreate = '001443447936';
+$dateexpire = '001443451536';
+$ser_content = 'a:2:{s:7:"CONTENT";s:0:"";s:4:"VARS";a:2:{i:5738;a:14:{s:2:"ID";s:4:"5738";s:11:"TIMESTAMP_X";s:19:"03.06.2015 09:29:39";s:9:"MODULE_ID";s:14:"softeffect.xls";s:6:"HEIGHT";s:1:"0";s:5:"WIDTH";s:1:"0";s:9:"FILE_SIZE";s:5:"10816";s:12:"CONTENT_TYPE";s:65:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";s:6:"SUBDIR";s:18:"softeffect.xls/966";s:9:"FILE_NAME";s:11:"bumaga.xlsx";s:13:"ORIGINAL_NAME";s:11:"bumaga.xlsx";s:11:"DESCRIPTION";s:0:"";s:10:"HANDLER_ID";N;s:11:"EXTERNAL_ID";s:32:"9d4bcf59101c80f01632105e691ac9d7";s:4:"~src";b:0;}i:5739;a:14:{s:2:"ID";s:4:"5739";s:11:"TIMESTAMP_X";s:19:"03.06.2015 09:29:50";s:9:"MODULE_ID";s:6:"iblock";s:6:"HEIGHT";s:3:"400";s:5:"WIDTH";s:3:"400";s:9:"FILE_SIZE";s:5:"13507";s:12:"CONTENT_TYPE";s:10:"image/jpeg";s:6:"SUBDIR";s:10:"iblock/ac5";s:9:"FILE_NAME";s:42:"paper_hp_s6035a_610_mm_x_45_7_m_90_g_m.jpg";s:13:"ORIGINAL_NAME";s:42:"paper-hp-s6035a-610-mm-x-45-7-m-90-g-m.jpg";s:11:"DESCRIPTION";s:0:"";s:10:"HANDLER_ID";N;s:11:"EXTERNAL_ID";s:32:"57998a92e1cfc68786fe56ff5f21be6f";s:4:"~src";b:0;}}}';
+return true;
+?>

@@ -1,0 +1,96 @@
+2015-Jul-07 19:29:19 Наличие необходимых модулей php (check_php_modules): Ok
+Все необходимые модули установлены
+2015-Jul-07 19:29:20 Обязательные параметры PHP (check_php_settings): Ok
+Настройки правильные
+2015-Jul-07 19:29:20 Модули веб-сервера (check_security): Ok
+Конфликтов не выявлено
+2015-Jul-07 19:29:20 Значения переменных сервера (check_server_vars): Ok
+Корректные
+2015-Jul-07 19:29:20 Сохранение сессии (check_session): Ok
+50% done
+2015-Jul-07 19:29:21 Сохранение сессии (check_session): Ok
+Успешно
+2015-Jul-07 19:29:21 Параметры настройки UTF (mbstring и константа BX_UTF) (check_mbstring): Ok
+Правильные. Сайт работает в UTF кодировке
+2015-Jul-07 19:29:22 Работа с сокетами (check_socket): Ok
+Connection to 7711.kz:80	Success
+
+Успешно
+2015-Jul-07 19:29:22 Параметры подключения к базе данных (check_dbconn_settings): Ok
+Успешно
+2015-Jul-07 19:29:22 Лишний вывод в файлах конфигурации (check_dbconn): Ok
+Connection to 7711.kz:80	Success
+
+Успешно
+2015-Jul-07 19:29:23 Выполнение агентов на cron (check_bx_crontab): Ok
+Успешно
+2015-Jul-07 19:29:23 Сохранение сессии без UserAgent (check_session_ua): Ok
+50% done
+Connection to 7711.kz:80	Success
+
+2015-Jul-07 19:29:23 Сохранение сессии без UserAgent (check_session_ua): Fail
+Connection to 7711.kz:80	Success
+== Request ==
+GET /bitrix/admin/site_checker.php?test_type=session_test&unique_id=6b63a8b4445227105849caedff1107e3 HTTP/1.1
+Host: 7711.kz
+Cookie: PHPSESSID=99iden9eo4386815ji5mt7run3
+
+
+== Response ==
+HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 07 Jul 2015 13:29:23 GMT
+Content-Type: text/html; charset=UTF-8
+Content-Length: 260
+Connection: keep-alive
+X-Powered-By: PHP/5.4.42
+Expires: Thu, 19 Nov 1981 08:52:00 GMT
+Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+Pragma: no-cache
+
+== Body ==
+
+Warning: Unknown: write failed: Disk quota exceeded (122) in Unknown on line 0
+
+Warning: Unknown: Failed to write session data (files). Please verify that the current setting of session.save_path is correct (/var/www/v-9619/data/mod-tmp) in Unknown on line 0
+
+==========
+
+Ошибка! Не работает
+2015-Jul-07 19:29:24 Настройки сайтов (check_sites): Ok
+Правильные
+2015-Jul-07 19:29:25 Служебные скрипты в корне сайта (check_install_scripts): Ok
+Отсутствуют
+2015-Jul-07 19:29:25 Передача объектов по ссылке (check_clone): Ok
+Успешно
+2015-Jul-07 19:29:26 Размер стека и pcre.recursion_limit (check_pcre_recursion): Ok
+Connection to 7711.kz:80	Success
+
+Успешно
+2015-Jul-07 19:29:26 Вызов method_exists на строке (check_method_exists): Ok
+Connection to 7711.kz:80	Success
+
+Успешно
+2015-Jul-07 19:29:27 Загрузка файла (check_upload): Fail
+Connection to 7711.kz:80	Success
+== Request ==
+POST /bitrix/admin/site_checker.php?test_type=upload_test&unique_id=6b63a8b4445227105849caedff1107e3&big=0&raw=0 HTTP/1.1
+Host: 7711.kz
+Content-Type: multipart/form-data; boundary=--------43d9c0511bcef687f5e40e5d90977da0
+Content-Length: 395
+
+----------43d9c0511bcef687f5e40e5d90977da0
+Content-Disposition: form-data; name="test_file"; filename="site_checker.bin
+Content-Type: image/gif
+
+()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~����������������������������������������������������������������������������������������������������������������
+----------43d9c0511bcef687f5e40e5d90977da0
+
+== Response ==
+HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 07 Jul 2015 13:29:27 GMT
+Content-Type: text/html; charset=UTF-8
+Content-Length: 291
+Connection: keep-alive
+X-Powered-By: PHP/5

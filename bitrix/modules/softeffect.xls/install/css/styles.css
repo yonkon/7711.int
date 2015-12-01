@@ -1,0 +1,66 @@
+table.edit-table div.block-title {
+	background: none repeat scroll 0 0 #E7EAF5;
+	border-bottom: 1px solid #B8C1DD;
+	border-top: 1px solid #B8C1DD;
+	color: #494949;
+	font-size: 11px;
+	font-weight: bold;
+	height: 24px;
+	margin: 5px -9px 5px;
+	padding: 5px 0;
+}
+
+.edit-tab-4step div.block-title {
+	margin: -9px -9px 5px !important;
+}
+
+table.edit-table div.block-title-inner {
+	background: url("/bitrix/images/softeffect.xls/gadgets-sprite.png") repeat-x scroll 0 -18px transparent;
+	border: 1px solid #b8c1dd;
+	height: 16px;
+	padding: 3px 10px;
+}
+
+table.edit-table input[type="submit"], table.edit-table input[type="button"] {
+	cursor: pointer;
+}
+
+table.edit-tab-title {
+	display: none;
+}
+
+table.xls_table_property tr.head td {
+	-moz-border-bottom-colors: none !important;
+	-moz-border-image: none !important;
+	-moz-border-left-colors: none !important;
+	-moz-border-right-colors: none !important;
+	-moz-border-top-colors: none !important;
+	background-color: #E6E9F4 !important;
+	background-image: url("/bitrix/themes/.default/images/listhead.gif") !important;
+	background-position: center top !important;
+	background-repeat: repeat-x !important;
+	border-color: -moz-use-text-color #BDC6E0 #BDC6E0 -moz-use-text-color !important;
+	border-right: 1px solid #BDC6E0 !important;
+	border-style: none solid solid none !important;
+	border-width: medium 1px 1px medium !important;
+	cursor: default !important;
+	padding: 4px !important;
+}
+
+.box-select-descr {
+	float: left;
+	padding-right: 20px;
+	padding-top: 6px;
+}
+
+.box-select-descr-rowcols {
+	padding-top: 10px;
+}
+
+.input-col-row {
+	width: 30px;
+}
+
+.input-max-depth {
+	width: 90px;
+}

@@ -1,0 +1,1 @@
+<? $arFilesInfo = array( 'FILES' => array("/bitrix/templates/eshop_adapt_blue/components/bitrix/system.auth.authorize/.default/style.css" => "14338396068646",), 'CUR_SEL_CNT' => '34', 'CUR_IE_CNT' => '0'); ?>
