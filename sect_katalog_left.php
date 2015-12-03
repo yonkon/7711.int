@@ -22,13 +22,34 @@ window.onload=startList;
 
 
 <h2 class="cat_le">Каталог товаров</h2>
-<div class="menu_header" data-tab="cat_by_catalog" data-tabinit="mha1" style="background-position: 68px 10px;">
+<div class="menu_header">
   <div class="menu_header_red">
     <a href="#" class="mha1">Категори</a>
     <a href="#" class="mha2 active">Бренды</a>
     <a href="#" class="mha3">Дисконт</a>
     <div class="clear"></div>
   </div>
+	<script type="text/javascript">
+		$('.menu_header_red a').click(function(event){
+      event.preventDefault();
+      event.stopPropagation();
+      var $menuItems = $('.menu_header_red a');
+      var $el = $(this);
+      $menuItems.removeClass('active');
+      $el.addClass('active');
+      var ind = $menuItems.index($el);
+      if (ind == 2) {
+        $('.menu_header_red').css('background-position-y', -100);
+      } else {
+        $('.menu_header_red').css('background-position-y', 0);
+      }
+      var xpos= 5+ind*45;
+      xpos = xpos + '%';
+      $('.menu_header').animate({
+        'background-position-x' : xpos
+      }, 'fast', 'linear');
+		});
+	</script>
 </div>
 <div id="menu_body">
 	<ul>

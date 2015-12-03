@@ -1232,3 +1232,46 @@ max-width: 1120px;
 @media (min-width:640px) {.parent {max-height: 130px;}}
 @media (min-width:480px) {.parent {max-height: 130px;}}
 @media (min-width:320px) {.parent {max-height: 130px;}}
+
+.menu_header {
+  padding: 10px 0 0px 0;
+  line-height: 1em;
+  border-bottom: 1px solid #94aac4;
+  background: url('data:;base64,iVBORw0KGgoAAAANSUhEUgAAAF0AAAAZCAYAAABTuCK5AAAAGXRFWHRTb2Z0d…36r8gtdosTepPVU7VhqnYqXFOzvIRYqLyx8431N8CDABiu+wu1RNCOAAAAABJRU5ErkJggg==') no-repeat 9% 10px;
+  background: url('/temp/t_catalog.png') no-repeat 9% 10px;
+  vertical-align: bottom;
+  height: 3em;
+}
+
+.menu_header_red {
+  background-image: url('/temp/t_diskont.png');
+  background-position: 89% 0px;
+  background-repeat: no-repeat;
+  height: 3em;
+  vertical-align: bottom;
+  line-height: 1em;
+}
+
+.menu_header a {
+  font-size: 11px;
+  color: #3687b8;
+  text-decoration: none;
+  border-bottom: 1px dotted #3687b8;
+  display: inline-block;
+  margin-left: 10%;
+  float: left;
+  padding-top: 8px;
+  width: 20%;
+}
+
+.catalog_left {
+	min-width: 222px;
+}
+
+.menu_header a.active {
+  color: #FFF;
+}
+
+#catalog_menu_Lk7Vbr {
+  display: none;
+}
