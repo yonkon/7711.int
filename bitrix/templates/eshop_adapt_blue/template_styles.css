@@ -1265,7 +1265,7 @@ max-width: 1120px;
 }
 
 .catalog_left {
-	min-width: 222px;
+  min-width: 222px;
 }
 
 .menu_header a.active {
@@ -1274,4 +1274,8 @@ max-width: 1120px;
 
 #catalog_menu_Lk7Vbr {
   display: none;
+}
+
+.worakarea_wrap_container {
+  margin-left: 222px;
 }
