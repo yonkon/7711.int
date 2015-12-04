@@ -119,25 +119,58 @@ $_GET["sort"] == "catalog_PRICE_1" ||
 $_GET["sort"] == "property_PRODUCT_TYPE" || 
 $_GET["sort"] == "timestamp_x"){ 
 $arParams["ELEMENT_SORT_FIELD"] = $_GET["sort"]; 
-$arParams["ELEMENT_SORT_ORDER"] = $_GET["method"]; 
-}else{}?>
+$arParams["ELEMENT_SORT_ORDER"] = $_GET["method"];
+}else{}
+$activeSortingText = 'Выберите';
+if ($_GET["sort"] == "catalog_PRICE_1" && $_GET['method'] == 'asc') {
+	$activeSortingText = 'Цене, сначала дешевле';
+} elseif (($_GET["sort"] == "catalog_PRICE_1" && $_GET['method'] == 'desc')) {
+	$activeSortingText = 'Цене, сначала дороже';
+} elseif ($_GET["sort"] == "name") {
+	$activeSortingText = 'Названию';
+} elseif ($_GET["sort"] == "timestamp_x") {
+	$activeSortingText = 'Новые поступления';
+}
+?>
+<div class="sortViewActions">
+	<div class="sortirovka">
+		<p>
+			<b>Сортировать по:</b>
+		<span class="dropdown "> <a rel="nofollow" class="actived" href="javascript:void()"><?php echo $activeSortingText; ?></a>
+					<ul class="list ad_popup" style="display: none;">
+						<li><a <?if ($_GET["sort"] == "catalog_PRICE_1" && $_GET['method'] == 'asc'):?> class="actived" <?endif;?> href="<?=$arResult["SECTION_PAGE_URL"]?>?sort=catalog_PRICE_1&method=asc">
+								Цене, сначала дешевле
+							</a></li>
 
-<div class="sortirovka">
-<p>Сортировать по:</p>
-<div>
-<a <?if ($_GET["sort"] == "catalog_PRICE_1"):?> class="actived" <?endif;?> href="<?=$arResult["SECTION_PAGE_URL"]?>?sort=catalog_PRICE_1&method=asc"> 
-Цене, сначала дешевле
-</a> 
-<a <?if ($_GET["sort"] == "catalog_PRICE_1"):?> class="actived" <?endif;?> href="<?=$arResult["SECTION_PAGE_URL"]?>?sort=catalog_PRICE_1&method=desc"> 
-Цене, сначала дороже
-</a> 
-<a <?if ($_GET["sort"] == "name"):?> class="actived" <?endif;?> href="<?=$arResult["SECTION_PAGE_URL"]?>?sort=name&method=asc"> 
-Названию
-</a>
-<a <?if ($_GET["sort"] == "timestamp_x"):?> class="actived" <?endif;?> href="<?=$arResult["SECTION_PAGE_URL"]?>?sort=timestamp_x&method=desc"> 
-Новые поступления
-</a> 
-</div></div>
+						<li><a <?if ($_GET["sort"] == "catalog_PRICE_1" && $_GET['method'] == 'desc'):?> class="actived" <?endif;?> href="<?=$arResult["SECTION_PAGE_URL"]?>?sort=catalog_PRICE_1&method=desc">
+								Цене, сначала дороже
+							</a></li>
+						<li><a <?if ($_GET["sort"] == "name"):?> class="actived" <?endif;?> href="<?=$arResult["SECTION_PAGE_URL"]?>?sort=name&method=asc">
+								Названию
+							</a></li>
+						<li><a <?if ($_GET["sort"] == "timestamp_x"):?> class="actived" <?endif;?> href="<?=$arResult["SECTION_PAGE_URL"]?>?sort=timestamp_x&method=desc">
+								Новые поступления
+							</a></li>
+					</ul>
+				</span>
+		</p>
+
+		<script>
+			$('.dropdown > a').live('click',function(e){
+				$('.list.ad_popup').slideDown();
+				e.stopImmediatePropagation();
+				return false;
+			});
+			$(document).click(function () {
+				$('.list.ad_popup').slideUp();//
+			});
+		</script>
+		<div>
+
+		</div></div>
+	<div class="viewSchema"></div>
+</div>
+
 
 
 <?$APPLICATION->IncludeComponent(
