@@ -165,10 +165,43 @@ if ($_GET["sort"] == "catalog_PRICE_1" && $_GET['method'] == 'asc') {
 				$('.list.ad_popup').slideUp();//
 			});
 		</script>
-		<div>
+    <div class="viewSchema">
+      <div class="select_display">
+        <?
+        $templateName = $APPLICATION->get_cookie('view')?$APPLICATION->get_cookie("view"):"bar";
+        if(isset($_POST["viewSchemaList"]))
+        {
+          $templateName = "bar";
+          $APPLICATION->set_cookie("view", $templateName);
+        }
+        if(isset($_POST["viewSchemaGallery"]) || !isset($_POST["viewSchemaList"]))
+        {
+          $templateName = "list";
+          $APPLICATION->set_cookie("view", $templateName);
+        }
+        if ($templateName != "list" )
+        {
+          $class_select_display_list ="active";
+          $class_select_display_galery ="normal";
+        }
+        else
+        {
+          $class_select_display_list ="normal";
+          $class_select_display_galery ="active";
+        }
+        ?>
+        <form action="" method="POST">
+          <div class="list_<?echo $class_select_display_list;?>">
+            <input type="submit" name="viewSchemaList" value="Список" <? if(isset($_POST["viewSchemaList"])) echo "disabled"; ?>/>
+          </div>
+          <div class="galery_<?echo $class_select_display_galery;?>">
+            <input type="submit" name="viewSchemaGallery" value="Галерея" <? if(isset($_POST["viewSchemaGallery"])) echo "disabled"; ?>/>
+          </div>
+        </form>
+      </div>
+    </div>
+</div>
 
-		</div></div>
-	<div class="viewSchema"></div>
 </div>
 
 
