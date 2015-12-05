@@ -5,18 +5,28 @@ startList = function allclose() {
 		document.getElementById(id_menu[i]).style.display = "none";
 	}
 }
-function openMenu(id){
-	for (i=0; i < id_menu.length; i++){
-		if (id != id_menu[i]){
-			document.getElementById(id_menu[i]).style.display = "none";
-		}
+function openMenu( id, $this){
+  $('a.podp').text('+');
+	if (typeof $this != 'undefined' && $this.length) {
+		var ttext = $this.text();
+		$this.text(ttext == '+'?'-':'+');
 	}
-	if (document.getElementById(id).style.display == "block"){
-		document.getElementById(id).style.display = "none";
-	}else{
-		document.getElementById(id).style.display = "block";
-	}
+  $('#menu_body ul ul').not('#'+id).slideUp();
+  $('#'+id).slideToggle();
 }
+
+$(document).ready(function(){
+	$('#menu_body a.podp').click(function(e){
+		e.preventDefault();
+		e.stopPropagation();
+		var $this = $(this);
+		var $ul = $this.siblings('ul');
+		if ($ul.length) {
+			openMenu($ul.attr('id'), $this);
+		}
+	});
+});
+
 window.onload=startList;
 </script>
 
@@ -24,8 +34,8 @@ window.onload=startList;
 <h2 class="cat_le">Каталог товаров</h2>
 <div class="menu_header">
   <div class="menu_header_red">
-    <a href="#" class="mha1">Категори</a>
-    <a href="#" class="mha2 active">Бренды</a>
+    <a href="#" class="mha1 active">Категори</a>
+    <a href="#" class="mha2">Бренды</a>
     <a href="#" class="mha3">Дисконт</a>
     <div class="clear"></div>
   </div>
@@ -54,7 +64,7 @@ window.onload=startList;
 <div id="menu_body">
 	<ul>
 		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/komp.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png">
-		<a class="menu_left_c" href="/catalog/kompyutery/">Компьютеры</a><a class="podp" href="#" onclick="openMenu('sub_menu_21');return(false)">+</a>
+		<a class="menu_left_c" href="/catalog/kompyutery/">Компьютеры</a><a class="podp" href="#">+</a>
 		<ul id="sub_menu_21">
 			<li><a href="/catalog/table_pc/">Настольные компьютеры</a></li>
 			<li><a href="/catalog/monoblock/">Моноблоки</a></li>
@@ -62,7 +72,7 @@ window.onload=startList;
 			<li><a href="/catalog/thin-client/">Тонкие клиенты</a></li>
 		</ul>
  </li>
-		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/nout2.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/noutbooks/">Ноутбуки</a><a class="podp" href="#" onclick="openMenu('sub_menu_1');return(false)">+</a>
+		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/nout2.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/noutbooks/">Ноутбуки</a><a class="podp" href="#" >+</a>
 		<ul id="sub_menu_1">
 			<li><a href="/catalog/ultrabuki/">Ультрабуки</a></li>
 			<li><a href="/catalog/noutbooks/">Ноутбуки</a></li>
@@ -70,7 +80,7 @@ window.onload=startList;
 			<li><a href="/catalog/sumki_i_chekhly/">Сумки и чехлы</a></li>
 		</ul>
  </li>
-		<li> <img width="32" src="/upload/medialibrary/4ff/4ffd136090365b80efdf53b659a45056.png" height="32" alt="Комплектующие" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/komplekt/">Комплектующие</a><a class="podp" href="#" onclick="openMenu('sub_menu_2');return(false)">+</a>
+		<li> <img width="32" src="/upload/medialibrary/4ff/4ffd136090365b80efdf53b659a45056.png" height="32" alt="Комплектующие" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/komplekt/">Комплектующие</a><a class="podp" href="#" >+</a>
 		<ul id="sub_menu_2">
 			<li><a href="/catalog/protsessory/">Процессоры</a></li>
 			<li><a href="/catalog/hard_disk/">Жесткие диски</a></li>
@@ -89,7 +99,7 @@ window.onload=startList;
 			<li><a href="/catalog/matritsy/">Матрицы</a></li>
 		</ul>
  </li>
-		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/orgtech.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/orgtekhnika/">Оргтехника</a><a class="podp" href="#" onclick="openMenu('sub_menu_23');return(false)">+</a>
+		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/orgtech.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/orgtekhnika/">Оргтехника</a><a class="podp" href="#" >+</a>
 		<ul id="sub_menu_23">
 			<li><a href="/catalog/kopiry/">Копиры</a></li>
 			<li><a href="/catalog/laminatory/">Ламинаторы</a></li>
@@ -103,7 +113,7 @@ window.onload=startList;
 			<li><a href="/catalog/shredery_unichtozhiteli/">Шредеры (уничтожители)</a></li>
 		</ul>
  </li>
-		<li><img width="32" alt="Расходные материалы" src="/upload/medialibrary/4b1/4b184b3752676ec8152958936cfa7630.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/raskhodnye_materialy/">Расходные материалы</a><a class="podp" href="#" onclick="openMenu('sub_menu_3');return(false)">+</a>
+		<li><img width="32" alt="Расходные материалы" src="/upload/medialibrary/4b1/4b184b3752676ec8152958936cfa7630.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/raskhodnye_materialy/">Расходные материалы</a><a class="podp" href="#" >+</a>
 		<ul id="sub_menu_3">
 			<li><a href="/catalog/kartridzhy/">Картриджы</a></li>
 			<li><a href="/catalog/tonery/">Тонеры</a></li>
@@ -111,7 +121,7 @@ window.onload=startList;
 			<li><a href="/catalog/chistyashchie_sredstva/">Чистящие средства</a></li>
 		</ul>
  </li>
-		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/ibp.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/pereferiya/">Переферия</a><a class="podp" href="#" onclick="openMenu('sub_menu_24');return(false)">+</a>
+		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/ibp.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/pereferiya/">Переферия</a><a class="podp" href="#" >+</a>
 		<ul id="sub_menu_24">
 			<li><a href="/catalog/adaptery/">Адаптеры</a></li>
 			<li><a href="/catalog/veb_kamery/">ВЕБ камеры</a></li>
@@ -124,14 +134,14 @@ window.onload=startList;
 			<li><a href="/catalog/ustroystva_vvoda/">Устройства ввода</a></li>
 		</ul>
  </li>
-		<li><img width="32" alt="Устройства ввода" src="/upload/medialibrary/18a/18a5d696eef614c3d2fbb84ca51a1604.png" height="32" title="Устройства ввода"><a class="menu_left_c" href="/catalog/ustroystva_vvoda/">Устройства ввода</a><a class="podp" href="#" onclick="openMenu('sub_menu_4');return(false)">+</a>
+		<li><img width="32" alt="Устройства ввода" src="/upload/medialibrary/18a/18a5d696eef614c3d2fbb84ca51a1604.png" height="32" title="Устройства ввода"><a class="menu_left_c" href="/catalog/ustroystva_vvoda/">Устройства ввода</a><a class="podp" href="#" >+</a>
 		<ul id="sub_menu_4">
 			<li><a href="/catalog/klaviatury/">Клавиатуры</a></li>
 			<li><a href="/catalog/myshi/">Мыши</a></li>
 			<li><a href="/catalog/dzhoystiki/">Джойстики</a></li>
 		</ul>
  </li>
-		<li><img width="32" alt="Носители информации" src="/upload/medialibrary/31d/31d79ad4e93bc3b925c7fd28d27ff4fa.png" height="32" title="Носители информации"><a class="menu_left_c" href="/catalog/nositeli_informatsii/">Носители информации</a><a class="podp" href="#" onclick="openMenu('sub_menu_5');return(false)">+</a>
+		<li><img width="32" alt="Носители информации" src="/upload/medialibrary/31d/31d79ad4e93bc3b925c7fd28d27ff4fa.png" height="32" title="Носители информации"><a class="menu_left_c" href="/catalog/nositeli_informatsii/">Носители информации</a><a class="podp" href="#" >+</a>
 		<ul id="sub_menu_5">
 			<li><a href="/catalog/vneshnie_hdd/">Внешние HDD</a></li>
 			<li><a href="/catalog/diskety_i_diski/">Дискеты и диски</a></li>
@@ -139,7 +149,7 @@ window.onload=startList;
 			<li><a href="/catalog/fleshki/">Флешки</a></li>
 		</ul>
  </li>
-		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/mobile.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/mobilnye_ustroystva/">Мобильные устройства</a><a class="podp" href="#" onclick="openMenu('sub_menu_22');return(false)">+</a>
+		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/mobile.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/mobilnye_ustroystva/">Мобильные устройства</a><a class="podp" href="#" >+</a>
 		<ul id="sub_menu_22">
 			<li><a href="/catalog/avtoregistratory/">Авторегистраторы</a></li>
 			<li><a href="/catalog/smartfony/">Смартфоны</a></li>
@@ -151,14 +161,14 @@ window.onload=startList;
 			<li><a href="/catalog/aksessuary_mob/">Аксессуары</a></li>
 		</ul>
  </li>
-		<li> <img width="32" alt="Системы хранения данных" src="/upload/medialibrary/8e5/8e5edb06f494e4a20f2b901aff73dee8.png" height="32" title="7Системы хранения данных"><a class="menu_left_c" href="/catalog/sistemy_khraneniya_dannykh_skhd/">Системы хранения данных (СХД)</a><a class="podp" href="#" onclick="openMenu('sub_menu_6');return(false)">+</a>
+		<li> <img width="32" alt="Системы хранения данных" src="/upload/medialibrary/8e5/8e5edb06f494e4a20f2b901aff73dee8.png" height="32" title="7Системы хранения данных"><a class="menu_left_c" href="/catalog/sistemy_khraneniya_dannykh_skhd/">Системы хранения данных (СХД)</a><a class="podp" href="#" >+</a>
 		<ul id="sub_menu_6">
 			<li><a href="/catalog/disskovye_massivy/">Диссковые массивы</a></li>
 			<li><a href="catalog/lentochnye_biblioteki/">Ленточные библиотеки</a></li>
 			<li><a href="/catalog/setevye_khranilishcha_nas/">Сетевые хранилища NAS</a></li>
 		</ul>
  </li>
-		<li><img width="32" alt="Флешки, жесткие диски" src="/upload/medialibrary/31d/31d79ad4e93bc3b925c7fd28d27ff4fa.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/aksessuary_dlya_skhd_i_serverov/">Аксессуары для СХД и серверов</a><a class="podp" href="#" onclick="openMenu('sub_menu_7');return(false)">+</a>
+		<li><img width="32" alt="Флешки, жесткие диски" src="/upload/medialibrary/31d/31d79ad4e93bc3b925c7fd28d27ff4fa.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/aksessuary_dlya_skhd_i_serverov/">Аксессуары для СХД и серверов</a><a class="podp" href="#" >+</a>
 		<ul id="sub_menu_7">
 			<li><a href="/catalog/materinskie_platy_shd/">Материнские платы</a></li>
 			<li><a href="/catalog/hard_diski/">Жесткие диски</a></li>
@@ -176,7 +186,7 @@ window.onload=startList;
 			<li><a href="/catalog/kartridzhy_shd/">Картриджы</a></li>
 		</ul>
  </li>
-		<li><img width="32" alt="Купить Wi-Fi" src="/upload/medialibrary/1c4/psd-wireless-router.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/wi_fi_oborudovanie/">Wi-Fi оборудование</a><a class="podp" href="#" onclick="openMenu('sub_menu_8');return(false)">+</a>
+		<li><img width="32" alt="Купить Wi-Fi" src="/upload/medialibrary/1c4/psd-wireless-router.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/wi_fi_oborudovanie/">Wi-Fi оборудование</a><a class="podp" href="#" >+</a>
 		<ul id="sub_menu_8">
 			<li><a href="/catalog/wi_fi_adaptery/">Wi-Fi адаптеры</a></li>
 			<li><a href="/catalog/wi_fi_antenny/">Wi-Fi антенны</a></li>
@@ -185,7 +195,7 @@ window.onload=startList;
 			<li><a href="/catalog/drugoe/">Другое</a></li>
 		</ul>
  </li>
-		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/videonab.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/videonablyudenie2/">Видеонаблюдение</a><a class="podp" href="#" onclick="openMenu('sub_menu_9');return(false)">+</a>
+		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/videonab.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/videonablyudenie2/">Видеонаблюдение</a><a class="podp" href="#" >+</a>
 		<ul id="sub_menu_9">
 			<li><a href="/catalog/videokamery_nablyudeniya/">Видеокамеры наблюдения</a></li>
 			<li><a href="/catalog/videoregistratory/">Видеорегистраторы</a></li>
@@ -206,24 +216,24 @@ window.onload=startList;
 			<li><a href="/catalog/videosteny/">Видеостены</a></li>
 		</ul>
  </li>
-		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/sol.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><div class="lia"><a class="menu_left_c" href="/catalog/solnechnye_elementy_vetryaki_generatory_elektroenergii/">Солнечные элементы, ветряки, генераторы электроэнергии</a><a class="podp" href="#" onclick="openMenu('sub_menu_11');return(false)">+</a></div>
+		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/sol.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><div class="lia"><a class="menu_left_c" href="/catalog/solnechnye_elementy_vetryaki_generatory_elektroenergii/">Солнечные элементы, ветряки, генераторы электроэнергии</a><a class="podp" href="#" >+</a></div>
 		<ul id="sub_menu_11">
 			<li><a href="/catalog/solnechnye_paneli/">Солнечные панели</a></li>
 			<li><a href="/catalog/komplekty_avtonomnogo_energosnabzheniya/">Комплекты автономного энергоснабжения</a></li>
 		</ul>
  </li>
-		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/domofon.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/domofony/">Домофоны</a><a class="podp" href="#" onclick="openMenu('sub_menu_12');return(false)">+</a>
+		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/domofon.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/domofony/">Домофоны</a><a class="podp" href="#" >+</a>
 		<ul id="sub_menu_12">
 			<li><a href="/catalog/domofony/">Аудио и видео домофоны</a></li>
 		</ul>
  </li>
-		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/radio.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/radiostantsii/">Радиостанции</a><a class="podp" href="#" onclick="openMenu('sub_menu_15');return(false)">+</a>
+		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/radio.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/radiostantsii/">Радиостанции</a><a class="podp" href="#" >+</a>
 		<ul id="sub_menu_15">
 			<li><a href="/catalog/radiostantsii2/">Радиостанции</a></li>
 			<li><a href="/catalog/aksessuary_dlya_radiostantsiy/">Аксессуары для радиостанций</a></li>
 		</ul>
  </li>
-		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/swlag.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/sistemy_kontrolya_dostupa_skd/">Системы контроля доступа (СКД)</a><a class="podp" href="#" onclick="openMenu('sub_menu_16');return(false)">+</a>
+		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/swlag.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/sistemy_kontrolya_dostupa_skd/">Системы контроля доступа (СКД)</a><a class="podp" href="#" >+</a>
 		<ul id="sub_menu_16">
 			<li><a href="/catalog/shlagbaumy_barery/">Шлагбаумы, барьеры</a></li>
 			<li><a href="/catalog/zamki_zashchelki3/">Замки, защелки</a></li>
@@ -235,7 +245,7 @@ window.onload=startList;
 			<li><a href="/catalog/bronirovannaya_plenka/">Бронированная пленка</a></li>
 		</ul>
  </li>
-		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/ops2.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/ops/">ОПС</a><a class="podp" href="#" onclick="openMenu('sub_menu_17');return(false)">+</a>
+		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/ops2.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/ops/">ОПС</a><a class="podp" href="#" >+</a>
 		<ul id="sub_menu_17">
 			<li><a href="/catalog/priemo_kontrolnye_paneli/">Приемо-контрольные панели</a></li>
 			<li><a href="/catalog/ispolnitelnye_ustroistva_opoveshchateli/">Исполнительные устроиства/оповещатели</a></li>
@@ -243,12 +253,12 @@ window.onload=startList;
 			<li><a href="/catalog/provodnye_izveshchateli/">Проводные извещатели</a></li>
 		</ul>
  </li>
-		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/videooo.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/aksessury_dlya_okhrannykh_sistem/">Аксессура для охранных систем</a><a class="podp" href="#" onclick="openMenu('sub_menu_18');return(false)">+</a>
+		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/videooo.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/aksessury_dlya_okhrannykh_sistem/">Аксессура для охранных систем</a><a class="podp" href="#" >+</a>
 		<ul id="sub_menu_18">
 			<li><a href="/catalog/aksessury_dlya_okhrannykh_sistem/">Аккумуляторные батареи, источники питания</a></li>
 		</ul>
  </li>
-		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/po.png" height="32" title="po.png"><a class="menu_left_c" href="/catalog/programmnoe_obespechenie/">Программное обеспечение</a><a class="podp" href="#" onclick="openMenu('sub_menu_25');return(false)">+</a>
+		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/po.png" height="32" title="po.png"><a class="menu_left_c" href="/catalog/programmnoe_obespechenie/">Программное обеспечение</a><a class="podp" href="#" >+</a>
 		<ul id="sub_menu_25">
 			<li><a href="/catalog/antivirusy/">Антивирусы</a></li>
 			<li><a href="/catalog/bukhgalteriya_sklad_kadry/">Бухгалтерия. Склад. Кадры</a></li>
@@ -271,13 +281,13 @@ window.onload=startList;
 			<li><a href="/catalog/fayly_i_disk/">Файлы и диск</a></li>
 		</ul>
  </li>
-		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/zhiroulov.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/zhirouloviteli/">Жироуловители</a><a class="podp" href="#" onclick="openMenu('sub_menu_19');return(false)">+</a>
+		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/zhiroulov.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/zhirouloviteli/">Жироуловители</a><a class="podp" href="#" >+</a>
 		<ul id="sub_menu_19">
 			<li><a href="/catalog/kukhonnye_pod_moyku/">Кухонные (под мойку)</a></li>
 			<li><a href="/catalog/statsionarnye_dlya_svobodnoy_ustanovki/">Стационарные (для свободной установки)</a></li>
 		</ul>
  </li>
-		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/ckc.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/nasosy/">Насосы</a><a class="podp" href="#" onclick="openMenu('sub_menu_20');return(false)">+</a>
+		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/ckc.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/nasosy/">Насосы</a><a class="podp" href="#" >+</a>
 		<ul id="sub_menu_20">
 			<li><a href="/catalog/tsirkulyatsionnye_nasosy_dlya_sistem_otopleniya/">Циркуляционные насосы для систем отопления</a></li>
 			<li><a href="/catalog/retsirkulyatsionnye_nasosy_dlya_sistem_gvs/">Рециркуляционные насосы для систем ГВС</a></li>
@@ -286,7 +296,7 @@ window.onload=startList;
 			<li><a href="/catalog/nasosy_dlya_otvoda_stochnykh_i_fekalnykh_vod/">Насосы для отвода сточных и фекальных вод</a></li>
 		</ul>
  </li>
-		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/service.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/services/">Услуги</a><a class="podp" href="#" onclick="openMenu('sub_menu_26');return(false)">+</a>
+		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/service.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/services/">Услуги</a><a class="podp" href="#" >+</a>
 		<ul id="sub_menu_26">
 			<li><a href="/catalog/it_konsalting/">IT-консалтинг</a></li>
 			<li><a href="/catalog/autsorsing/">Аутсорсинг</a></li>
@@ -300,7 +310,7 @@ window.onload=startList;
 			<li><a href="/catalog/remont_tekhniki/">Ремонт техники</a></li>
 		</ul>
  </li>
- <li><img width="32" alt="Автоматизация" src="http://7711.int/upload/medialibrary/f35/avtomatizaciya.png" height="32" title="Автоматизация"><a class="menu_left_c" href="#" onclick="openMenu('sub_menu_10');return(false)">Автоматизация</a><a class="podp" href="#" onclick="openMenu('sub_menu_10');return(false)">+</a>
+ <li><img width="32" alt="Автоматизация" src="http://7711.int/upload/medialibrary/f35/avtomatizaciya.png" height="32" title="Автоматизация"><a class="menu_left_c" href="#" >+</a>
 		<ul id="sub_menu_10">
 			<li><a href="/catalog/avtomatizatsiya_gostinits/">Автоматизация гостиниц</a></li>
 			<li><a href="/catalog/avtomatizatsiya_torgovykh_tochek/">Автоматизация торговых точек</a></li>
