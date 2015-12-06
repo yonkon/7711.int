@@ -1311,7 +1311,7 @@ max-width: 1120px;
   margin-left: 222px;
 }
 
-.viewSchema, .select_display {
+.viewSchema, .select_display, .right-col {
   /*position: absolute;*/
   float: right;
   width: 160px;
@@ -1350,4 +1350,29 @@ max-width: 1120px;
 a.podp {
 	text-decoration: none;
 	color: black;
+}
+
+.hr {
+  height: 1px;
+  display: block;
+  width: 100%;
+  background: #ccc;
+  margin: 1em 0;
+}
+
+.sortirovka.info {
+  color: #ccc;
+  font-size: 90%;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
 }

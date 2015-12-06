@@ -123,7 +123,7 @@ if ($verticalGrid)
     ?>
     <div class="sortViewActions">
       <div class="sortirovka">
-        <div class="viewSchema">
+        <div class="viewSchema right-col">
           <div class="select_display">
             <?
             $templateName = $APPLICATION->get_cookie('view') ? $APPLICATION->get_cookie("view") : "bar";
@@ -192,7 +192,7 @@ if ($verticalGrid)
       <div class="hr"></div>
       <div class="sortirovka info">
         <div class="inline-block">Показаны товары с 1 по 20 из 666</div>
-        <div class="inline-block right">Выводить по 20 30 50 100</div>
+        <div class="inline-block right-col">Выводить по 20 30 50 100</div>
       </div>
 
     </div>
