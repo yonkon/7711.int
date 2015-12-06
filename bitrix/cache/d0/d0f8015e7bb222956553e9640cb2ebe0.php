@@ -1,7 +1,0 @@
-<?
-if($INCLUDE_FROM_CACHE!='Y')return false;
-$datecreate = '001438000883';
-$dateexpire = '001438044083';
-$ser_content = 'a:2:{s:7:"CONTENT";s:0:"";s:4:"VARS";a:2:{s:3:"SEL";a:0:{}s:6:"VIEWED";a:5:{i:0;a:8:{s:10:"PRODUCT_ID";s:4:"4476";s:4:"NAME";s:19:"Летний душ";s:5:"PRICE";s:8:"62000.00";s:8:"CURRENCY";s:3:"KZT";s:4:"RATE";s:6:"1.0000";s:13:"CURRENCY_RATE";s:1:"1";s:10:"VIEW_COUNT";i:17;s:10:"SORT_PRICE";d:62000;}i:1;a:8:{s:10:"PRODUCT_ID";s:4:"4471";s:4:"NAME";s:33:"Принтер Epson Workforce 30";s:5:"PRICE";s:8:"31343.00";s:8:"CURRENCY";s:3:"KZT";s:4:"RATE";s:6:"1.0000";s:13:"CURRENCY_RATE";s:1:"1";s:10:"VIEW_COUNT";i:10;s:10:"SORT_PRICE";d:31343;}i:2;a:8:{s:10:"PRODUCT_ID";s:4:"4468";s:4:"NAME";s:35:"МФУ Epson Workforce Pro  WP-4540";s:5:"PRICE";s:8:"53145.00";s:8:"CURRENCY";s:3:"KZT";s:4:"RATE";s:6:"1.0000";s:13:"CURRENCY_RATE";s:1:"1";s:10:"VIEW_COUNT";i:9;s:10:"SORT_PRICE";d:53145;}i:3;a:8:{s:10:"PRODUCT_ID";s:4:"4465";s:4:"NAME";s:35:"МФУ Epson Expression Home XP-100";s:5:"PRICE";s:8:"23845.00";s:8:"CURRENCY";s:3:"KZT";s:4:"RATE";s:6:"1.0000";s:13:"CURRENCY_RATE";s:1:"1";s:10:"VIEW_COUNT";i:8;s:10:"SORT_PRICE";d:23845;}i:4;a:8:{s:10:"PRODUCT_ID";s:4:"4463";s:4:"NAME";s:38:"МФУ HP LaserJet Pro M127fn (CZ181A)";s:5:"PRICE";s:8:"41990.00";s:8:"CURRENCY";s:3:"KZT";s:4:"RATE";s:6:"1.0000";s:13:"CURRENCY_RATE";s:1:"1";s:10:"VIEW_COUNT";i:7;s:10:"SORT_PRICE";d:41990;}}}}';
-return true;
-?>

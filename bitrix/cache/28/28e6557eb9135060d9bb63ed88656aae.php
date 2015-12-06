@@ -1,7 +1,0 @@
-<?
-if($INCLUDE_FROM_CACHE!='Y')return false;
-$datecreate = '001448097485';
-$dateexpire = '001448140685';
-$ser_content = 'a:2:{s:7:"CONTENT";s:0:"";s:4:"VARS";a:2:{s:3:"SEL";a:0:{}s:6:"VIEWED";a:5:{i:0;a:8:{s:10:"PRODUCT_ID";s:4:"4169";s:4:"NAME";s:67:"Графический планшет Wacom Intuos Pen&Touch Medium";s:5:"PRICE";s:8:"54900.00";s:8:"CURRENCY";s:3:"KZT";s:4:"RATE";s:6:"1.0000";s:13:"CURRENCY_RATE";s:1:"1";s:10:"VIEW_COUNT";i:6;s:10:"SORT_PRICE";d:54900;}i:1;a:8:{s:10:"PRODUCT_ID";s:4:"2979";s:4:"NAME";s:52:"Аккумуляторная батарея ТР12-7";s:5:"PRICE";s:7:"3500.00";s:8:"CURRENCY";s:3:"KZT";s:4:"RATE";s:6:"1.0000";s:13:"CURRENCY_RATE";s:1:"1";s:10:"VIEW_COUNT";i:4;s:10:"SORT_PRICE";d:3500;}i:2;a:8:{s:10:"PRODUCT_ID";s:4:"3731";s:4:"NAME";s:57:"Ноутбук Dell 11,6 \'\'/Inspiron 11 3000 Series -3147";s:5:"PRICE";s:9:"103962.84";s:8:"CURRENCY";s:3:"KZT";s:4:"RATE";s:6:"1.0000";s:13:"CURRENCY_RATE";s:1:"1";s:10:"VIEW_COUNT";i:4;s:10:"SORT_PRICE";d:103962.83999999999650754034519195556640625;}i:3;a:8:{s:10:"PRODUCT_ID";s:4:"4462";s:4:"NAME";s:41:"Принтер HP LaserJet P2035 (CE461A)";s:5:"PRICE";s:8:"39990.00";s:8:"CURRENCY";s:3:"KZT";s:4:"RATE";s:6:"1.0000";s:13:"CURRENCY_RATE";s:1:"1";s:10:"VIEW_COUNT";i:4;s:10:"SORT_PRICE";d:39990;}i:4;a:8:{s:10:"PRODUCT_ID";s:4:"4470";s:4:"NAME";s:20:"МФУ Epson EP-706A";s:5:"PRICE";s:8:"48343.00";s:8:"CURRENCY";s:3:"KZT";s:4:"RATE";s:6:"1.0000";s:13:"CURRENCY_RATE";s:1:"1";s:10:"VIEW_COUNT";i:4;s:10:"SORT_PRICE";d:48343;}}}}';
-return true;
-?>

@@ -1,6 +1,6 @@
-; /* /bitrix/js/phpsolutions.backtotop/backtotop.js?14346028313165*/
+; /* /bitrix/js/phpsolutions.backtotop/backtotop.js?14488559423165*/
 
-; /* Start:"a:4:{s:4:"full";s:61:"/bitrix/js/phpsolutions.backtotop/backtotop.js?14346028313165";s:6:"source";s:46:"/bitrix/js/phpsolutions.backtotop/backtotop.js";s:3:"min";s:0:"";s:3:"map";s:0:"";}"*/
+; /* Start:"a:4:{s:4:"full";s:61:"/bitrix/js/phpsolutions.backtotop/backtotop.js?14488559423165";s:6:"source";s:46:"/bitrix/js/phpsolutions.backtotop/backtotop.js";s:3:"min";s:0:"";s:3:"map";s:0:"";}"*/
 $(document).ready(function(){ 
 	$( "body" ).append( "<a class='BackToTop' href='#'><img src='" + phpsolutions_backtotop_selected_image + "'></a>" ) ;
 	$('.BackToTop').fadeTo( 0, phpsolutions_backtotop_button_opacity / 100 ) ;

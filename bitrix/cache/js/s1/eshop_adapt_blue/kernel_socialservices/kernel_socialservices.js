@@ -1,6 +1,6 @@
-; /* /bitrix/js/socialservices/ss.js*/
+; /* /bitrix/js/socialservices/ss.js?14488560421464*/
 
-; /* Start:/bitrix/js/socialservices/ss.js*/
+; /* Start:"a:4:{s:4:"full";s:46:"/bitrix/js/socialservices/ss.js?14488560421464";s:6:"source";s:31:"/bitrix/js/socialservices/ss.js";s:3:"min";s:0:"";s:3:"map";s:0:"";}"*/
 function BxShowAuthService(id, suffix)
 {
 	var bxCurrentAuthId = ''; 

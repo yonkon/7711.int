@@ -1,6 +1,6 @@
-; /* /bitrix/js/currency/core_currency.js*/
+; /* /bitrix/js/currency/core_currency.js?14488560472536*/
 
-; /* Start:/bitrix/js/currency/core_currency.js*/
+; /* Start:"a:4:{s:4:"full";s:51:"/bitrix/js/currency/core_currency.js?14488560472536";s:6:"source";s:36:"/bitrix/js/currency/core_currency.js";s:3:"min";s:0:"";s:3:"map";s:0:"";}"*/
 (function(window) {
 
 if (BX.Currency)
