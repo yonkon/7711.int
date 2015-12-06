@@ -134,7 +134,40 @@ if ($_GET["sort"] == "catalog_PRICE_1" && $_GET['method'] == 'asc') {
 ?>
 <div class="sortViewActions">
 	<div class="sortirovka">
-		<p>
+    <div class="viewSchema">
+      <div class="select_display">
+        <?
+        $templateName = $APPLICATION->get_cookie('view')?$APPLICATION->get_cookie("view"):"bar";
+        if(isset($_POST["viewSchemaList"]))
+        {
+          $templateName = "bar";
+          $APPLICATION->set_cookie("view", $templateName);
+        }
+        if(isset($_POST["viewSchemaGallery"]) || !isset($_POST["viewSchemaList"]))
+        {
+          $templateName = "list";
+          $APPLICATION->set_cookie("view", $templateName);
+        }
+        if ($templateName != "list" )
+        {
+          $class_select_display_list ="active";
+          $class_select_display_galery ="normal";
+        }
+        else
+        {
+          $class_select_display_list ="normal";
+          $class_select_display_galery ="active";
+        }
+        ?>
+        <form action="" method="POST">
+          <b>Вид отображения:</b>
+          <a rel="nofollow" title="Вид плиткой" class="list_<?echo $class_select_display_list;?>" href="?viewSchema=List">&nbsp;</a>
+          <a rel="nofollow" title="Вид списком" class="galery_<?echo $class_select_display_galery;?>" href="?viewSchema=Gallery">&nbsp;</a>
+        </form>
+      </div>
+    </div>
+
+    <p>
 			<b>Сортировать по:</b>
 		<span class="dropdown "> <a rel="nofollow" class="actived" href="javascript:void()"><?php echo $activeSortingText; ?></a>
 					<ul class="list ad_popup" style="display: none;">
@@ -165,41 +198,6 @@ if ($_GET["sort"] == "catalog_PRICE_1" && $_GET['method'] == 'asc') {
 				$('.list.ad_popup').slideUp();//
 			});
 		</script>
-    <div class="viewSchema">
-      <div class="select_display">
-        <?
-        $templateName = $APPLICATION->get_cookie('view')?$APPLICATION->get_cookie("view"):"bar";
-        if(isset($_POST["viewSchemaList"]))
-        {
-          $templateName = "bar";
-          $APPLICATION->set_cookie("view", $templateName);
-        }
-        if(isset($_POST["viewSchemaGallery"]) || !isset($_POST["viewSchemaList"]))
-        {
-          $templateName = "list";
-          $APPLICATION->set_cookie("view", $templateName);
-        }
-        if ($templateName != "list" )
-        {
-          $class_select_display_list ="active";
-          $class_select_display_galery ="normal";
-        }
-        else
-        {
-          $class_select_display_list ="normal";
-          $class_select_display_galery ="active";
-        }
-        ?>
-        <form action="" method="POST">
-          <div class="list_<?echo $class_select_display_list;?>">
-            <input type="submit" name="viewSchemaList" value="Список" <? if(isset($_POST["viewSchemaList"])) echo "disabled"; ?>/>
-          </div>
-          <div class="galery_<?echo $class_select_display_galery;?>">
-            <input type="submit" name="viewSchemaGallery" value="Галерея" <? if(isset($_POST["viewSchemaGallery"])) echo "disabled"; ?>/>
-          </div>
-        </form>
-      </div>
-    </div>
 </div>
 
 </div>

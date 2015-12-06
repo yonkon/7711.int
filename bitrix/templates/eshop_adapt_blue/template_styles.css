@@ -1311,70 +1311,41 @@ max-width: 1120px;
   margin-left: 222px;
 }
 
-.select_display {
-  position: absolute;
-  top: 6px;
-  right: 0px;
+.viewSchema, .select_display {
+  /*position: absolute;*/
+  float: right;
   width: 160px;
 }
-.select_display input[type="button"],
-.select_display input[type="submit"],
-.select_display input[type="reset"],
-.select_display input[type="file"]::-webkit-file-upload-button,
-.select_display button {
-  color: #ffffff;
-  padding: 0;
-  background: #138ac2;
-  position: relative;
-  top: -5px;
-  margin-right: 5px;
-  cursor: pointer;
-}
-.select_display input{
+
+.select_display a{
   -moz-appearance: none!important;
-  color: #ffffff;
-  background: #138ac2!important;
-  padding: 0;
+  color: transparent;
+  background: transparent url("/temp/catalog-view-type.png") no-repeat;
+  padding: 0 !important;
   cursor: pointer;
   position: relative;
-  top: -5px;
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-left: 5px;
+  /*top: -5px;*/
 }
-.select_display input:hover[type="submit"]{
-  color: #d1d1d1;
-}
-.select_display input[type="submit"]:disabled {
-  padding: 0;
-  background: #138ac2;
-}
+
 .select_display .list_normal {
-  padding: 1px 3px 1px 12px;
-  float: left;
-  color: #ffffff;
-  height: 7px;
-  background: #138ac2 url('/temp/select_display_list.png') no-repeat bottom left;
+  background-position: -19px 0;
 }
 .select_display .list_active {
-  padding: 1px 3px 1px 12px;
-  float: left;
-  height: 7px;
-  background: #138ac2 url('/temp/select_display_list.png') no-repeat top left;
+  background-position: -19px -19px;
 }
-.select_display .list_active input[type="submit"],.select_display .galery_active input[type="submit"] {
-  color: #3d3d3d;
-  cursor: default;
+.select_display .list_active,.select_display .galery_active {
+  cursor: default ;
 }
 .select_display .galery_normal {
-  padding: 1px 3px 1px 12px;
-  float: left;
-  color: #ffffff;
-  height: 7px;
-  background: #138ac2 url('/temp/select_display_galery.png') no-repeat bottom left;
+  background-position: 0 0;
 }
 .select_display .galery_active {
-  padding: 1px 3px 1px 12px;
-  float: left;
-  height: 7px;
-  background: #138ac2 url('/temp/select_display_galery.png') no-repeat top left;
+  background-position: 0 -19px;
+
 }
 a.podp {
 	text-decoration: none;
