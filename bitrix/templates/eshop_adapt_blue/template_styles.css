@@ -1365,6 +1365,20 @@ a.podp {
   font-size: 90%;
 }
 
+.sortirovka.info a {
+  padding: 0;
+  margin-left: 3px;
+  text-decoration: none;
+  border-bottom: 1px dotted #4b9bcd;
+  color: #3687b8;
+}
+
+.sortirovka.info a.active {
+  color: #939393;
+  cursor: default;
+  border-bottom: none;
+}
+
 .inline-block {
   display: inline-block;
 }

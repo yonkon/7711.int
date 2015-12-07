@@ -120,6 +120,28 @@ if ($verticalGrid)
     } elseif ($_GET["sort"] == "timestamp_x") {
       $activeSortingText = 'Новые поступления';
     }
+
+    function addUriParam($key, $value='') {
+      global $APPLICATION;
+      $curPageWParam = $APPLICATION->GetCurUri();
+      if(strpos($curPageWParam, '?')) {
+        $curPageWParam .= '&';
+      }
+      if(is_array($key)) {
+        foreach($key as $k => $v) {
+          $curPageWParam .= $k;
+          $curPageWParam .= '=';
+          $curPageWParam .= urlencode($v);
+          $curPageWParam .= '&';
+        }
+        $curPageWParam = substr($curPageWParam, 0, -1);
+      } else {
+        $curPageWParam .= $key;
+        $curPageWParam .= '=';
+        $curPageWParam .= urlencode($value);
+      }
+      return $curPageWParam;
+    }
     ?>
     <div class="sortViewActions">
       <div class="sortirovka">
@@ -127,11 +149,11 @@ if ($verticalGrid)
           <div class="select_display">
             <?
             $templateName = $APPLICATION->get_cookie('view') ? $APPLICATION->get_cookie("view") : "bar";
-            if (isset($_POST["viewSchemaList"])) {
+            if (!isset($_REQUEST["viewSchema"]) || $_REQUEST["viewSchema"] == "Gallery") {
               $templateName = "bar";
               $APPLICATION->set_cookie("view", $templateName);
             }
-            if (isset($_POST["viewSchemaGallery"]) || !isset($_POST["viewSchemaList"])) {
+            if (!isset($_POST["viewSchema"]) || $_POST["viewSchema"] == "List") {
               $templateName = "list";
               $APPLICATION->set_cookie("view", $templateName);
             }
@@ -145,20 +167,22 @@ if ($verticalGrid)
             ?>
             <b>Вид отображения:</b>
             <a rel="nofollow" title="Вид списком" class="galery_<? echo $class_select_display_galery; ?>"
-               href="?viewSchema=Gallery">&nbsp;</a>
+               href="<?php echo addUriParam('viewSchema', 'Gallery'); ?>">&nbsp;</a>
             <a rel="nofollow" title="Вид плиткой" class="list_<? echo $class_select_display_list; ?>"
-               href="?viewSchema=List">&nbsp;</a>
+               href="<?php echo addUriParam('viewSchema', 'List'); ?>">&nbsp;</a>
           </div>
         </div>
 
         <p>
           <b>Сортировать по:</b>
-		<span class="dropdown "> <a rel="nofollow" class="actived"
-                                href="javascript:void()"><?php echo $activeSortingText; ?></a>
+		<span class="dropdown ">
+      <a rel="nofollow" class="actived"
+         href="javascript:void()"><?php echo $activeSortingText; ?></a>
+
 					<ul class="list ad_popup" style="display: none;">
             <li>
               <a <? if ($_GET["sort"] == "catalog_PRICE_1" && $_GET['method'] == 'asc'): ?> class="actived" <? endif; ?>
-                href="<?= $arResult["SECTION_PAGE_URL"] ?>?sort=catalog_PRICE_1&method=asc">
+                href="<?php  echo addUriParam(array('sort' => 'catalog_PRICE_1', 'method' => 'asc') ); ?>">
                 Цене, сначала дешевле
               </a></li>
 
@@ -191,8 +215,32 @@ if ($verticalGrid)
       </div>
       <div class="hr"></div>
       <div class="sortirovka info">
+        <?php 
+        if(isset($_REQUEST['SECTION_COUNT_ELEMENTS']) && 
+          is_integer($_REQUEST['SECTION_COUNT_ELEMENTS'])
+        ) {
+          $arParams['SECTION_COUNT_ELEMENTS'] = $_REQUEST['SECTION_COUNT_ELEMENTS'];
+        }
+        ?>
         <div class="inline-block">Показаны товары с 1 по 20 из 666</div>
-        <div class="inline-block right-col">Выводить по 20 30 50 100</div>
+        <div class="inline-block right-col">Выводить по:
+          <a href="?SECTION_COUNT_ELEMENTS=20"
+            <?php if(empty($arParams['SECTION_COUNT_ELEMENTS']) ||
+              $arParams['SECTION_COUNT_ELEMENTS'] == 'N'||
+              $arParams['SECTION_COUNT_ELEMENTS'] == 20) {
+              echo ' class="active" ';
+            } ?>>
+            20 </a>
+          <a href="?SECTION_COUNT_ELEMENTS=30"
+            <?php if($arParams['SECTION_COUNT_ELEMENTS'] == 30) echo ' class="active" '; ?>>
+            30</a>
+          <a href="?SECTION_COUNT_ELEMENTS=50"
+            <?php if($arParams['SECTION_COUNT_ELEMENTS'] == 50) echo ' class="active" '; ?>>
+            50</a>
+          <a href="?SECTION_COUNT_ELEMENTS=100"
+            <?php if($arParams['SECTION_COUNT_ELEMENTS'] == 100) echo ' class="active" '; ?>>
+            100</a>
+        </div>
       </div>
 
     </div>
@@ -206,7 +254,7 @@ if ($verticalGrid)
         "IBLOCK_ID" => $arParams["IBLOCK_ID"],
         "SECTION_ID" => $arResult["VARIABLES"]["SECTION_ID"],
         "SECTION_CODE" => $arResult["VARIABLES"]["SECTION_CODE"],
-        "CACHE_TYPE" => $arParams["CACHE_TYPE"],
+        "CACHE_TYPE" => "N", //$arParams["CACHE_TYPE"],
         "CACHE_TIME" => $arParams["CACHE_TIME"],
         "CACHE_GROUPS" => $arParams["CACHE_GROUPS"],
         "COUNT_ELEMENTS" => $arParams["SECTION_COUNT_ELEMENTS"],
