@@ -1,1 +1,0 @@
-<? $arFilesInfo = array( 'FILES' => array("/bitrix/templates/eshop_adapt_blue/components/bitrix/socserv.auth.form/.default/style.css" => "14338396078646",), 'CUR_SEL_CNT' => '34', 'CUR_IE_CNT' => '0'); ?>

@@ -1,7 +1,0 @@
-<?
-if($INCLUDE_FROM_CACHE!='Y')return false;
-$datecreate = '001443456626';
-$dateexpire = '001443460226';
-$ser_content = 'a:2:{s:7:"CONTENT";s:0:"";s:4:"VARS";a:2:{i:5030;a:14:{s:2:"ID";s:4:"5030";s:11:"TIMESTAMP_X";s:19:"02.06.2015 11:05:56";s:9:"MODULE_ID";s:6:"iblock";s:6:"HEIGHT";s:3:"640";s:5:"WIDTH";s:3:"640";s:9:"FILE_SIZE";s:6:"128268";s:12:"CONTENT_TYPE";s:10:"image/jpeg";s:6:"SUBDIR";s:10:"iblock/6a2";s:9:"FILE_NAME";s:58:"ustanovka_antivirusa_kasperskiy_2013_internet_security.jpg";s:13:"ORIGINAL_NAME";s:58:"ustanovka-antivirusa-kasperskiy-2013-internet-security.jpg";s:11:"DESCRIPTION";s:0:"";s:10:"HANDLER_ID";N;s:11:"EXTERNAL_ID";s:32:"ddb50727de5cdd6179bcc769ddedfec3";s:4:"~src";b:0;}i:5033;a:14:{s:2:"ID";s:4:"5033";s:11:"TIMESTAMP_X";s:19:"02.06.2015 11:14:50";s:9:"MODULE_ID";s:6:"iblock";s:6:"HEIGHT";s:3:"310";s:5:"WIDTH";s:3:"200";s:9:"FILE_SIZE";s:5:"60026";s:12:"CONTENT_TYPE";s:9:"image/png";s:6:"SUBDIR";s:10:"iblock/254";s:9:"FILE_NAME";s:40:"ustanovka_antivirusa_kasperskiy_2013.png";s:13:"ORIGINAL_NAME";s:40:"ustanovka-antivirusa-kasperskiy-2013.png";s:11:"DESCRIPTION";s:0:"";s:10:"HANDLER_ID";N;s:11:"EXTERNAL_ID";s:32:"88597627c23fc311b1f54c333209fc73";s:4:"~src";b:0;}}}';
-return true;
-?>
