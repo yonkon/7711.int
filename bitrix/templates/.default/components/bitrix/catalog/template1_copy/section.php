@@ -129,17 +129,58 @@ if ($verticalGrid)
       }
       if(is_array($key)) {
         foreach($key as $k => $v) {
-          $curPageWParam .= $k;
+          $firstParamMatches = false;
+          $elseParamMatches = false;
+          if ( //If param is already in query string
+          ($firstParamMatches = strpos($curPageWParam, "?{$k}=")) ||
+          ($elseParamMatches = strpos($curPageWParam, "&{$k}="))
+          ) {
+            $paramStart = $firstParamMatches? $firstParamMatches : $elseParamMatches;
+            $valueStart = strpos($curPageWParam,'=', $paramStart);
+            $valueEnd = strpos($curPageWParam, '&', $valueStart);
+            if (!$valueEnd) {
+              $valueEnd = strpos($curPageWParam, '#', $valueStart);
+            }
+            if (!$valueEnd) {
+              $valueEnd = strlen($curPageWParam);
+            }
+            if ($valueEnd) {
+              $curPageWParam = substr($curPageWParam, 0, $valueStart+1) . $v . substr($curPageWParam, $valueEnd);
+            }
+          } else {
+            $curPageWParam .= $k;
+            $curPageWParam .= '=';
+            $curPageWParam .= urlencode($v);
+            $curPageWParam .= '&';
+          }
+        }
+      } else {
+        $firstParamMatches = false;
+        $elseParamMatches = false;
+        if ( //If param is already in query string
+        ($firstParamMatches = strpos($curPageWParam, "?{$key}=")) ||
+        ($elseParamMatches = strpos($curPageWParam, "&{$key}="))
+        ) {
+          $paramStart = $firstParamMatches? $firstParamMatches : $elseParamMatches;
+          $valueStart = strpos($curPageWParam,'=', $paramStart);
+          $valueEnd = strpos($curPageWParam, '&', $valueStart);
+          if (!$valueEnd) {
+            $valueEnd = strpos($curPageWParam, '#', $valueStart);
+          }
+          if (!$valueEnd) {
+            $valueEnd = strlen($curPageWParam);
+          }
+          if ($valueEnd) {
+            $curPageWParam = substr($curPageWParam, 0, $valueStart+1) . $value. substr($curPageWParam, $valueEnd);
+          }
+        } else {
+          $curPageWParam .= $key;
           $curPageWParam .= '=';
-          $curPageWParam .= urlencode($v);
+          $curPageWParam .= urlencode($value);
           $curPageWParam .= '&';
         }
-        $curPageWParam = substr($curPageWParam, 0, -1);
-      } else {
-        $curPageWParam .= $key;
-        $curPageWParam .= '=';
-        $curPageWParam .= urlencode($value);
       }
+      $curPageWParam = substr($curPageWParam, 0, -1);
       return $curPageWParam;
     }
     ?>
@@ -188,15 +229,15 @@ if ($verticalGrid)
 
             <li>
               <a <? if ($_GET["sort"] == "catalog_PRICE_1" && $_GET['method'] == 'desc'): ?> class="actived" <? endif; ?>
-                href="<?= $arResult["SECTION_PAGE_URL"] ?>?sort=catalog_PRICE_1&method=desc">
+                href="<?php  echo addUriParam(array('sort' => 'catalog_PRICE_1', 'method' => 'desc') ); ?>">
                 Цене, сначала дороже
               </a></li>
             <li><a <? if ($_GET["sort"] == "name"): ?> class="actived" <? endif; ?>
-                href="<?= $arResult["SECTION_PAGE_URL"] ?>?sort=name&method=asc">
+                href="<?php  echo addUriParam(array('sort' => 'name', 'method' => 'asc') ); ?>">
                 Названию
               </a></li>
             <li><a <? if ($_GET["sort"] == "timestamp_x"): ?> class="actived" <? endif; ?>
-                href="<?= $arResult["SECTION_PAGE_URL"] ?>?sort=timestamp_x&method=desc">
+                href="<?php  echo addUriParam(array('sort' => 'timestamp_x', 'method' => 'desc') ); ?>">
                 Новые поступления
               </a></li>
           </ul>
@@ -216,29 +257,27 @@ if ($verticalGrid)
       <div class="hr"></div>
       <div class="sortirovka info">
         <?php 
-        if(isset($_REQUEST['SECTION_COUNT_ELEMENTS']) && 
-          is_integer($_REQUEST['SECTION_COUNT_ELEMENTS'])
+        if(isset($_REQUEST['PAGE_ELEMENT_COUNT']) &&
+          intval($_REQUEST['PAGE_ELEMENT_COUNT'])
         ) {
-          $arParams['SECTION_COUNT_ELEMENTS'] = $_REQUEST['SECTION_COUNT_ELEMENTS'];
+          $arParams['PAGE_ELEMENT_COUNT'] = $_REQUEST['PAGE_ELEMENT_COUNT'];
         }
         ?>
         <div class="inline-block">Показаны товары с 1 по 20 из 666</div>
         <div class="inline-block right-col">Выводить по:
-          <a href="?SECTION_COUNT_ELEMENTS=20"
-            <?php if(empty($arParams['SECTION_COUNT_ELEMENTS']) ||
-              $arParams['SECTION_COUNT_ELEMENTS'] == 'N'||
-              $arParams['SECTION_COUNT_ELEMENTS'] == 20) {
+          <a href="<?php  echo addUriParam(array('PAGE_ELEMENT_COUNT' => '20') ); ?>"
+            <?php if($arParams['PAGE_ELEMENT_COUNT'] == 20) {
               echo ' class="active" ';
             } ?>>
             20 </a>
-          <a href="?SECTION_COUNT_ELEMENTS=30"
-            <?php if($arParams['SECTION_COUNT_ELEMENTS'] == 30) echo ' class="active" '; ?>>
+          <a href="<?php  echo addUriParam(array('PAGE_ELEMENT_COUNT' => '30') ); ?>"
+            <?php if($arParams['PAGE_ELEMENT_COUNT'] == 30) echo ' class="active" '; ?>>
             30</a>
-          <a href="?SECTION_COUNT_ELEMENTS=50"
-            <?php if($arParams['SECTION_COUNT_ELEMENTS'] == 50) echo ' class="active" '; ?>>
+          <a href="<?php  echo addUriParam(array('PAGE_ELEMENT_COUNT' => '50') ); ?>"
+            <?php if($arParams['PAGE_ELEMENT_COUNT'] == 50) echo ' class="active" '; ?>>
             50</a>
-          <a href="?SECTION_COUNT_ELEMENTS=100"
-            <?php if($arParams['SECTION_COUNT_ELEMENTS'] == 100) echo ' class="active" '; ?>>
+          <a href="<?php  echo addUriParam(array('PAGE_ELEMENT_COUNT' => '100') ); ?>"
+            <?php if($arParams['PAGE_ELEMENT_COUNT'] == 100) echo ' class="active" '; ?>>
             100</a>
         </div>
       </div>

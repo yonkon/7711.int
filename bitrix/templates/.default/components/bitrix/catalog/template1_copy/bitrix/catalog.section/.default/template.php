@@ -153,7 +153,8 @@ foreach ($arResult['ITEMS'] as $key => $arItem)
 		? $arItem['IPROPERTY_VALUES']['ELEMENT_PREVIEW_PICTURE_FILE_TITLE']
 		: $arItem['NAME']
 	);
-	?><div class="<? echo ($arItem['SECOND_PICT'] ? 'bx_catalog_item double' : 'bx_catalog_item'); ?>"><div class="bx_catalog_item_container" id="<? echo $strMainID; ?>">
+	?><div class="<? echo ($arItem['SECOND_PICT'] ? 'bx_catalog_item double' : 'bx_catalog_item'); ?>">
+	<div class="bx_catalog_item_container" id="<? echo $strMainID; ?>">
 		<a id="<? echo $arItemIDs['PICT']; ?>" href="<? echo $arItem['DETAIL_PAGE_URL']; ?>" class="bx_catalog_item_images" style="background-image: url('<? echo $arItem['PREVIEW_PICTURE']['SRC']; ?>')" title="<? echo $imgTitle; ?>"><?
 	if ('Y' == $arParams['SHOW_DISCOUNT_PERCENT'])
 	{
@@ -191,7 +192,8 @@ foreach ($arResult['ITEMS'] as $key => $arItem)
 		?>
 		</a><?
 	}
-	?><div class="bx_catalog_item_title"><a href="<? echo $arItem['DETAIL_PAGE_URL']; ?>" title="<? echo $productTitle; ?>"><? echo $productTitle; ?></a></div>
+	?><div class="bx_catalog_item_articul">Код товара: <?php echo $arItem['PROPERTIES']['artnumber']['VALUE']; ?></div>
+		<div class="bx_catalog_item_title"><a href="<? echo $arItem['DETAIL_PAGE_URL']; ?>" title="<? echo $productTitle; ?>"><? echo $productTitle; ?></a></div>
 	<div class="bx_catalog_item_price"><div id="<? echo $arItemIDs['PRICE']; ?>" class="bx_price"><?
 	if (!empty($arItem['MIN_PRICE']))
 	{

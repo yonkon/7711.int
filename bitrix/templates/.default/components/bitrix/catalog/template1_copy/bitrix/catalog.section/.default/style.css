@@ -106,6 +106,10 @@
 	color:#a5a5a5;
 	font-size:13px;
 }
+.bx_catalog_list_home .bx_catalog_item_articul.small {
+	font-size: 80%;
+	margin-bottom: 1em;
+}
 .bx_catalog_list_home .bx_catalog_item_title{
 	overflow:hidden;
 	height:34px;
