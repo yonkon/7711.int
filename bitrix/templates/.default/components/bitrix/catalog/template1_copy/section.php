@@ -126,6 +126,8 @@ if ($verticalGrid)
       $curPageWParam = $APPLICATION->GetCurUri();
       if(strpos($curPageWParam, '?')) {
         $curPageWParam .= '&';
+      } else {
+        $curPageWParam .= '?';
       }
       if(is_array($key)) {
         foreach($key as $k => $v) {
@@ -363,7 +365,7 @@ if ($verticalGrid)
         "SET_STATUS_404" => $arParams["SET_STATUS_404"],
         "DISPLAY_COMPARE" => $arParams["USE_COMPARE"],
         "PAGE_ELEMENT_COUNT" => $arParams["PAGE_ELEMENT_COUNT"],
-        "LINE_ELEMENT_COUNT" => $arParams["LINE_ELEMENT_COUNT"],
+        "LINE_ELEMENT_COUNT" => 2, //$arParams["LINE_ELEMENT_COUNT"],
         "PRICE_CODE" => $arParams["PRICE_CODE"],
         "USE_PRICE_COUNT" => $arParams["USE_PRICE_COUNT"],
         "SHOW_PRICE_COUNT" => $arParams["SHOW_PRICE_COUNT"],
