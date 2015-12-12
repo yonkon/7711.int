@@ -191,16 +191,22 @@ if ($verticalGrid)
         <div class="viewSchema right-col">
           <div class="select_display">
             <?
-            $templateName = $APPLICATION->get_cookie('view') ? $APPLICATION->get_cookie("view") : "bar";
-            if (!isset($_REQUEST["viewSchema"]) || $_REQUEST["viewSchema"] == "Gallery") {
-              $templateName = "bar";
-              $APPLICATION->set_cookie("view", $templateName);
+            $viewSchema = $APPLICATION->get_cookie("viewSchema");
+            if (empty($_REQUEST['viewSchema'])) {
+              $viewSchema = empty($viewSchema)? "Gallery" : $viewSchema;
+            } else {
+              $viewSchema = $_REQUEST['viewSchema'];
             }
-            if (!isset($_POST["viewSchema"]) || $_POST["viewSchema"] == "List") {
-              $templateName = "list";
-              $APPLICATION->set_cookie("view", $templateName);
+            //$templateName = $APPLICATION->get_cookie('view') ? $APPLICATION->get_cookie("view") : "bar";
+            if (empty($viewSchema) || $viewSchema == "Gallery") {
+              //$templateName = "bar";
+              $APPLICATION->set_cookie("viewSchema", "Gallery");
             }
-            if ($templateName != "list") {
+            if (isset($viewSchema) || $viewSchema == "List") {
+              //$templateName = "list";
+              $APPLICATION->set_cookie("viewSchema", "List");
+            }
+            if ($viewSchema == "List") {
               $class_select_display_list = "active";
               $class_select_display_galery = "normal";
             } else {
@@ -209,9 +215,9 @@ if ($verticalGrid)
             }
             ?>
             <b>Вид отображения:</b>
-            <a rel="nofollow" title="Вид списком" class="galery_<? echo $class_select_display_galery; ?>"
+            <a rel="nofollow" title="Вид плиткой" class="galery_<? echo $class_select_display_galery; ?>"
                href="<?php echo addUriParam('viewSchema', 'Gallery'); ?>">&nbsp;</a>
-            <a rel="nofollow" title="Вид плиткой" class="list_<? echo $class_select_display_list; ?>"
+            <a rel="nofollow" title="Вид списком" class="list_<? echo $class_select_display_list; ?>"
                href="<?php echo addUriParam('viewSchema', 'List'); ?>">&nbsp;</a>
           </div>
         </div>
