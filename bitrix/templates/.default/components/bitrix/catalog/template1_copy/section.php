@@ -202,7 +202,7 @@ if ($verticalGrid)
               //$templateName = "bar";
               $APPLICATION->set_cookie("viewSchema", "Gallery");
             }
-            if (isset($viewSchema) || $viewSchema == "List") {
+            if (isset($viewSchema) && $viewSchema == "List") {
               //$templateName = "list";
               $APPLICATION->set_cookie("viewSchema", "List");
             }
@@ -213,6 +213,7 @@ if ($verticalGrid)
               $class_select_display_list = "normal";
               $class_select_display_galery = "active";
             }
+            $_REQUEST['viewSchema'] = $viewSchema;
             ?>
             <b>Вид отображения:</b>
             <a rel="nofollow" title="Вид плиткой" class="galery_<? echo $class_select_display_galery; ?>"

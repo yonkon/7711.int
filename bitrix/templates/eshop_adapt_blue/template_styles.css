@@ -111,6 +111,7 @@ background: #88B5E8 !important;
   width: 24%;
   float: left;
   margin-top: 20px;
+  min-width: 222px;
 }
 
 
@@ -1410,5 +1411,12 @@ a.podp {
 	height: auto;
 }
 
+.bx_catalog_list_home .bx_catalog_item_controls .bx_catalog_item_controls_blocktwo.catalog_item_controls_blocktwo,
+.bx_catalog_list_home .bx_catalog_item_controls .bx_catalog_item_controls_blockone.catalog_item_controls_blockone {
+  width: auto;
+  display: inline-block;
+}
 
-
+.bx_catalog_list_home .catalog_item_controls_blockone .bx_col_input {
+  width: 16px;
+}

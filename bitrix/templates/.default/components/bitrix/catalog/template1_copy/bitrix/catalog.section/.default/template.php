@@ -155,7 +155,7 @@ foreach ($arResult['ITEMS'] as $key => $arItem)
 	);
 	?>
 	<?php if(!empty($_REQUEST['viewSchema']) && $_REQUEST['viewSchema'] == "List") {?>
-	List
+	List2
 <?php } else {?>
 <div class="<? echo ($arItem['SECOND_PICT'] ? 'bx_catalog_item double' : 'bx_catalog_item'); ?>">
 	<div class="bx_catalog_item_container" id="<? echo $strMainID; ?>">
@@ -199,7 +199,8 @@ foreach ($arResult['ITEMS'] as $key => $arItem)
 	?><div class="bx_catalog_item_articul">Код товара: <?php echo $arItem['PROPERTIES']['artnumber']['VALUE']; ?></div>
 		<div class="bx_catalog_item_title catalog_item_title"><a href="<? echo $arItem['DETAIL_PAGE_URL']; ?>" title="<? echo $productTitle; ?>"><? echo $productTitle; ?></a></div>
 		<div class="catalog_item_description"><? echo $arItem['DETAIL_TEXT'];?></div>
-	<div class="bx_catalog_item_price"><div id="<? echo $arItemIDs['PRICE']; ?>" class="bx_price"><?
+
+    <div class="bx_catalog_item_price"><div id="<? echo $arItemIDs['PRICE']; ?>" class="bx_price"><?
 	if (!empty($arItem['MIN_PRICE']))
 	{
 		if ('N' == $arParams['PRODUCT_DISPLAY_MODE'] && isset($arItem['OFFERS']) && !empty($arItem['OFFERS']))
@@ -227,7 +228,9 @@ foreach ($arResult['ITEMS'] as $key => $arItem)
 			?> <span><? echo $arItem['MIN_PRICE']['PRINT_VALUE']; ?></span><?
 		}
 	}
-	?></div></div><?
+	?></div></div>
+
+    <?
 	$showSubscribeBtn = false;
 	$compareBtnMessage = ($arParams['MESS_BTN_COMPARE'] != '' ? $arParams['MESS_BTN_COMPARE'] : GetMessage('CT_BCS_TPL_MESS_BTN_COMPARE'));
 	if (!isset($arItem['OFFERS']) || empty($arItem['OFFERS']))
@@ -235,31 +238,38 @@ foreach ($arResult['ITEMS'] as $key => $arItem)
 		?><div class="bx_catalog_item_controls"><?
 		if ($arItem['CAN_BUY'])
 		{
+      ?>
+
+      <div id="<? echo $arItemIDs['BASKET_ACTIONS']; ?>" class="bx_catalog_item_controls_blocktwo catalog_item_controls_blocktwo">
+        <a id="<? echo $arItemIDs['BUY_LINK']; ?>" class="bx_bt_button bx_medium" href="javascript:void(0)" rel="nofollow"><?
+          if ($arParams['ADD_TO_BASKET_ACTION'] == 'BUY')
+          {
+            echo ('' != $arParams['MESS_BTN_BUY'] ? $arParams['MESS_BTN_BUY'] : GetMessage('CT_BCS_TPL_MESS_BTN_BUY'));
+          }
+          else
+          {
+            echo ('' != $arParams['MESS_BTN_ADD_TO_BASKET'] ? $arParams['MESS_BTN_ADD_TO_BASKET'] : GetMessage('CT_BCS_TPL_MESS_BTN_ADD_TO_BASKET'));
+          }
+          ?></a>
+      </div>
+
+      <?
 			if ('Y' == $arParams['USE_PRODUCT_QUANTITY'])
 			{
 			?>
-		<div class="bx_catalog_item_controls_blockone"><div style="display: inline-block;position: relative;">
+
+
+		<div class="bx_catalog_item_controls_blockone catalog_item_controls_blockone"><div style="display: inline-block;position: relative;">
 			<a id="<? echo $arItemIDs['QUANTITY_DOWN']; ?>" href="javascript:void(0)" class="bx_bt_button_type_2 bx_small" rel="nofollow">-</a>
 			<input type="text" class="bx_col_input" id="<? echo $arItemIDs['QUANTITY']; ?>" name="<? echo $arParams["PRODUCT_QUANTITY_VARIABLE"]; ?>" value="<? echo $arItem['CATALOG_MEASURE_RATIO']; ?>">
 			<a id="<? echo $arItemIDs['QUANTITY_UP']; ?>" href="javascript:void(0)" class="bx_bt_button_type_2 bx_small" rel="nofollow">+</a>
 			<span id="<? echo $arItemIDs['QUANTITY_MEASURE']; ?>"><? echo $arItem['CATALOG_MEASURE_NAME']; ?></span>
 		</div></div>
+
+
 			<?
 			}
-			?>
-		<div id="<? echo $arItemIDs['BASKET_ACTIONS']; ?>" class="bx_catalog_item_controls_blocktwo">
-			<a id="<? echo $arItemIDs['BUY_LINK']; ?>" class="bx_bt_button bx_medium" href="javascript:void(0)" rel="nofollow"><?
-			if ($arParams['ADD_TO_BASKET_ACTION'] == 'BUY')
-			{
-				echo ('' != $arParams['MESS_BTN_BUY'] ? $arParams['MESS_BTN_BUY'] : GetMessage('CT_BCS_TPL_MESS_BTN_BUY'));
-			}
-			else
-			{
-				echo ('' != $arParams['MESS_BTN_ADD_TO_BASKET'] ? $arParams['MESS_BTN_ADD_TO_BASKET'] : GetMessage('CT_BCS_TPL_MESS_BTN_ADD_TO_BASKET'));
-			}
-			?></a>
-		</div>
-			<?
+
 			if ($arParams['DISPLAY_COMPARE'])
 			{
 				?>
