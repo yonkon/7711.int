@@ -306,7 +306,7 @@ window.JCCatalogSection = function (arParams)
 
 		this.lastElement = (!!arParams.LAST_ELEMENT && 'Y' === arParams.LAST_ELEMENT);
 	}
-	if (0 === this.errorCode)
+	if (0 === this.errorCode || -2 == this.errorCode) //Allow no image error)
 	{
 		BX.ready(BX.delegate(this.Init,this));
 	}
@@ -410,7 +410,7 @@ window.JCCatalogSection.prototype.Init = function()
 		}
 	}
 
-	if (0 === this.errorCode)
+	if (0 === this.errorCode || -2 == this.errorCode) //Allow no image error
 	{
 		if (this.showQuantity)
 		{
@@ -510,7 +510,7 @@ window.JCCatalogSection.prototype.QuantityUp = function()
 		boolSet = true,
 		calcPrice;
 
-	if (0 === this.errorCode && this.showQuantity && this.canBuy)
+	if ((0 === this.errorCode || -2 == this.errorCode) && this.showQuantity && this.canBuy) //Allow no image
 	{
 		curValue = (this.isDblQuantity ? parseFloat(this.obQuantity.value) : parseInt(this.obQuantity.value, 10));
 		if (!isNaN(curValue))
@@ -549,7 +549,7 @@ window.JCCatalogSection.prototype.QuantityDown = function()
 		boolSet = true,
 		calcPrice;
 
-	if (0 === this.errorCode && this.showQuantity && this.canBuy)
+	if ((0 === this.errorCode || -2 == this.errorCode) && this.showQuantity && this.canBuy)
 	{
 		curValue = (this.isDblQuantity ? parseFloat(this.obQuantity.value): parseInt(this.obQuantity.value, 10));
 		if (!isNaN(curValue))
@@ -586,7 +586,7 @@ window.JCCatalogSection.prototype.QuantityChange = function()
 		intCount,
 		count;
 
-	if (0 === this.errorCode && this.showQuantity)
+	if ((0 === this.errorCode || -2 == this.errorCode) && this.showQuantity) //allow no image
 	{
 		if (this.canBuy)
 		{
@@ -643,7 +643,7 @@ window.JCCatalogSection.prototype.QuantityChange = function()
 
 window.JCCatalogSection.prototype.QuantitySet = function(index)
 {
-	if (0 === this.errorCode)
+	if (0 === this.errorCode || -2 == this.errorCode) //Allow no image error)
 	{
 		this.canBuy = this.offers[index].CAN_BUY;
 		if (this.canBuy)

@@ -332,7 +332,7 @@ window.JCCatalogBigdataProducts.prototype.Init = function()
 		}
 	}
 
-	if (0 === this.errorCode)
+	if (0 === this.errorCode || -2 == this.errorCode) //Can have no image
 	{
 		if (this.showQuantity)
 		{
