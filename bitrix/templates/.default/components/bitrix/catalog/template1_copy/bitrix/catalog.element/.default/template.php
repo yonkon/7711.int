@@ -75,6 +75,7 @@ $strAlt = (
 	? $arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_ALT"]
 	: $arResult['NAME']
 );
+//TODO shikon спец цена, обратній звонокб купить в 1 клик, добавить к сравнению, версия для печати (+перенести кнопку печати)
 ?>
 <div class="pechat_div"><a href="javascript:window.print(); void 0;"><img height="15px" src="/images/print.gif">Печать страницы</a></div>
 <div class="bx_item_detail <? echo $templateData['TEMPLATE_CLASS']; ?>" id="<? echo $arItemIDs['ID']; ?>">
@@ -345,6 +346,7 @@ if ($arParams['USE_PRODUCT_QUANTITY'] == 'Y')
 		</span>
 		<span id="<? echo $arItemIDs['NOT_AVAILABLE_MESS']; ?>" class="bx_notavailable" style="display: <? echo (!$canBuy ? '' : 'none'); ?>;"><? echo $notAvailableMessage; ?></span>
 <?
+$arParams['DISPLAY_COMPARE'] = true;
 	if ($arParams['DISPLAY_COMPARE'] || $showSubscribeBtn)
 	{
 ?>
