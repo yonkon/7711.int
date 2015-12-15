@@ -944,6 +944,7 @@ window.JCCatalogElement.prototype.setCurrentImg = function(img, showImage)
 {
 	showImage = !!showImage;
 	this.currentImg.src = img.SRC;
+	$('a.bx_bigimages_aligner').attr('href', img.SRC );
 	this.currentImg.width = img.WIDTH;
 	this.currentImg.height = img.HEIGHT;
 	if (showImage && !!this.obPict)

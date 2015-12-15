@@ -77,7 +77,15 @@ $strAlt = (
 );
 //TODO shikon спец цена, обратній звонокб купить в 1 клик, добавить к сравнению, версия для печати (+перенести кнопку печати)
 ?>
-<div class="pechat_div"><a href="javascript:window.print(); void 0;"><img height="15px" src="/images/print.gif">Печать страницы</a></div>
+<link rel="stylesheet" href="/bitrix/js/fancybox/source/jquery.fancybox.css">
+<!--<script type="text/javascript" src="/bitrix/js/fancybox/source/jquery.fancybox.js"></script>-->
+<script type="text/javascript" src="/bitrix/js/fancybox/source/jquery.fancybox.pack.js"></script>
+
+<div class="pechat_div">
+	<a href="javascript:window.print(); void 0;">
+		<img height="15px" src="/images/print.gif">Печать страницы
+	</a>
+</div>
 <div class="bx_item_detail <? echo $templateData['TEMPLATE_CLASS']; ?>" id="<? echo $arItemIDs['ID']; ?>">
 <?
 if ('Y' == $arParams['DISPLAY_NAME'])
@@ -100,12 +108,12 @@ $arFirstPhoto = current($arResult['MORE_PHOTO']);
 <div class="bx_item_slider" id="<? echo $arItemIDs['BIG_SLIDER_ID']; ?>">
 	<div class="bx_bigimages" id="<? echo $arItemIDs['BIG_IMG_CONT_ID']; ?>">
 	<div class="bx_bigimages_imgcontainer">
-	<span class="bx_bigimages_aligner">
+	<a class="bx_bigimages_aligner fancybox" rel="gallery1" href="<? echo $arFirstPhoto['SRC']; ?>">
 
 	<img id="<? echo $arItemIDs['PICT']; ?>" src="<? echo $arFirstPhoto['SRC']; ?>" alt="<? echo $strAlt; ?>" title="<? echo $strTitle; ?>">
 
 	
-	</span>
+	</a>
 <?
 if ('Y' == $arParams['SHOW_DISCOUNT_PERCENT'])
 {
@@ -161,13 +169,21 @@ if ($arResult['SHOW_SLIDER'])
 <?
 		foreach ($arResult['MORE_PHOTO'] as &$arOnePhoto)
 		{
-?>
-	<li data-value="<? echo $arOnePhoto['ID']; ?>" style="width: <? echo $strOneWidth; ?>; padding-top: <? echo $strOneWidth; ?>;"><span class="cnt"><span class="cnt_item" style="background-image:url('<? echo $arOnePhoto['SRC']; ?>');"></span></span></li>
+
+      //todo images list
+      ?>
+	<li data-value="<? echo $arOnePhoto['ID']; ?>" style="width: <? echo $strOneWidth; ?>; padding-top: <? echo $strOneWidth; ?>;"><span class="cnt"><span class="cnt_item" rel="gallery1" style="background-image:url('<? echo $arOnePhoto['SRC']; ?>');"></span></span></li>
 <?
 		}
 		unset($arOnePhoto);
 ?>
 	</ul>
+    <script type="text/javascript">
+      $(document).ready(function() { $('.fancybox').fancybox({
+        openEffect	: 'none',
+        closeEffect	: 'none'
+      }); } );
+    </script>
 	</div>
 	<div class="bx_slide_left" id="<? echo $arItemIDs['SLIDER_LEFT']; ?>" style="<? echo $strSlideStyle; ?>"></div>
 	<div class="bx_slide_right" id="<? echo $arItemIDs['SLIDER_RIGHT']; ?>" style="<? echo $strSlideStyle; ?>"></div>

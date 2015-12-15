@@ -112,6 +112,7 @@ if (!empty($arResult['ITEMS']))
  <div class="bx_catalog_list_home col<? echo $arParams['LINE_ELEMENT_COUNT']; ?> <? echo $templateData['TEMPLATE_CLASS']; ?>"><?
 foreach ($arResult['ITEMS'] as $key => $arItem)
 {
+	$arParams['DISPLAY_COMPARE'] = 'Y';
 	$this->AddEditAction($arItem['ID'], $arItem['EDIT_LINK'], $strElementEdit);
 	$this->AddDeleteAction($arItem['ID'], $arItem['DELETE_LINK'], $strElementDelete, $arElementDeleteParams);
 	$strMainID = $this->GetEditAreaId($arItem['ID']);
@@ -202,13 +203,7 @@ foreach ($arResult['ITEMS'] as $key => $arItem)
 					<?
 				}
 
-				if ($arParams['DISPLAY_COMPARE'])
-				{
-					?>
-					<div class="bx_catalog_item_controls_blocktwo">
-					<a id="<? echo $arItemIDs['COMPARE_LINK']; ?>" class="bx_bt_button_type_2 bx_medium" href="javascript:void(0)"><? echo $compareBtnMessage; ?></a>
-					</div><?
-				}
+				//old compare place
 			}
 			else
 			{
@@ -587,7 +582,17 @@ foreach ($arResult['ITEMS'] as $key => $arItem)
 		}
 		?>
 
-    <div class="bx_catalog_item_price"><div id="<? echo $arItemIDs['PRICE']; ?>" class="bx_price"><?
+    <div class="bx_catalog_item_price">
+      <?php
+      if ($arParams['DISPLAY_COMPARE'])
+      {
+        ?>
+        <div class="bx_catalog_item_controls_blocktwo">
+        <a id="<? echo $arItemIDs['COMPARE_LINK']; ?>" class="compare_link" href="javascript:void(0)"><span><? echo $compareBtnMessage; ?></span></a>
+        </div><?
+      }
+      ?>
+      <div id="<? echo $arItemIDs['PRICE']; ?>" class="bx_price"><?
 	if (!empty($arItem['MIN_PRICE']))
 	{
 		if ('N' == $arParams['PRODUCT_DISPLAY_MODE'] && isset($arItem['OFFERS']) && !empty($arItem['OFFERS']))
@@ -705,13 +710,7 @@ foreach ($arResult['ITEMS'] as $key => $arItem)
 					<?
 				}
 
-				if ($arParams['DISPLAY_COMPARE'])
-				{
-					?>
-					<div class="bx_catalog_item_controls_blocktwo">
-					<a id="<? echo $arItemIDs['COMPARE_LINK']; ?>" class="bx_bt_button_type_2 bx_medium" href="javascript:void(0)"><? echo $compareBtnMessage; ?></a>
-					</div><?
-				}
+				//old compare place
 			}
 			else
 			{
@@ -1090,7 +1089,8 @@ foreach ($arResult['ITEMS'] as $key => $arItem)
 		}
 		?>
 
-    <div class="bx_catalog_item_price"><div id="<? echo $arItemIDs['PRICE']; ?>" class="bx_price"><?
+    <div class="bx_catalog_item_price">
+      <div id="<? echo $arItemIDs['PRICE']; ?>" class="bx_price"><?
 	if (!empty($arItem['MIN_PRICE']))
 	{
 		if ('N' == $arParams['PRODUCT_DISPLAY_MODE'] && isset($arItem['OFFERS']) && !empty($arItem['OFFERS']))
@@ -1118,9 +1118,20 @@ foreach ($arResult['ITEMS'] as $key => $arItem)
 			?> <span><? echo $arItem['MIN_PRICE']['PRINT_VALUE']; ?></span><?
 		}
 	}
-	?></div></div>
+	?>
+      </div>
+    </div>
 
 		</div>
+    <?php
+    if ($arParams['DISPLAY_COMPARE'])
+    {
+      ?>
+      <div style="clear: both">
+      <a id="<? echo $arItemIDs['COMPARE_LINK']; ?>" class="compare_link" href="javascript:void(0)"><span><? echo $compareBtnMessage; ?></span></a>
+      </div><?
+    }
+    ?>
 
     </div></div>
 	<?php } ?>
