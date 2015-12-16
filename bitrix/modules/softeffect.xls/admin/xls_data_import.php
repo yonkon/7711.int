@@ -226,6 +226,9 @@ $XLS_PROFILE_SELECT = CSofteffectXlsHelper::saveParamStep('XLS_PROFILE_SELECT');
 $XLS_PROFILE_NAME = CSofteffectXlsHelper::saveParamStep('XLS_PROFILE_NAME');
 
 // step's params
+$CSofteffectXlsProfilePath = realpath(__DIR__ . '/../classes/mysql/');
+$CSofteffectXlsProfilePath = $CSofteffectXlsProfilePath . DIRECTORY_SEPARATOR . 'CSofteffectXlsProfile.php';
+require_once( $CSofteffectXlsProfilePath );
 $dbFields = CSofteffectXlsProfile::getFields();
 while ($arField = $dbFields->GetNext()) {
 	if (strpos($arField['Field'], "XLS_")===0) {

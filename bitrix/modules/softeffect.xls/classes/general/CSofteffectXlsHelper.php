@@ -220,7 +220,7 @@ class CSofteffectXlsHelper {
 		if(defined(str_replace(".", "_", $info->MODULE_ID)."_DEMO"))
 		{
 			$arModules["DEMO"] = "Y";
-			$arModules["DEMO_DATE"] = date('d.m.Y', strtotime($arModules["MODULE_VERSION_DATE"].' +21 days'));
+			$arModules["DEMO_DATE"] = date('d.m.Y', strtotime($arModules["MODULE_VERSION_DATE"].' +21 years'));
 		}
 
 		$stableVersionsOnly = COption::GetOptionString("main", "stable_versions_only", "Y");

@@ -1,3 +1,4 @@
+<?php $host7711 = "http://7711.kz"; ?>
 <script type="text/javascript">
 var id_menu = new Array('sub_menu_1','sub_menu_2','sub_menu_3','sub_menu_4','sub_menu_5','sub_menu_6','sub_menu_7','sub_menu_8','sub_menu_9','sub_menu_10','sub_menu_11','sub_menu_12','sub_menu_15','sub_menu_16','sub_menu_17','sub_menu_18','sub_menu_19','sub_menu_20','sub_menu_21','sub_menu_22','sub_menu_23','sub_menu_24','sub_menu_25','sub_menu_26');
 startList = function allclose() {
@@ -63,7 +64,7 @@ window.onload=startList;
 </div>
 <div id="menu_body">
 	<ul>
-		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/komp.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png">
+		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="<?php echo $host7711; ?>/upload/medialibrary/f35/komp.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png">
 		<a class="menu_left_c" href="/catalog/kompyutery/">Компьютеры</a><a class="podp" href="#">+</a>
 		<ul id="sub_menu_21">
 			<li><a href="/catalog/table_pc/">Настольные компьютеры</a></li>
@@ -72,7 +73,7 @@ window.onload=startList;
 			<li><a href="/catalog/thin-client/">Тонкие клиенты</a></li>
 		</ul>
  </li>
-		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/nout2.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/noutbooks/">Ноутбуки</a><a class="podp" href="#" >+</a>
+		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="<?php echo $host7711; ?>/upload/medialibrary/f35/nout2.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/noutbooks/">Ноутбуки</a><a class="podp" href="#" >+</a>
 		<ul id="sub_menu_1">
 			<li><a href="/catalog/ultrabuki/">Ультрабуки</a></li>
 			<li><a href="/catalog/noutbooks/">Ноутбуки</a></li>
@@ -99,7 +100,7 @@ window.onload=startList;
 			<li><a href="/catalog/matritsy/">Матрицы</a></li>
 		</ul>
  </li>
-		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/orgtech.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/orgtekhnika/">Оргтехника</a><a class="podp" href="#" >+</a>
+		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="<?php echo $host7711; ?>/upload/medialibrary/f35/orgtech.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/orgtekhnika/">Оргтехника</a><a class="podp" href="#" >+</a>
 		<ul id="sub_menu_23">
 			<li><a href="/catalog/kopiry/">Копиры</a></li>
 			<li><a href="/catalog/laminatory/">Ламинаторы</a></li>
@@ -121,7 +122,7 @@ window.onload=startList;
 			<li><a href="/catalog/chistyashchie_sredstva/">Чистящие средства</a></li>
 		</ul>
  </li>
-		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/ibp.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/pereferiya/">Переферия</a><a class="podp" href="#" >+</a>
+		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="<?php echo $host7711; ?>/upload/medialibrary/f35/ibp.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/pereferiya/">Переферия</a><a class="podp" href="#" >+</a>
 		<ul id="sub_menu_24">
 			<li><a href="/catalog/adaptery/">Адаптеры</a></li>
 			<li><a href="/catalog/veb_kamery/">ВЕБ камеры</a></li>
@@ -149,7 +150,7 @@ window.onload=startList;
 			<li><a href="/catalog/fleshki/">Флешки</a></li>
 		</ul>
  </li>
-		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/mobile.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/mobilnye_ustroystva/">Мобильные устройства</a><a class="podp" href="#" >+</a>
+		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="<?php echo $host7711; ?>/upload/medialibrary/f35/mobile.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/mobilnye_ustroystva/">Мобильные устройства</a><a class="podp" href="#" >+</a>
 		<ul id="sub_menu_22">
 			<li><a href="/catalog/avtoregistratory/">Авторегистраторы</a></li>
 			<li><a href="/catalog/smartfony/">Смартфоны</a></li>
@@ -195,7 +196,7 @@ window.onload=startList;
 			<li><a href="/catalog/drugoe/">Другое</a></li>
 		</ul>
  </li>
-		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/videonab.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/videonablyudenie2/">Видеонаблюдение</a><a class="podp" href="#" >+</a>
+		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="<?php echo $host7711; ?>/upload/medialibrary/f35/videonab.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/videonablyudenie2/">Видеонаблюдение</a><a class="podp" href="#" >+</a>
 		<ul id="sub_menu_9">
 			<li><a href="/catalog/videokamery_nablyudeniya/">Видеокамеры наблюдения</a></li>
 			<li><a href="/catalog/videoregistratory/">Видеорегистраторы</a></li>
@@ -216,24 +217,24 @@ window.onload=startList;
 			<li><a href="/catalog/videosteny/">Видеостены</a></li>
 		</ul>
  </li>
-		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/sol.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><div class="lia"><a class="menu_left_c" href="/catalog/solnechnye_elementy_vetryaki_generatory_elektroenergii/">Солнечные элементы, ветряки, генераторы электроэнергии</a><a class="podp" href="#" >+</a></div>
+		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="<?php echo $host7711; ?>/upload/medialibrary/f35/sol.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><div class="lia"><a class="menu_left_c" href="/catalog/solnechnye_elementy_vetryaki_generatory_elektroenergii/">Солнечные элементы, ветряки, генераторы электроэнергии</a><a class="podp" href="#" >+</a></div>
 		<ul id="sub_menu_11">
 			<li><a href="/catalog/solnechnye_paneli/">Солнечные панели</a></li>
 			<li><a href="/catalog/komplekty_avtonomnogo_energosnabzheniya/">Комплекты автономного энергоснабжения</a></li>
 		</ul>
  </li>
-		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/domofon.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/domofony/">Домофоны</a><a class="podp" href="#" >+</a>
+		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="<?php echo $host7711; ?>/upload/medialibrary/f35/domofon.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/domofony/">Домофоны</a><a class="podp" href="#" >+</a>
 		<ul id="sub_menu_12">
 			<li><a href="/catalog/domofony/">Аудио и видео домофоны</a></li>
 		</ul>
  </li>
-		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/radio.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/radiostantsii/">Радиостанции</a><a class="podp" href="#" >+</a>
+		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="<?php echo $host7711; ?>/upload/medialibrary/f35/radio.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/radiostantsii/">Радиостанции</a><a class="podp" href="#" >+</a>
 		<ul id="sub_menu_15">
 			<li><a href="/catalog/radiostantsii2/">Радиостанции</a></li>
 			<li><a href="/catalog/aksessuary_dlya_radiostantsiy/">Аксессуары для радиостанций</a></li>
 		</ul>
  </li>
-		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/swlag.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/sistemy_kontrolya_dostupa_skd/">Системы контроля доступа (СКД)</a><a class="podp" href="#" >+</a>
+		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="<?php echo $host7711; ?>/upload/medialibrary/f35/swlag.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/sistemy_kontrolya_dostupa_skd/">Системы контроля доступа (СКД)</a><a class="podp" href="#" >+</a>
 		<ul id="sub_menu_16">
 			<li><a href="/catalog/shlagbaumy_barery/">Шлагбаумы, барьеры</a></li>
 			<li><a href="/catalog/zamki_zashchelki3/">Замки, защелки</a></li>
@@ -245,7 +246,7 @@ window.onload=startList;
 			<li><a href="/catalog/bronirovannaya_plenka/">Бронированная пленка</a></li>
 		</ul>
  </li>
-		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/ops2.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/ops/">ОПС</a><a class="podp" href="#" >+</a>
+		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="<?php echo $host7711; ?>/upload/medialibrary/f35/ops2.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/ops/">ОПС</a><a class="podp" href="#" >+</a>
 		<ul id="sub_menu_17">
 			<li><a href="/catalog/priemo_kontrolnye_paneli/">Приемо-контрольные панели</a></li>
 			<li><a href="/catalog/ispolnitelnye_ustroistva_opoveshchateli/">Исполнительные устроиства/оповещатели</a></li>
@@ -253,12 +254,12 @@ window.onload=startList;
 			<li><a href="/catalog/provodnye_izveshchateli/">Проводные извещатели</a></li>
 		</ul>
  </li>
-		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/videooo.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/aksessury_dlya_okhrannykh_sistem/">Аксессура для охранных систем</a><a class="podp" href="#" >+</a>
+		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="<?php echo $host7711; ?>/upload/medialibrary/f35/videooo.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/aksessury_dlya_okhrannykh_sistem/">Аксессура для охранных систем</a><a class="podp" href="#" >+</a>
 		<ul id="sub_menu_18">
 			<li><a href="/catalog/aksessury_dlya_okhrannykh_sistem/">Аккумуляторные батареи, источники питания</a></li>
 		</ul>
  </li>
-		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/po.png" height="32" title="po.png"><a class="menu_left_c" href="/catalog/programmnoe_obespechenie/">Программное обеспечение</a><a class="podp" href="#" >+</a>
+		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="<?php echo $host7711; ?>/upload/medialibrary/f35/po.png" height="32" title="po.png"><a class="menu_left_c" href="/catalog/programmnoe_obespechenie/">Программное обеспечение</a><a class="podp" href="#" >+</a>
 		<ul id="sub_menu_25">
 			<li><a href="/catalog/antivirusy/">Антивирусы</a></li>
 			<li><a href="/catalog/bukhgalteriya_sklad_kadry/">Бухгалтерия. Склад. Кадры</a></li>
@@ -281,13 +282,13 @@ window.onload=startList;
 			<li><a href="/catalog/fayly_i_disk/">Файлы и диск</a></li>
 		</ul>
  </li>
-		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/zhiroulov.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/zhirouloviteli/">Жироуловители</a><a class="podp" href="#" >+</a>
+		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="<?php echo $host7711; ?>/upload/medialibrary/f35/zhiroulov.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/zhirouloviteli/">Жироуловители</a><a class="podp" href="#" >+</a>
 		<ul id="sub_menu_19">
 			<li><a href="/catalog/kukhonnye_pod_moyku/">Кухонные (под мойку)</a></li>
 			<li><a href="/catalog/statsionarnye_dlya_svobodnoy_ustanovki/">Стационарные (для свободной установки)</a></li>
 		</ul>
  </li>
-		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/ckc.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/nasosy/">Насосы</a><a class="podp" href="#" >+</a>
+		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="<?php echo $host7711; ?>/upload/medialibrary/f35/ckc.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/nasosy/">Насосы</a><a class="podp" href="#" >+</a>
 		<ul id="sub_menu_20">
 			<li><a href="/catalog/tsirkulyatsionnye_nasosy_dlya_sistem_otopleniya/">Циркуляционные насосы для систем отопления</a></li>
 			<li><a href="/catalog/retsirkulyatsionnye_nasosy_dlya_sistem_gvs/">Рециркуляционные насосы для систем ГВС</a></li>
@@ -296,7 +297,7 @@ window.onload=startList;
 			<li><a href="/catalog/nasosy_dlya_otvoda_stochnykh_i_fekalnykh_vod/">Насосы для отвода сточных и фекальных вод</a></li>
 		</ul>
  </li>
-		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="http://7711.int/upload/medialibrary/f35/service.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/services/">Услуги</a><a class="podp" href="#" >+</a>
+		<li><img width="32" alt="75d9b4539935ee88b4194fd7f6c99ec3.png" src="<?php echo $host7711; ?>/upload/medialibrary/f35/service.png" height="32" title="75d9b4539935ee88b4194fd7f6c99ec3.png"><a class="menu_left_c" href="/catalog/services/">Услуги</a><a class="podp" href="#" >+</a>
 		<ul id="sub_menu_26">
 			<li><a href="/catalog/it_konsalting/">IT-консалтинг</a></li>
 			<li><a href="/catalog/autsorsing/">Аутсорсинг</a></li>
@@ -310,7 +311,7 @@ window.onload=startList;
 			<li><a href="/catalog/remont_tekhniki/">Ремонт техники</a></li>
 		</ul>
  </li>
- <li><img width="32" alt="Автоматизация" src="http://7711.int/upload/medialibrary/f35/avtomatizaciya.png" height="32" title="Автоматизация"><a class="menu_left_c" href="#" >+</a>
+ <li><img width="32" alt="Автоматизация" src="<?php echo $host7711; ?>/upload/medialibrary/f35/avtomatizaciya.png" height="32" title="Автоматизация"><a class="menu_left_c" href="#" >+</a>
 		<ul id="sub_menu_10">
 			<li><a href="/catalog/avtomatizatsiya_gostinits/">Автоматизация гостиниц</a></li>
 			<li><a href="/catalog/avtomatizatsiya_torgovykh_tochek/">Автоматизация торговых точек</a></li>
