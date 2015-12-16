@@ -19,6 +19,32 @@ $templateData = array(
 ?>
 <div class="bx_filter <?=$templateData["TEMPLATE_CLASS"]?> <?if ($arParams["FILTER_VIEW_MODE"] == "horizontal"):?>bx_horizontal<?endif?>">
 	<div class="bx_filter_section">
+    <div class="filter_tabs">
+      <span class="filter_tab_btn unact"><a href="#" id="filter_btn_std">Стандартный</a></span>
+      <span class="filter_tab_btn show"><a href="#" id="filter_btn_ext">Расширенный</a></span>
+    </div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#filter_btn_std').click(
+      function(e) {
+        e.preventDefault();
+        $(this).parent().removeClass('unact');
+        $(this).parent().addClass('show');
+        $('#filter_btn_ext').parent().removeClass('show');
+        $('#filter_btn_ext').parent().addClass('unact');
+      }
+    );
+    $('#filter_btn_ext').click(
+      function(e) {
+        e.preventDefault();
+        $(this).parent().removeClass('unact');
+        $(this).parent().addClass('show');
+        $('#filter_btn_std').parent().removeClass('show');
+        $('#filter_btn_std').parent().addClass('unact');
+      }
+    );
+  });
+</script>
 		<div class="bx_filter_title"><?echo GetMessage("CT_BCSF_FILTER_TITLE")?></div>
 		<form name="<?echo $arResult["FILTER_NAME"]."_form"?>" action="<?echo $arResult["FORM_ACTION"]?>" method="get" class="smartfilter">
 			<?foreach($arResult["HIDDEN"] as $arItem):?>
