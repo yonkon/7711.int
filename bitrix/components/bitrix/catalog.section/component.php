@@ -708,7 +708,9 @@ if($this->StartResultCache(false, array($arrFilter, ($arParams["CACHE_GROUPS"]==
 	$arSections = array();
 
 	//EXECUTE
-	$rsElements = CIBlockElement::GetList($arSort, array_merge($arrFilter, $arFilter), false, $arNavParams, $arSelect);
+  $mergedFilter = array_merge($arrFilter, $arFilter);
+  $mergedFilter['USE_SEARCH'] = true;
+	$rsElements = CIBlockElement::GetList($arSort, $mergedFilter, false, $arNavParams, $arSelect);
 	?>
 	<div class="sortViewActions">
 		<div class="sortirovka">
@@ -797,7 +799,7 @@ if($this->StartResultCache(false, array($arrFilter, ($arParams["CACHE_GROUPS"]==
 				$arParams['PAGE_ELEMENT_COUNT'] = $_REQUEST['PAGE_ELEMENT_COUNT'];
 			}
 			?>
-			<div class="inline-block"><?php echo 'Показаны товары с ' . (($rsElements->NavPageNomer-1) * $rsElements->NavPageSize + 1) .' по ' . (($rsElements->NavPageNomer) * $rsElements->NavPageSize) . ' из ' . $rsElements->NavRecordCount;?>
+			<div class="inline-block"><?php echo 'Показаны товары с ' . (($rsElements->NavPageNomer-1) * $rsElements->NavPageSize + 1) .' по ' . min($rsElements->NavRecordCount, (($rsElements->NavPageNomer) * $rsElements->NavPageSize)) . ' из ' . $rsElements->NavRecordCount;?>
 			</div>
 			<div class="inline-block right-col">Выводить по:
 				<a href="<?php  echo addUriParam(array('PAGE_ELEMENT_COUNT' => '20') ); ?>"
@@ -915,22 +917,22 @@ if($this->StartResultCache(false, array($arrFilter, ($arParams["CACHE_GROUPS"]==
 		);
 		CIBlockElement::GetPropertyValuesArray($arElementLink, $arParams["IBLOCK_ID"], $arPropFilter);
 
-		$elementsToFilterByArticul = array();
+//		$elementsToFilterByArticul = array();
 		foreach ($arResult["ITEMS"] as $k => &$arItem)
 		{
-			if(!empty($_REQUEST['arrFilter_articul'])) {
-				if(empty($arItem['PROPERTIES']['artnumber']) || empty($arItem['PROPERTIES']['artnumber']['VALUE']) ) {
-					$elementsToFilterByArticul[] = $k;
-					continue;
-				} else {
-					$tempArticulValue = mb_strtolower($arItem['PROPERTIES']['artnumber']['VALUE']);
-					$_REQUEST['arrFilter_articul'] = mb_strtolower($_REQUEST['arrFilter_articul']);
-					if(strpos($tempArticulValue, $_REQUEST['arrFilter_articul']) === false) {
-						$elementsToFilterByArticul[] = $k;
-						continue;
-					}
-				}
-			}
+//			if(!empty($_REQUEST['arrFilter_articul'])) {
+//				if(empty($arItem['PROPERTIES']['artnumber']) || empty($arItem['PROPERTIES']['artnumber']['VALUE']) ) {
+//					$elementsToFilterByArticul[] = $k;
+//					continue;
+//				} else {
+//					$tempArticulValue = mb_strtolower($arItem['PROPERTIES']['artnumber']['VALUE']);
+//					$_REQUEST['arrFilter_articul'] = mb_strtolower($_REQUEST['arrFilter_articul']);
+//					if(strpos($tempArticulValue, $_REQUEST['arrFilter_articul']) === false) {
+//						$elementsToFilterByArticul[] = $k;
+//						continue;
+//					}
+//				}
+//			}
 			if ($bCatalog && $boolNeedCatalogCache)
 			{
 				CCatalogDiscount::SetProductPropertiesCache($arItem['ID'], $arItem["PROPERTIES"]);
@@ -970,12 +972,12 @@ if($this->StartResultCache(false, array($arrFilter, ($arParams["CACHE_GROUPS"]==
 		}
 		if (isset($arItem))
 			unset($arItem);
-		if(!empty($elementsToFilterByArticul)) {
-			$elementsToFilterByArticul = array_reverse($elementsToFilterByArticul);
-			foreach($elementsToFilterByArticul as $itemIndexToRemove) {
-				unset($arResult["ITEMS"][$itemIndexToRemove]);
-			}
-		}
+//		if(!empty($elementsToFilterByArticul)) {
+//			$elementsToFilterByArticul = array_reverse($elementsToFilterByArticul);
+//			foreach($elementsToFilterByArticul as $itemIndexToRemove) {
+//				unset($arResult["ITEMS"][$itemIndexToRemove]);
+//			}
+//		}
 	}
 
 	if ($bIBlockCatalog)

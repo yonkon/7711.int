@@ -237,6 +237,12 @@ class CIBlockElement extends CAllIBlockElement
 	 */
 	function GetList($arOrder=array("SORT"=>"ASC"), $arFilter=array(), $arGroupBy=false, $arNavStartParams=false, $arSelectFields=array())
 	{
+    //CUSTOM flag to indicate whether to enable arrFilter_name processing
+    $bUseSearch = false;
+    if(!empty($arFilter['USE_SEARCH'])) {
+      $bUseSearch = true;
+      unset($arFilter['USE_SEARCH']);
+    }
 		/*
 		Filter combinations:
 		CHECK_PERMISSIONS="N" - check permissions of the current user to the infoblock
@@ -559,11 +565,18 @@ class CIBlockElement extends CAllIBlockElement
 			$sFrom .= "\t\t\t".($arJoinProps["RVV"]["bFullJoin"]? "INNER": "LEFT")." JOIN b_rating_vote RVV ON RVV.ENTITY_TYPE_ID = 'IBLOCK_ELEMENT' AND RVV.ENTITY_ID = BE.ID\n";
 
 		/***********************CUSTOM PART******************/
-		if ($db_prop["IBLOCK_ID"] == 2) {
+		if ( $bUseSearch ) {
 			if (!empty($_REQUEST['arrFilter_name'])) {
 				$tmpWhereNameCond = " AND BE.`NAME` LIKE '%" . mysql_real_escape_string($_REQUEST['arrFilter_name']) ."%' ";
 				$sWhere .= $tmpWhereNameCond ;
 			}
+      if (!empty($_REQUEST['arrFilter_articul'])) {
+        $tmpWhereNameCond = " AND BE.ID IN
+        (SELECT IBLOCK_ELEMENT_ID FROM b_iblock_element_property
+        WHERE IBLOCK_PROPERTY_ID = 8 AND VALUE LIKE '%" . mysql_real_escape_string($_REQUEST['arrFilter_articul']) ."%'
+        ) ";
+        $sWhere .= $tmpWhereNameCond ;
+      }
 		}
 		/******************END OF CUSTOM PART****************/
 		//******************END OF FROM PART********************************************

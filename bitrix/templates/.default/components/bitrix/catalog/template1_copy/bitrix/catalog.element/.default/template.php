@@ -172,17 +172,33 @@ if ($arResult['SHOW_SLIDER'])
 
       //todo images list
       ?>
-	<li data-value="<? echo $arOnePhoto['ID']; ?>" style="width: <? echo $strOneWidth; ?>; padding-top: <? echo $strOneWidth; ?>;"><span class="cnt"><span class="cnt_item" rel="gallery1" style="background-image:url('<? echo $arOnePhoto['SRC']; ?>');"></span></span></li>
+	<li data-value="<? echo $arOnePhoto['ID']; ?>" style="width: <? echo $strOneWidth; ?>; padding-top: <? echo $strOneWidth; ?>;"><span class="cnt"><span class="cnt_item"  style="background-image:url('<? echo $arOnePhoto['SRC']; ?>');"></span></span><a class="fancybox" rel="gallery1" style="display: none" href="<? echo $arOnePhoto['SRC']; ?>"><img src="<? echo $arOnePhoto['SRC']; ?>"></a> </li>
 <?
 		}
 		unset($arOnePhoto);
 ?>
 	</ul>
     <script type="text/javascript">
-      $(document).ready(function() { $('.fancybox').fancybox({
-        openEffect	: 'none',
-        closeEffect	: 'none'
-      }); } );
+      $(document).ready(
+        function() {
+          $('.fancybox').fancybox(
+            {
+              openEffect	: 'none',
+              closeEffect	: 'none'
+            });
+          $('.bx_slide li').click(
+            function(e){
+              e.preventDefault();
+              $('.bx_slide li a').removeClass('fancybox-ignore').addClass('fancybox');
+              $('a', $(e.target).parent().parent()).addClass('fancybox-ignore').removeClass('fancybox');
+              setTimeout(function(){
+                $('.bx_bigimages_aligner.fancybox').click();
+                },
+                50);
+            }
+          );
+        }
+      );
     </script>
 	</div>
 	<div class="bx_slide_left" id="<? echo $arItemIDs['SLIDER_LEFT']; ?>" style="<? echo $strSlideStyle; ?>"></div>
