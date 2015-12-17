@@ -47,7 +47,12 @@ $templateData = array(
 </script>
 		<div class="bx_filter_title"><?echo GetMessage("CT_BCSF_FILTER_TITLE")?></div>
 		<form name="<?echo $arResult["FILTER_NAME"]."_form"?>" action="<?echo $arResult["FORM_ACTION"]?>" method="get" class="smartfilter">
-			<?foreach($arResult["HIDDEN"] as $arItem):?>
+			<?foreach($arResult["HIDDEN"] as $k => $arItem):?>
+        <? if($arItem['CONTROL_ID'] == 'arrFilter_articul' || $arItem['CONTROL_ID'] == 'arrFilter_name' ) {
+          $arResult['CUSTOM_FILTERS'][$arItem['CONTROL_ID']] = $arItem;
+          continue;
+        }
+        ?>
 			<input type="hidden" name="<?echo $arItem["CONTROL_NAME"]?>" id="<?echo $arItem["CONTROL_ID"]?>" value="<?echo $arItem["HTML_VALUE"]?>" />
 			<?endforeach;
 			//prices
@@ -153,6 +158,35 @@ $templateData = array(
 					</script>
 				<?endif;
 			}
+      if(empty($arResult['CUSTOM_FILTERS']['arrFilter_name'])) {
+        $arResult['CUSTOM_FILTERS']['arrFilter_name'] = array(
+          'CONTROL_ID' => 'arrFilter_name',
+          'CONTROL_NAME' => 'arrFilter_name',
+          'HTML_VALUE' => '',
+        );
+      }
+      if(empty($arResult['CUSTOM_FILTERS']['arrFilter_articul'])) {
+        $arResult['CUSTOM_FILTERS']['arrFilter_articul'] = array(
+          'CONTROL_ID' => 'arrFilter_articul',
+          'CONTROL_NAME' => 'arrFilter_articul',
+          'HTML_VALUE' => '',
+        );
+      }
+       sort($arResult['CUSTOM_FILTERS']);
+      foreach($arResult['CUSTOM_FILTERS'] as $k=>$arItem) {
+        ?>
+        <div class="bx_filter_parameters_box active">
+          <span class="bx_filter_container_modef"></span>
+          <div class="bx_filter_parameters_box_title" ><? echo ($arItem['CONTROL_ID'] == 'arrFilter_name') ? "Название" : "Артикул" ;?>></div>
+          <div class="bx_filter_block" style="display: block; opacity: 1; height: 41px;">
+            <div class="bx_filter_parameters_box_container">
+              <input type="text" name="<? echo $arItem['CONTROL_NAME'];?>" id="<? echo $arItem['CONTROL_ID'];?>" value="<? echo $arItem['HTML_VALUE'];?>">
+            </div>
+            <div class="clb"></div>
+          </div>
+        </div>
+        <?
+      }
 
 			//not prices
 			foreach($arResult["ITEMS"] as $key=>$arItem)

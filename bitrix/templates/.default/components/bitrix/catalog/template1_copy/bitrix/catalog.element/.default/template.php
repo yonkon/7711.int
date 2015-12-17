@@ -349,25 +349,30 @@ if ($arParams['USE_PRODUCT_QUANTITY'] == 'Y')
 <?
 	}
 ?>
-	<span class="item_section_name_gray"><? echo GetMessage('CATALOG_QUANTITY'); ?></span>
+<!--	<span class="item_section_name_gray">--><?// echo GetMessage('CATALOG_QUANTITY'); ?><!--</span>-->
 	<div class="item_buttons vam">
-		<span class="item_buttons_counter_block">
-			<a href="javascript:void(0)" class="bx_bt_button_type_2 bx_small bx_fwb" id="<? echo $arItemIDs['QUANTITY_DOWN']; ?>">-</a>
-			<input id="<? echo $arItemIDs['QUANTITY']; ?>" type="text" class="tac transparent_input" value="<? echo (isset($arResult['OFFERS']) && !empty($arResult['OFFERS'])
-					? 1
-					: $arResult['CATALOG_MEASURE_RATIO']
-				); ?>">
-			<a href="javascript:void(0)" class="bx_bt_button_type_2 bx_small bx_fwb" id="<? echo $arItemIDs['QUANTITY_UP']; ?>">+</a>
-			<span class="bx_cnt_desc" id="<? echo $arItemIDs['QUANTITY_MEASURE']; ?>"><? echo (isset($arResult['CATALOG_MEASURE_NAME']) ? $arResult['CATALOG_MEASURE_NAME'] : ''); ?></span>
-		</span>
-		<span class="item_buttons_counter_block" id="<? echo $arItemIDs['BASKET_ACTIONS']; ?>" style="display: <? echo ($canBuy ? '' : 'none'); ?>;">
+
 <?
 	if ($showBuyBtn)
 	{
 ?>
 			<a href="javascript:void(0);" class="bx_big bx_bt_button bx_cart" id="<? echo $arItemIDs['BUY_LINK']; ?>"><span></span><? echo $buyBtnMessage; ?></a>
 <?
-	}
+	} ?>
+    <span class="item_buttons_counter_block quantity">
+
+			<input id="<? echo $arItemIDs['QUANTITY']; ?>" type="text" class="tac transparent_input narrow" value="<? echo (isset($arResult['OFFERS']) && !empty($arResult['OFFERS'])
+        ? 1
+        : $arResult['CATALOG_MEASURE_RATIO']
+      ); ?>">
+      <div class="plus_minus_container">
+        <a href="javascript:void(0)" class="bx_bt_button_type_2 bx_small bx_fwb" id="<? echo $arItemIDs['QUANTITY_UP']; ?>">+</a>
+        <a href="javascript:void(0)" class="bx_bt_button_type_2 bx_small bx_fwb" id="<? echo $arItemIDs['QUANTITY_DOWN']; ?>">-</a>
+      </div>
+      <span class="bx_cnt_desc" id="<? echo $arItemIDs['QUANTITY_MEASURE']; ?>"><? echo (isset($arResult['CATALOG_MEASURE_NAME']) ? $arResult['CATALOG_MEASURE_NAME'] : ''); ?></span>
+		</span>
+		<span class="item_buttons_counter_block" id="<? echo $arItemIDs['BASKET_ACTIONS']; ?>" style="display: <? echo ($canBuy ? '' : 'none'); ?>;">
+    <?
 	if ($showAddBtn)
 	{
 ?>
@@ -387,7 +392,7 @@ $arParams['DISPLAY_COMPARE'] = true;
 		if ($arParams['DISPLAY_COMPARE'])
 		{
 ?>
-			<a href="javascript:void(0);" class="bx_big bx_bt_button_type_2 bx_cart" id="<? echo $arItemIDs['COMPARE_LINK']; ?>"><? echo $compareBtnMessage; ?></a>
+			<a href="javascript:void(0);" class="compare_link" id="<? echo $arItemIDs['COMPARE_LINK']; ?>"><? echo $compareBtnMessage; ?></a>
 <?
 		}
 		if ($showSubscribeBtn)

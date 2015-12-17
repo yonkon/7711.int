@@ -1556,3 +1556,19 @@ div.w50_inline-block_container .bx_catalog_item_price .bx_catalog_item_controls_
 .filter_tab_btn.unact {
   background: #fafafa;
 }
+
+.item_buttons_counter_block.quantity>*{
+  height: 20px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.item_info_section .item_buttons .plus_minus_container>a {
+  line-height: 9px;
+  float: left;
+  clear: left;
+}
+
+.bx_item_detail .transparent_input.narrow {
+  width: 40px;
+}
