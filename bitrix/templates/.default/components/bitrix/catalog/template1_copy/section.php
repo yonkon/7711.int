@@ -186,24 +186,22 @@ if ($verticalGrid)
       return $curPageWParam;
     }
     ?>
-    <div class="sortViewActions">
+    <!--<div class="sortViewActions">
       <div class="sortirovka">
         <div class="viewSchema right-col">
           <div class="select_display">
-            <?
-            $viewSchema = $APPLICATION->get_cookie("viewSchema");
-            if (empty($_REQUEST['viewSchema'])) {
-              $viewSchema = empty($viewSchema)? "Gallery" : $viewSchema;
-            } else {
-              $viewSchema = $_REQUEST['viewSchema'];
-            }
-            //$templateName = $APPLICATION->get_cookie('view') ? $APPLICATION->get_cookie("view") : "bar";
-            if (empty($viewSchema) || $viewSchema == "Gallery") {
-              //$templateName = "bar";
+            <?php
+    $viewSchema = $APPLICATION->get_cookie("viewSchema");
+    if (empty($_REQUEST['viewSchema'])) {
+      $viewSchema = empty($viewSchema)? "Gallery" : $viewSchema;
+    } else {
+      $viewSchema = $_REQUEST['viewSchema'];
+    }
+    $_REQUEST['viewSchema'] = $viewSchema;
+            /*if (empty($viewSchema) || $viewSchema == "Gallery") {
               $APPLICATION->set_cookie("viewSchema", "Gallery");
             }
             if (isset($viewSchema) && $viewSchema == "List") {
-              //$templateName = "list";
               $APPLICATION->set_cookie("viewSchema", "List");
             }
             if ($viewSchema == "List") {
@@ -213,13 +211,12 @@ if ($verticalGrid)
               $class_select_display_list = "normal";
               $class_select_display_galery = "active";
             }
-            $_REQUEST['viewSchema'] = $viewSchema;
-            ?>
+            */?>
             <b>Вид отображения:</b>
-            <a rel="nofollow" title="Вид плиткой" class="galery_<? echo $class_select_display_galery; ?>"
-               href="<?php echo addUriParam('viewSchema', 'Gallery'); ?>">&nbsp;</a>
-            <a rel="nofollow" title="Вид списком" class="list_<? echo $class_select_display_list; ?>"
-               href="<?php echo addUriParam('viewSchema', 'List'); ?>">&nbsp;</a>
+            <a rel="nofollow" title="Вид плиткой" class="galery_<?/* echo $class_select_display_galery; */?>"
+               href="<?php /*echo addUriParam('viewSchema', 'Gallery'); */?>">&nbsp;</a>
+            <a rel="nofollow" title="Вид списком" class="list_<?/* echo $class_select_display_list; */?>"
+               href="<?php /*echo addUriParam('viewSchema', 'List'); */?>">&nbsp;</a>
           </div>
         </div>
 
@@ -227,26 +224,26 @@ if ($verticalGrid)
           <b>Сортировать по:</b>
 		<span class="dropdown ">
       <a rel="nofollow" class="actived"
-         href="javascript:void()"><?php echo $activeSortingText; ?></a>
+         href="javascript:void()"><?php /*echo $activeSortingText; */?></a>
 
 					<ul class="list ad_popup" style="display: none;">
             <li>
-              <a <? if ($_GET["sort"] == "catalog_PRICE_1" && $_GET['method'] == 'asc'): ?> class="actived" <? endif; ?>
-                href="<?php  echo addUriParam(array('sort' => 'catalog_PRICE_1', 'method' => 'asc') ); ?>">
+              <a <?/* if ($_GET["sort"] == "catalog_PRICE_1" && $_GET['method'] == 'asc'): */?> class="actived" <?/* endif; */?>
+                href="<?php /* echo addUriParam(array('sort' => 'catalog_PRICE_1', 'method' => 'asc') ); */?>">
                 Цене, сначала дешевле
               </a></li>
 
             <li>
-              <a <? if ($_GET["sort"] == "catalog_PRICE_1" && $_GET['method'] == 'desc'): ?> class="actived" <? endif; ?>
-                href="<?php  echo addUriParam(array('sort' => 'catalog_PRICE_1', 'method' => 'desc') ); ?>">
+              <a <?/* if ($_GET["sort"] == "catalog_PRICE_1" && $_GET['method'] == 'desc'): */?> class="actived" <?/* endif; */?>
+                href="<?php /* echo addUriParam(array('sort' => 'catalog_PRICE_1', 'method' => 'desc') ); */?>">
                 Цене, сначала дороже
               </a></li>
-            <li><a <? if ($_GET["sort"] == "name"): ?> class="actived" <? endif; ?>
-                href="<?php  echo addUriParam(array('sort' => 'name', 'method' => 'asc') ); ?>">
+            <li><a <?/* if ($_GET["sort"] == "name"): */?> class="actived" <?/* endif; */?>
+                href="<?php /* echo addUriParam(array('sort' => 'name', 'method' => 'asc') ); */?>">
                 Названию
               </a></li>
-            <li><a <? if ($_GET["sort"] == "timestamp_x"): ?> class="actived" <? endif; ?>
-                href="<?php  echo addUriParam(array('sort' => 'timestamp_x', 'method' => 'desc') ); ?>">
+            <li><a <?/* if ($_GET["sort"] == "timestamp_x"): */?> class="actived" <?/* endif; */?>
+                href="<?php /* echo addUriParam(array('sort' => 'timestamp_x', 'method' => 'desc') ); */?>">
                 Новые поступления
               </a></li>
           </ul>
@@ -265,33 +262,34 @@ if ($verticalGrid)
       </div>
       <div class="hr"></div>
       <div class="sortirovka info">
-        <?php 
+        <?php /*
         if(isset($_REQUEST['PAGE_ELEMENT_COUNT']) &&
           intval($_REQUEST['PAGE_ELEMENT_COUNT'])
         ) {
           $arParams['PAGE_ELEMENT_COUNT'] = $_REQUEST['PAGE_ELEMENT_COUNT'];
         }
-        ?>
-        <div class="inline-block">Показаны товары с 1 по 20 из 666</div>
+        */?>
+        <div class="inline-block"><?php /*echo 'Показаны товары с ' . (($arResult['NAV_RESULT']->NavPageNomer-1) * $arResult['NAV_RESULT']->NavPageSize + 1) .' по ' . (($arResult['NAV_RESULT']->NavPageNomer) * $arResult['NAV_RESULT']->NavPageSize) . ' из ' . $arResult['NAV_RESULT']->NavRecordCount;*/?>
+        </div>
         <div class="inline-block right-col">Выводить по:
-          <a href="<?php  echo addUriParam(array('PAGE_ELEMENT_COUNT' => '20') ); ?>"
-            <?php if($arParams['PAGE_ELEMENT_COUNT'] == 20) {
+          <a href="<?php /* echo addUriParam(array('PAGE_ELEMENT_COUNT' => '20') ); */?>"
+            <?php /*if($arParams['PAGE_ELEMENT_COUNT'] == 20) {
               echo ' class="active" ';
-            } ?>>
+            } */?>>
             20 </a>
-          <a href="<?php  echo addUriParam(array('PAGE_ELEMENT_COUNT' => '30') ); ?>"
-            <?php if($arParams['PAGE_ELEMENT_COUNT'] == 30) echo ' class="active" '; ?>>
+          <a href="<?php /* echo addUriParam(array('PAGE_ELEMENT_COUNT' => '30') ); */?>"
+            <?php /*if($arParams['PAGE_ELEMENT_COUNT'] == 30) echo ' class="active" '; */?>>
             30</a>
-          <a href="<?php  echo addUriParam(array('PAGE_ELEMENT_COUNT' => '50') ); ?>"
-            <?php if($arParams['PAGE_ELEMENT_COUNT'] == 50) echo ' class="active" '; ?>>
+          <a href="<?php /* echo addUriParam(array('PAGE_ELEMENT_COUNT' => '50') ); */?>"
+            <?php /*if($arParams['PAGE_ELEMENT_COUNT'] == 50) echo ' class="active" '; */?>>
             50</a>
-          <a href="<?php  echo addUriParam(array('PAGE_ELEMENT_COUNT' => '100') ); ?>"
-            <?php if($arParams['PAGE_ELEMENT_COUNT'] == 100) echo ' class="active" '; ?>>
+          <a href="<?php /* echo addUriParam(array('PAGE_ELEMENT_COUNT' => '100') ); */?>"
+            <?php /*if($arParams['PAGE_ELEMENT_COUNT'] == 100) echo ' class="active" '; */?>>
             100</a>
         </div>
       </div>
 
-    </div>
+    </div>-->
 
 
     <? $APPLICATION->IncludeComponent(

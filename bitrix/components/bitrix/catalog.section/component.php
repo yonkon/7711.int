@@ -709,6 +709,116 @@ if($this->StartResultCache(false, array($arrFilter, ($arParams["CACHE_GROUPS"]==
 
 	//EXECUTE
 	$rsElements = CIBlockElement::GetList($arSort, array_merge($arrFilter, $arFilter), false, $arNavParams, $arSelect);
+	?>
+	<div class="sortViewActions">
+		<div class="sortirovka">
+			<div class="viewSchema right-col">
+				<div class="select_display">
+					<?php
+					$viewSchema = $APPLICATION->get_cookie("viewSchema");
+					if (empty($_REQUEST['viewSchema'])) {
+						$viewSchema = empty($viewSchema)? "Gallery" : $viewSchema;
+					} else {
+						$viewSchema = $_REQUEST['viewSchema'];
+					}
+					$_REQUEST['viewSchema'] = $viewSchema;
+					//$templateName = $APPLICATION->get_cookie('view') ? $APPLICATION->get_cookie("view") : "bar";
+					if (empty($viewSchema) || $viewSchema == "Gallery") {
+						//$templateName = "bar";
+						$APPLICATION->set_cookie("viewSchema", "Gallery");
+					}
+					if (isset($viewSchema) && $viewSchema == "List") {
+						//$templateName = "list";
+						$APPLICATION->set_cookie("viewSchema", "List");
+					}
+					if ($viewSchema == "List") {
+						$class_select_display_list = "active";
+						$class_select_display_galery = "normal";
+					} else {
+						$class_select_display_list = "normal";
+						$class_select_display_galery = "active";
+					}
+
+					?>
+					<b>Вид отображения:</b>
+					<a rel="nofollow" title="Вид плиткой" class="galery_<? echo $class_select_display_galery; ?>"
+						 href="<?php echo addUriParam('viewSchema', 'Gallery'); ?>">&nbsp;</a>
+					<a rel="nofollow" title="Вид списком" class="list_<? echo $class_select_display_list; ?>"
+						 href="<?php echo addUriParam('viewSchema', 'List'); ?>">&nbsp;</a>
+				</div>
+			</div>
+
+			<p>
+				<b>Сортировать по:</b>
+		<span class="dropdown ">
+      <a rel="nofollow" class="actived"
+				 href="javascript:void()"><?php echo $activeSortingText; ?></a>
+
+					<ul class="list ad_popup" style="display: none;">
+						<li>
+							<a <? if ($_GET["sort"] == "catalog_PRICE_1" && $_GET['method'] == 'asc'): ?> class="actived" <? endif; ?>
+								href="<?php  echo addUriParam(array('sort' => 'catalog_PRICE_1', 'method' => 'asc') ); ?>">
+								Цене, сначала дешевле
+							</a></li>
+
+						<li>
+							<a <? if ($_GET["sort"] == "catalog_PRICE_1" && $_GET['method'] == 'desc'): ?> class="actived" <? endif; ?>
+								href="<?php  echo addUriParam(array('sort' => 'catalog_PRICE_1', 'method' => 'desc') ); ?>">
+								Цене, сначала дороже
+							</a></li>
+						<li><a <? if ($_GET["sort"] == "name"): ?> class="actived" <? endif; ?>
+								href="<?php  echo addUriParam(array('sort' => 'name', 'method' => 'asc') ); ?>">
+								Названию
+							</a></li>
+						<li><a <? if ($_GET["sort"] == "timestamp_x"): ?> class="actived" <? endif; ?>
+								href="<?php  echo addUriParam(array('sort' => 'timestamp_x', 'method' => 'desc') ); ?>">
+								Новые поступления
+							</a></li>
+					</ul>
+				</span>
+			</p>
+			<script>
+				$('.dropdown > a').live('click', function (e) {
+					$('.list.ad_popup').slideDown();
+					e.stopImmediatePropagation();
+					return false;
+				});
+				$(document).click(function () {
+					$('.list.ad_popup').slideUp();//
+				});
+			</script>
+		</div>
+		<div class="hr"></div>
+		<div class="sortirovka info">
+			<?php
+			if(isset($_REQUEST['PAGE_ELEMENT_COUNT']) &&
+				intval($_REQUEST['PAGE_ELEMENT_COUNT'])
+			) {
+				$arParams['PAGE_ELEMENT_COUNT'] = $_REQUEST['PAGE_ELEMENT_COUNT'];
+			}
+			?>
+			<div class="inline-block"><?php echo 'Показаны товары с ' . (($rsElements->NavPageNomer-1) * $rsElements->NavPageSize + 1) .' по ' . (($rsElements->NavPageNomer) * $rsElements->NavPageSize) . ' из ' . $rsElements->NavRecordCount;?>
+			</div>
+			<div class="inline-block right-col">Выводить по:
+				<a href="<?php  echo addUriParam(array('PAGE_ELEMENT_COUNT' => '20') ); ?>"
+					<?php if($arParams['PAGE_ELEMENT_COUNT'] == 20) {
+						echo ' class="active" ';
+					} ?>>
+					20 </a>
+				<a href="<?php  echo addUriParam(array('PAGE_ELEMENT_COUNT' => '30') ); ?>"
+					<?php if($arParams['PAGE_ELEMENT_COUNT'] == 30) echo ' class="active" '; ?>>
+					30</a>
+				<a href="<?php  echo addUriParam(array('PAGE_ELEMENT_COUNT' => '50') ); ?>"
+					<?php if($arParams['PAGE_ELEMENT_COUNT'] == 50) echo ' class="active" '; ?>>
+					50</a>
+				<a href="<?php  echo addUriParam(array('PAGE_ELEMENT_COUNT' => '100') ); ?>"
+					<?php if($arParams['PAGE_ELEMENT_COUNT'] == 100) echo ' class="active" '; ?>>
+					100</a>
+			</div>
+		</div>
+
+	</div>
+	<?php
 	$rsElements->SetUrlTemplates($arParams["DETAIL_URL"]);
 	if($arParams["BY_LINK"]!=="Y" && !$arParams["SHOW_ALL_WO_SECTION"])
 		$rsElements->SetSectionContext($arResult);
@@ -805,8 +915,22 @@ if($this->StartResultCache(false, array($arrFilter, ($arParams["CACHE_GROUPS"]==
 		);
 		CIBlockElement::GetPropertyValuesArray($arElementLink, $arParams["IBLOCK_ID"], $arPropFilter);
 
-		foreach ($arResult["ITEMS"] as &$arItem)
+		$elementsToFilterByArticul = array();
+		foreach ($arResult["ITEMS"] as $k => &$arItem)
 		{
+			if(!empty($_REQUEST['arrFilter_articul'])) {
+				if(empty($arItem['PROPERTIES']['artnumber']) || empty($arItem['PROPERTIES']['artnumber']['VALUE']) ) {
+					$elementsToFilterByArticul[] = $k;
+					continue;
+				} else {
+					$tempArticulValue = mb_strtolower($arItem['PROPERTIES']['artnumber']['VALUE']);
+					$_REQUEST['arrFilter_articul'] = mb_strtolower($_REQUEST['arrFilter_articul']);
+					if(strpos($tempArticulValue, $_REQUEST['arrFilter_articul']) === false) {
+						$elementsToFilterByArticul[] = $k;
+						continue;
+					}
+				}
+			}
 			if ($bCatalog && $boolNeedCatalogCache)
 			{
 				CCatalogDiscount::SetProductPropertiesCache($arItem['ID'], $arItem["PROPERTIES"]);
@@ -846,6 +970,12 @@ if($this->StartResultCache(false, array($arrFilter, ($arParams["CACHE_GROUPS"]==
 		}
 		if (isset($arItem))
 			unset($arItem);
+		if(!empty($elementsToFilterByArticul)) {
+			$elementsToFilterByArticul = array_reverse($elementsToFilterByArticul);
+			foreach($elementsToFilterByArticul as $itemIndexToRemove) {
+				unset($arResult["ITEMS"][$itemIndexToRemove]);
+			}
+		}
 	}
 
 	if ($bIBlockCatalog)
