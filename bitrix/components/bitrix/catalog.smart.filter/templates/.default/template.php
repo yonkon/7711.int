@@ -28,7 +28,8 @@ $templateData = array(
     $('#filter_btn_std').click(
       function(e) {
         e.preventDefault();
-        $(this).parent().removeClass('unact');
+				$('.extended_filters').addClass('hidden');
+				$(this).parent().removeClass('unact');
         $(this).parent().addClass('show');
         $('#filter_btn_ext').parent().removeClass('show');
         $('#filter_btn_ext').parent().addClass('unact');
@@ -37,7 +38,8 @@ $templateData = array(
     $('#filter_btn_ext').click(
       function(e) {
         e.preventDefault();
-        $(this).parent().removeClass('unact');
+				$('.extended_filters').removeClass('hidden');
+				$(this).parent().removeClass('unact');
         $(this).parent().addClass('show');
         $('#filter_btn_std').parent().removeClass('show');
         $('#filter_btn_std').parent().addClass('unact');
@@ -175,9 +177,9 @@ $templateData = array(
        sort($arResult['CUSTOM_FILTERS']);
       foreach($arResult['CUSTOM_FILTERS'] as $k=>$arItem) {
         ?>
-        <div class="bx_filter_parameters_box active">
+        <div class="bx_filter_parameters_box active custom">
           <span class="bx_filter_container_modef"></span>
-          <div class="bx_filter_parameters_box_title" ><? echo ($arItem['CONTROL_ID'] == 'arrFilter_name') ? "Название" : "Артикул" ;?>></div>
+          <div class="bx_filter_parameters_box_title no-after" ><? echo ($arItem['CONTROL_ID'] == 'arrFilter_name') ? "Название" : "Артикул" ;?></div>
           <div class="bx_filter_block" style="display: block; opacity: 1; height: 41px;">
             <div class="bx_filter_parameters_box_container">
               <input type="text" name="<? echo $arItem['CONTROL_NAME'];?>" id="<? echo $arItem['CONTROL_ID'];?>" value="<? echo $arItem['HTML_VALUE'];?>">
@@ -187,6 +189,9 @@ $templateData = array(
         </div>
         <?
       }
+			?>
+			<div class="extended_filters">
+			<?
 
 			//not prices
 			foreach($arResult["ITEMS"] as $key=>$arItem)
@@ -640,6 +645,7 @@ $templateData = array(
 			<?
 			}
 			?>
+			</div>
 			<div class="clb"></div>
 			<div class="bx_filter_button_box active">
 				<div class="bx_filter_block">

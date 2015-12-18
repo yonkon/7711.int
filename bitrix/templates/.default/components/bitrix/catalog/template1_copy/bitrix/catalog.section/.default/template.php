@@ -1120,6 +1120,9 @@ foreach ($arResult['ITEMS'] as $key => $arItem)
 	}
 	?>
       </div>
+			<div style="clear: both">
+				<a id="<? echo $arItemIDs['COMPARE_LINK']; ?>" class="compare_link" href="javascript:void(0)"><span><? echo $compareBtnMessage; ?></span></a>
+			</div>
     </div>
 
 		</div>
@@ -1127,9 +1130,9 @@ foreach ($arResult['ITEMS'] as $key => $arItem)
     if ($arParams['DISPLAY_COMPARE'])
     {
       ?>
-      <div style="clear: both">
-      <a id="<? echo $arItemIDs['COMPARE_LINK']; ?>" class="compare_link" href="javascript:void(0)"><span><? echo $compareBtnMessage; ?></span></a>
-      </div><?
+<!--      <div style="clear: both">-->
+<!--      <a id="--><?// echo $arItemIDs['COMPARE_LINK']; ?><!--" class="compare_link" href="javascript:void(0)"><span>--><?// echo $compareBtnMessage; ?><!--</span></a>-->
+<!--      </div>--><?//
     }
     ?>
 

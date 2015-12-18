@@ -349,6 +349,13 @@ if ($arParams['USE_PRODUCT_QUANTITY'] == 'Y')
 <?
 	}
 ?>
+  <div class="clearfix">&nbsp;</div>
+  <div class="w50_inline-block_container low-line">
+		<div><a class="special_price_btn">Нужна специальная цена?</a></div>
+		<div><a class="callback_btn">Обратный звонок</a></div>
+	</div>
+	<div class="clearfix">&nbsp;</div>
+<!--	<hr/>-->
 <!--	<span class="item_section_name_gray">--><?// echo GetMessage('CATALOG_QUANTITY'); ?><!--</span>-->
 	<div class="item_buttons vam">
 
@@ -392,7 +399,7 @@ $arParams['DISPLAY_COMPARE'] = true;
 		if ($arParams['DISPLAY_COMPARE'])
 		{
 ?>
-			<a href="javascript:void(0);" class="compare_link" id="<? echo $arItemIDs['COMPARE_LINK']; ?>"><? echo $compareBtnMessage; ?></a>
+<!--			<a href="javascript:void(0);" class="compare_link" id="--><?// echo $arItemIDs['COMPARE_LINK']; ?><!--">--><?// echo $compareBtnMessage; ?><!--</a>-->
 <?
 		}
 		if ($showSubscribeBtn)
@@ -404,7 +411,38 @@ $arParams['DISPLAY_COMPARE'] = true;
 <?
 	}
 ?>
+
+
+    <div class="buy_fast_ico">
+      <a class="buy_fast_btn" href="#">Купить в 1 клик</a>
+    </div>
+  <div class="clearfix">&nbsp;</div>
+  <div style="display: none" id="buy_fast_window">
+    <form id="buy_fast_form" enctype="application/x-www-form-urlencoded" action="/buy_fast.php" method="post">
+      <input type="hidden" name="product[id]" value="<?php echo $arResult['ID']; ?>">
+      <input type="hidden" name="product[name]" value="<?php echo $arResult['NAME']; ?>">
+      <input type="hidden" name="product[URL]" value="<?php echo $APPLICATION->GetCurPage(); ?>">
+
+      <input placeholder="Ваши Фамилия Имя" name="client[fio]">
+
+      <input placeholder="Номер телефона" name="client[phone]">
+
+      <input placeholder="Контактный Email" type="email" name="client[email]">
+
+      <input type="submit" id="buy_fast_submit" name="submit" value="Купить!">
+      <a class="buy_fast_close" href="javascript:void(0);">Свернуть</a>
+
+    </form>
+  </div>
+  <div class="clearfix">&nbsp;</div>
+
+</div>
+<!--  <hr/>-->
+	<div class="w50_inline-block_container">
+		<div><a href="javascript:void(0);" class="compare_link" id="<? echo $arItemIDs['COMPARE_LINK']; ?>"><? echo $compareBtnMessage; ?></a></div>
+		<div><a href="javascript:window.print(); void 0;" class="print_btn">Версия для печати</a></div>
 	</div>
+	<div class="clearfix">&nbsp;</div>
 <?
 	if ('Y' == $arParams['SHOW_MAX_QUANTITY'])
 	{
@@ -959,4 +997,208 @@ BX.message({
 	BTN_MESSAGE_COMPARE_REDIRECT: '<? echo GetMessageJS('CT_BCE_CATALOG_BTN_MESSAGE_COMPARE_REDIRECT') ?>',
 	SITE_ID: '<? echo SITE_ID; ?>'
 });
+</script>
+
+
+<div id="special_price_window"  style="display: none" >
+  <div id="special_price_window_content">
+    <div class="fancybox-title"><b>Запросить специальную цену.</b></div>
+    <div>
+      <form id="special_price_form" enctype="application/x-www-form-urlencoded" action="/special_price.php" method="post">
+        <input type="hidden" name="product[id]" value="<?php echo $arResult['ID']; ?>">
+        <input type="hidden" name="product[name]" value="<?php echo $arResult['NAME']; ?>">
+        <input type="hidden" name="product[URL]" value="<?php echo $APPLICATION->GetCurPage(); ?>">
+
+        <div style="margin:1em 0; width: 250px">Уважаемый клиент! Если Вы являетесь юридическим лицом и собираетесь приобрести
+          оборудование не в единственном экземпляре, то можете заполнить предлагаемую форму.
+          В зависимости от текущей конъюнктуры рынка, мы можем предпринять попытку
+          снизить цену именно для Вас.
+        </div>
+        
+        <input placeholder="Ваши Фамилия Имя" name="client[fio]">
+        
+        <input placeholder="Номер телефона" name="client[phone]">
+        
+        <input placeholder="Контактный Email" type="email" name="client[email]">
+        
+        <input placeholder="Количество" name="client[quantity]">
+        
+        <input placeholder="Цена" name="client[price]">
+        
+        <textarea style="height:50px;" placeholder="Коментарии" name="client[comments]"></textarea>
+        
+        <input type="submit" id="special_price_submit" name="submit" value="Запросить">
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="callback_window" style="display: none">
+  <div id="callback_window_content">
+    <div class="fancybox-title"><b>Обратный звонок!</b></div>
+    <div>
+      <form id="callback_form" enctype="application/x-www-form-urlencoded" action="/callback.php" method="post">
+        <input type="hidden" name="product[id]" value="<?php echo $arResult['ID']; ?>">
+        <input type="hidden" name="product[name]" value="<?php echo $arResult['NAME']; ?>">
+        <input type="hidden" name="product[URL]" value="<?php echo $APPLICATION->GetCurPage(); ?>">
+
+        <label for="callback_client_phone">Номер телефона</label>
+        <input id="callback_client_phone" name="client[phone]">
+
+        <label for="callback_client_fio">Ваше Имя</label>
+        <input id="callback_client_fio" name="client[fio]">
+
+        <label for="callback_client_comments">Тема вопроса</label>
+        <textarea style="height:150px;" id="callback_client_comments" name="client[comments]"></textarea>
+
+        <input type="checkbox" id="callback_client_urgent" name="client[urgent]" value="1" checked>
+        <label class="red"  for="callback_client_urgent">
+          Перезвонить в течение часа
+        </label>
+
+        <input type="submit" id="callback_submit" name="submit" value="Перезвоните мне!">
+      </form>
+    </div>
+  </div>
+</div>
+
+<!--<div style="display: none" id="buy_fast_window">
+  <div id="buy_fast_window_content">
+    <div class="fancybox-title"><b>&nbsp;</b></div>
+    <div>
+      <form id="buy_fast_form" enctype="application/x-www-form-urlencoded" action="/buy_fast.php" method="post">
+        <input type="hidden" name="product[id]" value="<?php /*echo $arResult['ID']; */?>">
+        <input type="hidden" name="product[name]" value="<?php /*echo $arResult['NAME']; */?>">
+        <input type="hidden" name="product[URL]" value="<?php /*echo $APPLICATION->GetCurPage(); */?>">
+
+
+        <input placeholder="Ваши Фамилия Имя" name="client[fio]">
+
+        <input placeholder="Номер телефона" name="client[phone]">
+
+        <input placeholder="Контактный Email" type="email" name="client[email]">
+
+        <input type="submit" id="buy_fast_submit" name="submit" value="Купить!">
+      </form>
+    </div>
+  </div>
+</div>
+-->
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#special_price_window').fancybox({
+      width : 450,
+      autoDimensions : false
+    });
+    $('#special_price_window_content').click(function(e){
+      e.preventDefault();
+      e.stopPropagation();
+    });
+    $('.special_price_btn').click(function(e){
+      e.preventDefault();
+      $('#special_price_window').click();
+    });
+    $("#special_price_submit").click(function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      var formData = $('#special_price_form').serializeArray();
+      var url = $('#special_price_form').attr('action');
+      $.ajax({
+        url : url,
+        data : formData,
+        type : 'post'
+      })
+        .success(function(data) {
+        alert('OK');
+      })
+        .error(function(data) {
+          alert('Error');
+        });
+    });
+
+    $('#callback_window').fancybox();
+    $('#callback_window_content').click(function(e){
+      if ($(e.target).attr('id') != 'callback_client_urgent' && $(e.target).attr('for') != 'callback_client_urgent')
+        e.preventDefault();
+      e.stopPropagation();
+    });
+    $('.callback_btn').click(function(e){
+      e.preventDefault();
+      $('#callback_window').click();
+    });
+    $("#callback_submit").click(function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      var formData = $('#callback_form').serializeArray();
+      var url = $('#callback_form').attr('action');
+      $.ajax({
+        url : url,
+        data : formData,
+        type : 'post'
+      })
+        .success(function(data) {
+          alert('OK');
+        })
+        .error(function(data) {
+          alert('Error');
+        });
+    });
+
+/*    $('#buy_fast_window').fancybox();
+    $('#buy_fast_window_content').click(function(e){
+      if ($(e.target).attr('id') != 'buy_fast_client_urgent' && $(e.target).attr('for') != 'buy_fast_client_urgent')
+        e.preventDefault();
+      e.stopPropagation();
+    });
+    $('.buy_fast_btn').click(function(e){
+      e.preventDefault();
+      $('#buy_fast_window').click();
+    });
+    $("#buy_fast_submit").click(function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      var formData = $('#buy_fast_form').serializeArray();
+      var url = $('#buy_fast_form').attr('action');
+      $.ajax({
+        url : url,
+        data : formData,
+        type : 'post'
+      })
+        .success(function(data) {
+          alert('OK');
+        })
+        .error(function(data) {
+          alert('Error');
+        });
+    });*/
+
+
+    $('.buy_fast_btn').click(function(e){
+      e.preventDefault();
+      $('#buy_fast_window').slideToggle();
+    });
+    $('.buy_fast_close').click(function(e){
+      e.preventDefault();
+      $('#buy_fast_window').slideUp();
+    });
+    $("#buy_fast_submit").click(function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      $('#buy_fast_window').slideUp();
+      var formData = $('#buy_fast_form').serializeArray();
+      var url = $('#buy_fast_form').attr('action');
+      $.ajax({
+        url : url,
+        data : formData,
+        type : 'post'
+      })
+        .success(function(data) {
+          alert('OK');
+        })
+        .error(function(data) {
+          alert('Error');
+        });
+    });
+    
+  });
 </script>
