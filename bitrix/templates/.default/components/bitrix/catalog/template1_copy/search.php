@@ -1,4 +1,5 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
+//TODO make search
 if($arParams["USE_COMPARE"]=="Y")
 {
 	?><?$APPLICATION->IncludeComponent(

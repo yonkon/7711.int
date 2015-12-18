@@ -88,6 +88,42 @@ $curPage = $APPLICATION->GetCurPage(true);
 	)
 );?>
 				</div>
+        <?$APPLICATION->IncludeComponent(
+          "bitrix:search.title",
+          "visual2",
+          array(
+            "NUM_CATEGORIES" => "1",
+            "TOP_COUNT" => "5",
+            "CHECK_DATES" => "N",
+            "SHOW_OTHERS" => "N",
+            "PAGE" => SITE_DIR."catalog/",
+            "CATEGORY_0_TITLE" => GetMessage("SEARCH_GOODS"),
+            "CATEGORY_0" => array(
+              0 => "no",
+            ),
+            "CATEGORY_0_iblock_catalog" => array(
+              0 => "all",
+            ),
+            "CATEGORY_OTHERS_TITLE" => GetMessage("SEARCH_OTHER"),
+            "SHOW_INPUT" => "Y",
+            "INPUT_ID" => "title-search-input",
+            "CONTAINER_ID" => "search",
+            "PRICE_CODE" => array(
+              0 => "BASE",
+            ),
+            "SHOW_PREVIEW" => "Y",
+            "PREVIEW_WIDTH" => "75",
+            "PREVIEW_HEIGHT" => "75",
+            "CONVERT_CURRENCY" => "Y",
+            "COMPONENT_TEMPLATE" => "visual1",
+            "ORDER" => "date",
+            "USE_LANGUAGE_GUESS" => "Y",
+            "PRICE_VAT_INCLUDE" => "Y",
+            "PREVIEW_TRUNCATE_LEN" => "",
+            "CURRENCY_ID" => "KZT"
+          ),
+          false
+        );?>
 				<div class="clb"></div>
 		</div>  <!-- //header_top_section -->
 			<div class="header_inner" itemscope itemtype = "http://schema.org/LocalBusiness">
@@ -97,42 +133,42 @@ $curPage = $APPLICATION->GetCurPage(true);
 
 				<div class="slogan">IT-инфраструктура любой сложности для предприятий любого размера</div>
 				<div class="header_inner_container_two">
-					<?$APPLICATION->IncludeComponent(
-	"bitrix:search.title", 
-	"visual1", 
-	array(
-		"NUM_CATEGORIES" => "1",
-		"TOP_COUNT" => "5",
-		"CHECK_DATES" => "N",
-		"SHOW_OTHERS" => "N",
-		"PAGE" => SITE_DIR."catalog/",
-		"CATEGORY_0_TITLE" => GetMessage("SEARCH_GOODS"),
-		"CATEGORY_0" => array(
-			0 => "no",
-		),
-		"CATEGORY_0_iblock_catalog" => array(
-			0 => "all",
-		),
-		"CATEGORY_OTHERS_TITLE" => GetMessage("SEARCH_OTHER"),
-		"SHOW_INPUT" => "Y",
-		"INPUT_ID" => "title-search-input",
-		"CONTAINER_ID" => "search",
-		"PRICE_CODE" => array(
-			0 => "BASE",
-		),
-		"SHOW_PREVIEW" => "Y",
-		"PREVIEW_WIDTH" => "75",
-		"PREVIEW_HEIGHT" => "75",
-		"CONVERT_CURRENCY" => "Y",
-		"COMPONENT_TEMPLATE" => "visual1",
-		"ORDER" => "date",
-		"USE_LANGUAGE_GUESS" => "Y",
-		"PRICE_VAT_INCLUDE" => "Y",
-		"PREVIEW_TRUNCATE_LEN" => "",
-		"CURRENCY_ID" => "KZT"
-	),
-	false
-);?><span><?$APPLICATION->IncludeComponent("bitrix:main.include", "", array("AREA_FILE_SHOW" => "file", "PATH" => SITE_DIR."include/schedule.php"), false);?></span>
+<!--					--><?//$APPLICATION->IncludeComponent(
+//	"bitrix:search.title",
+//	"visual1",
+//	array(
+//		"NUM_CATEGORIES" => "1",
+//		"TOP_COUNT" => "5",
+//		"CHECK_DATES" => "N",
+//		"SHOW_OTHERS" => "N",
+//		"PAGE" => SITE_DIR."catalog/",
+//		"CATEGORY_0_TITLE" => GetMessage("SEARCH_GOODS"),
+//		"CATEGORY_0" => array(
+//			0 => "no",
+//		),
+//		"CATEGORY_0_iblock_catalog" => array(
+//			0 => "all",
+//		),
+//		"CATEGORY_OTHERS_TITLE" => GetMessage("SEARCH_OTHER"),
+//		"SHOW_INPUT" => "Y",
+//		"INPUT_ID" => "title-search-input",
+//		"CONTAINER_ID" => "search",
+//		"PRICE_CODE" => array(
+//			0 => "BASE",
+//		),
+//		"SHOW_PREVIEW" => "Y",
+//		"PREVIEW_WIDTH" => "75",
+//		"PREVIEW_HEIGHT" => "75",
+//		"CONVERT_CURRENCY" => "Y",
+//		"COMPONENT_TEMPLATE" => "visual1",
+//		"ORDER" => "date",
+//		"USE_LANGUAGE_GUESS" => "Y",
+//		"PRICE_VAT_INCLUDE" => "Y",
+//		"PREVIEW_TRUNCATE_LEN" => "",
+//		"CURRENCY_ID" => "KZT"
+//	),
+//	false
+//);?><!--<span>--><?//$APPLICATION->IncludeComponent("bitrix:main.include", "", array("AREA_FILE_SHOW" => "file", "PATH" => SITE_DIR."include/schedule.php"), false);?><!--</span>-->
 				</div>
 
 				<div class="header_inner_container_one">

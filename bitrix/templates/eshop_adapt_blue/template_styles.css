@@ -1753,3 +1753,35 @@ div.w50_inline-block_container .bx_catalog_item_price .bx_catalog_item_controls_
 .red {
   color: red;
 }
+
+.map img.mapper {
+  margin-left: 100px;
+}
+
+.bx_search_container.visual2 input{
+  border: none;
+  display: inline-block;
+  margin-top: 0;
+  vertical-align: middle;
+}
+
+.bx_search_container.visual2 input:focus {
+  outline: none;
+}
+.bx_search_container.visual2 input[type=submit] {
+  border: none;
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+  /*margin-top: 10px;*/
+  background: transparent url("/images/searchbt.png") center no-repeat;
+  cursor: pointer;
+}
+.bx_search_container.visual2 {
+  background: url("/images/search.png") no-repeat;
+  width: 260px;
+  height: 51px;
+  padding: 4px 26px !important;
+  margin-left: -25px;
+  margin-top: -25px;
+}
