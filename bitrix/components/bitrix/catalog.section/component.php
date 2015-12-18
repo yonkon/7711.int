@@ -740,6 +740,16 @@ if($this->StartResultCache(false, array($arrFilter, ($arParams["CACHE_GROUPS"]==
 						$class_select_display_list = "normal";
 						$class_select_display_galery = "active";
 					}
+					$activeSortingText = empty($activeSortingText) ? 'Выберите' : $activeSortingText;
+					if ($_GET["sort"] == "catalog_PRICE_1" && $_GET['method'] == 'asc') {
+						$activeSortingText = 'Цене, сначала дешевле';
+					} elseif (($_GET["sort"] == "catalog_PRICE_1" && $_GET['method'] == 'desc')) {
+						$activeSortingText = 'Цене, сначала дороже';
+					} elseif ($_GET["sort"] == "name") {
+						$activeSortingText = 'Названию';
+					} elseif ($_GET["sort"] == "timestamp_x") {
+						$activeSortingText = 'Новые поступления';
+					}
 
 					?>
 					<b>Вид отображения:</b>

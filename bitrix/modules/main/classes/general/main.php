@@ -5264,3 +5264,68 @@ class CDebugInfo
 		return $result;
 	}
 }
+
+function addUriParam($key, $value='') {
+	global $APPLICATION;
+	$curPageWParam = $APPLICATION->GetCurUri();
+	if(strpos($curPageWParam, '?')) {
+		$curPageWParam .= '&';
+	} else {
+		$curPageWParam .= '?';
+	}
+	if(is_array($key)) {
+		foreach($key as $k => $v) {
+			$firstParamMatches = false;
+			$elseParamMatches = false;
+			if ( //If param is already in query string
+				($firstParamMatches = strpos($curPageWParam, "?{$k}=")) ||
+				($elseParamMatches = strpos($curPageWParam, "&{$k}="))
+			) {
+				$paramStart = $firstParamMatches? $firstParamMatches : $elseParamMatches;
+				$valueStart = strpos($curPageWParam,'=', $paramStart);
+				$valueEnd = strpos($curPageWParam, '&', $valueStart);
+				if (!$valueEnd) {
+					$valueEnd = strpos($curPageWParam, '#', $valueStart);
+				}
+				if (!$valueEnd) {
+					$valueEnd = strlen($curPageWParam);
+				}
+				if ($valueEnd) {
+					$curPageWParam = substr($curPageWParam, 0, $valueStart+1) . $v . substr($curPageWParam, $valueEnd);
+				}
+			} else {
+				$curPageWParam .= $k;
+				$curPageWParam .= '=';
+				$curPageWParam .= urlencode($v);
+				$curPageWParam .= '&';
+			}
+		}
+	} else {
+		$firstParamMatches = false;
+		$elseParamMatches = false;
+		if ( //If param is already in query string
+			($firstParamMatches = strpos($curPageWParam, "?{$key}=")) ||
+			($elseParamMatches = strpos($curPageWParam, "&{$key}="))
+		) {
+			$paramStart = $firstParamMatches? $firstParamMatches : $elseParamMatches;
+			$valueStart = strpos($curPageWParam,'=', $paramStart);
+			$valueEnd = strpos($curPageWParam, '&', $valueStart);
+			if (!$valueEnd) {
+				$valueEnd = strpos($curPageWParam, '#', $valueStart);
+			}
+			if (!$valueEnd) {
+				$valueEnd = strlen($curPageWParam);
+			}
+			if ($valueEnd) {
+				$curPageWParam = substr($curPageWParam, 0, $valueStart+1) . $value. substr($curPageWParam, $valueEnd);
+			}
+		} else {
+			$curPageWParam .= $key;
+			$curPageWParam .= '=';
+			$curPageWParam .= urlencode($value);
+			$curPageWParam .= '&';
+		}
+	}
+	$curPageWParam = substr($curPageWParam, 0, -1);
+	return $curPageWParam;
+}

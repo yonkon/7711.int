@@ -12,14 +12,11 @@ if(!isset($arParams["PAGE"]) || strlen($arParams["PAGE"])<=0)
 
 $arResult["CATEGORIES"] = array();
 
-$query = ltrim($_POST["q"]);
+$query = ltrim($_REQUEST["q"]);
 if(
 	!empty($query)
 	&& $_REQUEST["ajax_call"] === "y"
-	&& (
-		!isset($_REQUEST["INPUT_ID"])
-		|| $_REQUEST["INPUT_ID"] == $arParams["INPUT_ID"]
-	)
+	&& ( !isset($_REQUEST["INPUT_ID"]) || $_REQUEST["INPUT_ID"] == $arParams["INPUT_ID"])
 	&& CModule::IncludeModule("search")
 )
 {

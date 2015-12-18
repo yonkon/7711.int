@@ -1763,6 +1763,8 @@ div.w50_inline-block_container .bx_catalog_item_price .bx_catalog_item_controls_
   display: inline-block;
   margin-top: 0;
   vertical-align: middle;
+	padding-left: 10px;
+	width: 160px;
 }
 
 .bx_search_container.visual2 input:focus {

@@ -109,7 +109,7 @@ class CAllSearch extends CDBResult
 			if($this->_opt_NO_WORD_LOGIC)
 				$this->Query->no_bool_lang = true;
 
-			$query = $this->Query->GetQueryString((BX_SEARCH_VERSION > 1? "sct": "sc").".SEARCHABLE_CONTENT", $strQuery, $bTagsSearch, $aParamsEx["STEMMING"], $this->_opt_ERROR_ON_EMPTY_STEM);
+			$query = $this->Query->GetQueryString((BX_SEARCH_VERSION > 1? "sct": "sc").".SEARCHABLE_CONTENT", $strQuery, $bTagsSearch, ($aParamsEx["STEMMING"] && empty($arParams['QUERY'])), $this->_opt_ERROR_ON_EMPTY_STEM);
 			if(!$query || strlen(trim($query))<=0)
 			{
 				if($bTagsCloud)
@@ -154,6 +154,7 @@ class CAllSearch extends CDBResult
 			$r->InitFromArray($result);
 		}
 		elseif(
+			false &&
 			BX_SEARCH_VERSION > 1
 			&& count($this->Query->m_stemmed_words_id)
 			&& array_sum($this->Query->m_stemmed_words_id) === 0
@@ -185,6 +186,9 @@ class CAllSearch extends CDBResult
 			}
 
 			$strSqlWhere = CSearch::__PrepareFilter($arParams, $bIncSites);
+			if(!empty($arParams['QUERY'])) {
+				$strSqlWhere .= " AND sc.BODY LIKE '%" . mysql_escape_string($arParams['QUERY']) . "%' ";
+			}
 			if($strSqlWhere != "")
 				array_unshift($arSqlWhere, $strSqlWhere);
 
@@ -195,12 +199,14 @@ class CAllSearch extends CDBResult
 
 			$bStem = !$bTagsSearch && count($this->Query->m_stemmed_words)>0;
 			//calculate freq of the word on the whole site_id
+			$bStem = empty($arParams['QUERY'])? $bStem : false;
 			if($bStem && count($this->Query->m_stemmed_words))
 			{
 				$arStat = $this->GetFreqStatistics($this->Query->m_lang, $this->Query->m_stemmed_words, $arParams["SITE_ID"]);
 				$this->tf_hwm_site_id = (strlen($arParams["SITE_ID"]) > 0? $arParams["SITE_ID"]: "");
 
 				//we'll make filter by it's contrast
+//				$aParamsEx["USE_TF_FILTER"] = false;
 				if(!$bTagsCloud && $aParamsEx["USE_TF_FILTER"])
 				{
 					$hwm = false;
@@ -3062,7 +3068,7 @@ class CAllSearchQuery
 		return preg_replace_callback("/([".$arStemInfo["pcre_letters"]."]+)/".BX_UTF_PCRE_MODIFIER, array($this, "StemWord"), $q);
 	}
 
-	function PrepareQuery($q)
+	function PrepareQuery($q, $bStemm = true)
 	{
 		$state = 0;
 		$qu = "";
@@ -3096,7 +3102,7 @@ class CAllSearchQuery
 				else
 				{
 					$state=1;
-					$qu="$qu ".$this->BuildWhereClause($t)." ";
+					$qu="$qu ".$this->BuildWhereClause($t, $bStemm)." ";
 				}
 				break;
 

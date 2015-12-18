@@ -14,7 +14,7 @@ class CSearchFullText
 	{
 		if (!isset(static::$instance))
 		{
-			if (COption::GetOptionString("search", "full_text_engine") === "sphinx")
+			if ( COption::GetOptionString("search", "full_text_engine") === "sphinx")
 			{
 				self::$instance = new CSearchSphinx;
 				self::$instance->connect(
@@ -47,10 +47,17 @@ class CSearchFullText
 	}
 	public function search($arParams, $aSort, $aParamsEx, $bTagsCloud)
 	{
+//		$obTitle = new CSearchTitle;
+//		$obTitle->setMinWordLength($_REQUEST["l"]);
+//		$obTitle->_arPhrase[$arParams['QUERY']] = 0;
+//		return $obTitle->searchTitle($arParams['QUERY'], 5, $arParams,  false, "");
 		return false;
 	}
 	function searchTitle($phrase = "", $arPhrase = array(), $nTopCount = 5, $arParams = array(), $bNotFilter = false, $order = "")
 	{
+//		$obTitle = new CSearchTitle;
+//		$obTitle->setMinWordLength($_REQUEST["l"]);
+//		return $obTitle->searchTitle($phrase, $arParams, $nTopCount, $bNotFilter, $order);
 		return false;
 	}
 	public function getErrorText()

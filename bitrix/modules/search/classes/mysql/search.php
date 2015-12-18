@@ -1016,7 +1016,7 @@ class CSearch extends CAllSearch
 class CSearchQuery extends CAllSearchQuery
 {
 	var $cnt = 0;
-	function BuildWhereClause($word)
+	function BuildWhereClause($word, $bStemm = true)
 	{
 		$DB = CDatabase::GetModuleConnection('search');
 
@@ -1064,11 +1064,11 @@ class CSearchQuery extends CAllSearchQuery
 				$ar = $rs->Fetch();
 				$this->m_stemmed_words_id[] = intval($ar["ID"]);
 
-				return "(sum(st.stem = ".intval($ar["ID"]).")>0)";
+				return $bStemm ? "(sum(st.stem = ".intval($ar["ID"]).")>0)" : '1=1';
 			}
 			else
 			{
-				return "(sum(st.stem = '".$word."')>0)";
+				return $bStemm ? "(sum(st.stem = '".$word."')>0)" : '1=1';
 			}
 		}
 		else
