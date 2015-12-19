@@ -1,0 +1,1 @@
+{'total_read_line':'10','total_line':'10','correct_line':'10','error_line':'0','killed_line':'0','last_proccess_id':'0','last_proccess_active_id':'0','worksheetCurrentRow':'6','total_file_line':'10','begin_time':'19.12.2015 06:19:23','worksheetNum':'0','action':'finish'}
