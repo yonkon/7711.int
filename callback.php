@@ -17,20 +17,20 @@ if (!empty($_REQUEST['client']['comments']) ) {
 }
 ob_start();
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$adminEmail = COption::GetOptionString('main', 'email_from', 'default@admin.email');
+$adminEmail = COption::GetOptionString('main', 'email_from', 'yonkon.ru@gmail.com');
 $from = strip_tags($_REQUEST['client']['fio']);
 $to = $adminEmail;
+//$to = 'yonkon.ru@gmail.com';
 $subject = 'Union. Просьба перезвонить';
-//strip_tags($_POST['req-email'])
 $headers = "From: " . $adminEmail . "\r\n";
 $headers .= "Reply-To: ". $adminEmail . "\r\n";
-//$headers .= "CC: susan@example.com\r\n";
+
 $headers .= "MIME-Version: 1.0\r\n";
 $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 $now = date('d-m-Y H:i:s');
 
 $id = empty($_REQUEST['product']['id']) ? 'Не указано' : htmlentities($_REQUEST['product']['id'], null, 'UTF-8');
-$URL = empty($_REQUEST['product']['URL']) ? 'Не указано' :  htmlentities($_REQUEST['product']['URL']);
+$URL = empty($_REQUEST['product']['URL']) ? 'Не указано' :  htmlentities($_SERVER["HTTP_HOST"].  $_REQUEST['product']['URL']);
 $name = empty($_REQUEST['product']['name']) ? 'Не указано' :  htmlentities($_REQUEST['product']['name']);
 
 $fio = empty($_REQUEST['client']['fio']) ? 'Не указано' :  htmlentities($_REQUEST['client']['fio']);
@@ -40,19 +40,19 @@ $phone = empty($_REQUEST['client']['phone']) ? 'Не указано' :  htmlenti
 $body =
   "<h1>Поступила просьба перезвонить</h1>
 <dl>
-  <dt>От:</dt>
-    <dd>{$now}</dd>
-  <dt>Клиент:</dt>
-    <dd>{$fio}</dd>
-  <dt>По вопросу:</dt>
-    <dd>{$comments}</dd>
-  <dt>Просматриваемый товар:</dt>
-    <dd>{$name}</dd>
-  <dt>Ссылка на товар:</dt>
-    <dd><a href='{$URL}'>{$URL}</a></dd>
-  <dt>Идентификатор товара</dt>
-    <dd>{$id}</dd>
-  <dt>Контактный телефон:</dt>
+  <b><dt>От:</dt></b><br>
+    <dd>{$now}</dd><br>
+  <b><dt>Клиент:</dt></b><br>
+    <dd>{$fio}</dd><br>
+  <b><dt>По вопросу:</dt></b><br>
+    <dd>{$comments}</dd><br>
+  <b><dt>Просматриваемый товар:</dt></b><br>
+    <dd>{$name}</dd><br>
+  <b><dt>Ссылка на товар:</dt></b><br>
+    <dd><a href='{$URL}'>{$URL}</a></dd><br>
+  <b><dt>Идентификатор товара</dt></b><br>
+    <dd>{$id}</dd><br>
+  <b><dt>Контактный телефон:</dt></b><br>
     <dd>{$phone}</dd>
 </dl>
 ";
@@ -62,8 +62,8 @@ if($_REQUEST['client']['urgent']) {
 } else {
   $urgent_date = "Не указано";
 }
-
-$createTableSql = "CREATE TABLE IF NOT EXISTS `b_api_callback` (
+try {
+  $createTableSql = "CREATE TABLE IF NOT EXISTS `b_api_callback` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `BE_ID` int(11) NOT NULL,
   `BE_NAME` text NOT NULL,
@@ -75,26 +75,29 @@ $createTableSql = "CREATE TABLE IF NOT EXISTS `b_api_callback` (
   `urgent` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 AUTO_INCREMENT=1 ;";
-$DB->Query($createTableSql);
+  $DB->Query($createTableSql);
 
-$id = mysql_real_escape_string($id);
-$name = mysql_real_escape_string($name);
-$URL = mysql_real_escape_string($URL);
+  $id = mysql_real_escape_string($id);
+  $name = mysql_real_escape_string($name);
+  $URL = mysql_real_escape_string($URL);
 
-$fio = mysql_real_escape_string($fio);
-$phone = mysql_real_escape_string($phone);
-$comments = mysql_real_escape_string($comments);
-$urgent_date = mysql_real_escape_string($urgent_date);
+  $fio = mysql_real_escape_string($fio);
+  $phone = mysql_real_escape_string($phone);
+  $comments = mysql_real_escape_string($comments);
+  $urgent_date = mysql_real_escape_string($urgent_date);
 
-$insertSql = "INSERT INTO `b_api_callback`(
+  $insertSql = "INSERT INTO `b_api_callback`(
 `id`, `BE_ID`, `BE_NAME`, `BE_URL`,
 `client_fio`, `client_phone`, `comments`, `date`, `urgent`)
 VALUES (
 NULL, '{$id}', '{$name}', '{$URL}',
 '{$fio}',  '{$phone}', '{$comments}', '{$now}', '{$urgent_date}'
 )";
-$DB->Query($insertSql);
-ob_end_clean();
+  $DB->Query($insertSql);
+} catch (Exception $err) {
+  ;
+}
+  ob_end_clean();
 
 
 if (mail($to, $subject, $body, $headers)) {
@@ -102,7 +105,6 @@ if (mail($to, $subject, $body, $headers)) {
 } else {
   print("500");
 }
-//ob_flush();
+
 die();
 
-//require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");

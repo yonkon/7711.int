@@ -1193,7 +1193,36 @@ BX.message({
         type : 'post'
       })
         .success(function(data) {
-          alert('OK');
+					var answerComment = 'Ошибка сервера\nServer error';
+          switch (data) {
+						case '200':
+							answerComment = 'Спасибо за обращение! Ваш запрос принят, в ближайшее время менеджер свяжется с Вами';
+							break;
+						case '404':
+							answerComment = 'Невозможно определить товар';
+							break;
+						case '403':
+							answerComment = 'Не указаны контактные данные';
+							break;
+					}
+					var popupAjax = new BX.PopupWindow("popupAjaxSuccess", null, {
+						content: answerComment,
+						closeIcon: {right: "20px", top: "10px"},
+						zIndex: 0,
+						offsetLeft: 0,
+						offsetTop: 0,
+						buttons: [
+							new BX.PopupWindowButton({
+								text: "Закрыть",
+								className: "webform-button-link-cancel",
+								events: {click: function(){
+									this.popupWindow.close(); // закрытие окна
+									popupAjax.destroy()
+								}}
+							})
+						]
+					});
+					popupAjax.show();
         })
         .error(function(data) {
           alert('Error');

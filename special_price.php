@@ -21,65 +21,63 @@ if (!empty($_REQUEST['client']['comments']) ) {
   }
 ob_start();
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$adminEmail = COption::GetOptionString('main', 'email_from', 'default@admin.email');
-$from =   empty($_REQUEST['client']['email']) ? strip_tags($_REQUEST['client']['fio']) :   $_REQUEST['client']['email'];
+$adminEmail = COption::GetOptionString('main', 'email_from', 'yonkon.ru@gmail.com');
+$from =   empty($_REQUEST['client']['email']) ? $adminEmail :   $_REQUEST['client']['email'];
 $to = $adminEmail;
-$subject = 'Union. Запрос персональной цены';
-//strip_tags($_POST['req-email'])
+//$to = 'yonkon.ru@gmail.com';
+$subject = 'Union. Р—Р°РїСЂРѕСЃ РїРµСЂСЃРѕРЅР°Р»СЊРЅРѕР№ С†РµРЅС‹';
 $headers = "From: " . $adminEmail . "\r\n";
-$headers .= "Reply-To: ". $adminEmail . "\r\n";
-//$headers .= "CC: susan@example.com\r\n";
+$headers .= "Reply-To: ". $from . "\r\n";
 $headers .= "MIME-Version: 1.0\r\n";
 $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 $now = date('d-m-Y H:i:s');
 
-$id = empty($_REQUEST['product']['id']) ? 'Не указано' : htmlentities($_REQUEST['product']['id']);
-$name = empty($_REQUEST['product']['name']) ? 'Не указано' :  htmlentities($_REQUEST['product']['name']);
-$URL = empty($_REQUEST['product']['URL']) ? 'Не указано' :  htmlentities($_REQUEST['product']['URL']);
+$id = empty($_REQUEST['product']['id']) ? 'РќРµ СѓРєР°Р·Р°РЅРѕ' : htmlentities($_REQUEST['product']['id']);
+$name = empty($_REQUEST['product']['name']) ? 'РќРµ СѓРєР°Р·Р°РЅРѕ' :  htmlentities($_REQUEST['product']['name']);
+$URL = empty($_REQUEST['product']['URL']) ? 'РќРµ СѓРєР°Р·Р°РЅРѕ' :  htmlentities($_SERVER["HTTP_HOST"]. $_REQUEST['product']['URL']);
 
-$fio = empty($_REQUEST['client']['fio']) ? 'Не указано' :  htmlentities($_REQUEST['client']['fio']);
-$phone = empty($_REQUEST['client']['phone']) ? 'Не указано' :  htmlentities($_REQUEST['client']['phone']);
-$email = empty($_REQUEST['client']['email']) ? 'Не указано' :  htmlentities($_REQUEST['client']['email']);
-$quantity = empty($_REQUEST['client']['quantity']) ? 'Не указано' :  htmlentities($_REQUEST['client']['quantity']);
-$price = empty($_REQUEST['client']['price']) ? 'Не указано' :  htmlentities($_REQUEST['client']['price']);
-$comments = empty($_REQUEST['client']['comments']) ? 'Не указано' :  htmlentities($_REQUEST['client']['comments']);
+$fio = empty($_REQUEST['client']['fio']) ? 'РќРµ СѓРєР°Р·Р°РЅРѕ' :  htmlentities($_REQUEST['client']['fio']);
+$phone = empty($_REQUEST['client']['phone']) ? 'РќРµ СѓРєР°Р·Р°РЅРѕ' :  htmlentities($_REQUEST['client']['phone']);
+$email = empty($_REQUEST['client']['email']) ? 'РќРµ СѓРєР°Р·Р°РЅРѕ' :  htmlentities($_REQUEST['client']['email']);
+$quantity = empty($_REQUEST['client']['quantity']) ? 'РќРµ СѓРєР°Р·Р°РЅРѕ' :  htmlentities($_REQUEST['client']['quantity']);
+$price = empty($_REQUEST['client']['price']) ? 'РќРµ СѓРєР°Р·Р°РЅРѕ' :  htmlentities($_REQUEST['client']['price']);
+$comments = empty($_REQUEST['client']['comments']) ? 'РќРµ СѓРєР°Р·Р°РЅРѕ' :  htmlentities($_REQUEST['client']['comments']);
 
-$body =
-  "<h1>Поступил запрос персональной цены</h1>
+$body = "
+<h1>РџРѕСЃС‚СѓРїРёР» Р·Р°РїСЂРѕСЃ РїРµСЂСЃРѕРЅР°Р»СЊРЅРѕР№ С†РµРЅС‹</h1>
 <dl>
-  <dt>От:</dt>
-    <dd>{$now}</dd>
-  <dt>Клиент:</dt>
-    <dd>{$fio}</dd>
+  <b><dt>РћС‚:</dt></b><br>
+    <dd>{$now}</dd><br>
+  <b><dt>РљР»РёРµРЅС‚:</dt></b><br>
+    <dd>{$fio}</dd><br>
   <br>
-  <dt>Просматриваемый товар:</dt>
-    <dd>{$name}</dd>
-  <dt>Ссылка на товар:</dt>
+  <b><dt>РџСЂРѕСЃРјР°С‚СЂРёРІР°РµРјС‹Р№ С‚РѕРІР°СЂ:</dt></b><br>
+    <dd>{$name}</dd><br>
+  <b><dt>РЎСЃС‹Р»РєР° РЅР° С‚РѕРІР°СЂ:</dt></b><br>
     <dd>
       <a href='{$URL}'>{$URL}</a>
-    </dd>
-  <dt>Идентификатор товара</dt>
-    <dd>{$id}</dd>
+    </dd><br>
+  <b><dt>РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ С‚РѕРІР°СЂР°</dt></b><br>
+    <dd>{$id}</dd><br>
    <br>
-   <dt>Обсуждаемое количество</dt>
-    <dd>{$quantity}</dd>
-   <dt>Предлагаемая клиентом цена:</dt>
-    <dd>{$quantity}</dd>
+   <b><dt>РћР±СЃСѓР¶РґР°РµРјРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ</dt></b><br>
+    <dd>{$quantity}</dd><br>
+   <b><dt>РџСЂРµРґР»Р°РіР°РµРјР°СЏ РєР»РёРµРЅС‚РѕРј С†РµРЅР°:</dt></b><br>
+    <dd>{$price}</dd><br>
   <br>
-  <dt>Контактный телефон:</dt>
-    <dd>{$phone}</dd>
-  <dt>Контактный email:</dt>
+  <b><dt>РљРѕРЅС‚Р°РєС‚РЅС‹Р№ С‚РµР»РµС„РѕРЅ:</dt></b><br>
+    <dd>{$phone}</dd><br>
+  <b><dt>РљРѕРЅС‚Р°РєС‚РЅС‹Р№ email:</dt></b><br>
     <dd>{$email}</dd>
-  <br>
-  <dt>Комментарии клиента:</dt>
+  <br>  <br>
+  <b><dt>РљРѕРјРјРµРЅС‚Р°СЂРёРё РєР»РёРµРЅС‚Р°:</dt></b><br>
     <dd>{$comments}</dd>
-
-
 </dl>
 ";
 
 global $DB;
-$createTableSql = "CREATE TABLE IF NOT EXISTS `b_api_special_price` (
+try {
+  $createTableSql = "CREATE TABLE IF NOT EXISTS `b_api_special_price` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `BE_ID` int(11) NOT NULL,
   `BE_NAME` text NOT NULL,
@@ -93,27 +91,29 @@ $createTableSql = "CREATE TABLE IF NOT EXISTS `b_api_special_price` (
   `date` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 AUTO_INCREMENT=1 ;";
-$DB->Query($createTableSql);
+  $DB->Query($createTableSql);
 
-$id = mysql_real_escape_string($id);
-$name = mysql_real_escape_string($name);
-$URL = mysql_real_escape_string($URL);
+  $id = mysql_real_escape_string($id);
+  $name = mysql_real_escape_string($name);
+  $URL = mysql_real_escape_string($URL);
 
-$fio = mysql_real_escape_string($fio);
-$phone = mysql_real_escape_string($phone);
-$email = mysql_real_escape_string($email);
-$quantity = mysql_real_escape_string($quantity);
-$price = mysql_real_escape_string($price);
-$comments = mysql_real_escape_string($comments);
+  $fio = mysql_real_escape_string($fio);
+  $phone = mysql_real_escape_string($phone);
+  $email = mysql_real_escape_string($email);
+  $quantity = mysql_real_escape_string($quantity);
+  $price = mysql_real_escape_string($price);
+  $comments = mysql_real_escape_string($comments);
 
-$insertSpecialPriceSql = "INSERT INTO `b_api_special_price`(
+  $insertSpecialPriceSql = "INSERT INTO `b_api_special_price`(
 `id`, `BE_ID`, `BE_NAME`, `BE_URL`,
 `client_fio`, `client_phone`, `client_email`, `client_quantity`, `client_price`, `comments`, `date`)
 VALUES (
 NULL, '{$id}', '{$name}', '{$URL}', '{$fio}',  '{$phone}', '{$email}', '{$quantity}', '{$price}', '{$comments}', '{$now}'
 )";
-$DB->Query($insertSpecialPriceSql);
-
+  $DB->Query($insertSpecialPriceSql);
+} catch (Exception $err) {
+  ;
+}
 ob_end_clean();
 
 
