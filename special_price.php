@@ -19,6 +19,7 @@ if (!empty($_REQUEST['client']['comments']) ) {
     echo "400";
     die();
   }
+
 ob_start();
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $adminEmail = COption::GetOptionString('main', 'email_from', 'yonkon.ru@gmail.com');

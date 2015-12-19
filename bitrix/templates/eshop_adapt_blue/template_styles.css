@@ -1304,7 +1304,7 @@ max-width: 1120px;
 	width: 141px;
 	margin-left: 80px;
 	margin-top: -4px;
-	z-index: 10;
+	z-index: 1001;
 	background-size: cover;
 }
 
@@ -1786,4 +1786,9 @@ div.w50_inline-block_container .bx_catalog_item_price .bx_catalog_item_controls_
   padding: 4px 26px !important;
   margin-left: -25px;
   margin-top: -25px;
+}
+
+label.required:after {
+  content: '*';
+  color: red;
 }

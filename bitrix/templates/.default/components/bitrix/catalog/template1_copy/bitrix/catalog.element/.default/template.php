@@ -423,11 +423,11 @@ $arParams['DISPLAY_COMPARE'] = true;
       <input type="hidden" name="product[name]" value="<?php echo $arResult['NAME']; ?>">
       <input type="hidden" name="product[URL]" value="<?php echo $APPLICATION->GetCurPage(); ?>">
 
-      <input placeholder="Ваши Фамилия Имя" name="client[fio]">
+      <input class="required" placeholder="Ваши Фамилия Имя" name="client[fio]">
 
-      <input placeholder="Номер телефона" name="client[phone]">
+      <input class="required" placeholder="Номер телефона" name="client[phone]">
 
-      <input placeholder="Контактный Email" type="email" name="client[email]">
+      <input class="required" placeholder="Контактный Email" type="email" name="client[email]">
 
       <input type="submit" id="buy_fast_submit" name="submit" value="Купить!">
       <a class="buy_fast_close" href="javascript:void(0);">Свернуть</a>
@@ -1015,17 +1015,17 @@ BX.message({
           снизить цену именно для Вас.
         </div>
         
-        <input placeholder="Ваши Фамилия Имя" name="client[fio]">
+        <input class="required" placeholder="Ваши Фамилия Имя" name="client[fio]">
         
-        <input placeholder="Номер телефона" name="client[phone]">
+        <input class="required" placeholder="Номер телефона" name="client[phone]">
         
-        <input placeholder="Контактный Email" type="email" name="client[email]">
+        <input class="required" placeholder="Контактный Email" type="email" name="client[email]">
         
         <input placeholder="Количество" name="client[quantity]">
         
         <input placeholder="Цена" name="client[price]">
         
-        <textarea style="height:50px;" placeholder="Коментарии" name="client[comments]"></textarea>
+        <textarea class="required" style="height:50px;" placeholder="Коментарии" name="client[comments]"></textarea>
         
         <input type="submit" id="special_price_submit" name="submit" value="Запросить">
       </form>
@@ -1042,14 +1042,14 @@ BX.message({
         <input type="hidden" name="product[name]" value="<?php echo $arResult['NAME']; ?>">
         <input type="hidden" name="product[URL]" value="<?php echo $APPLICATION->GetCurPage(); ?>">
 
-        <label for="callback_client_phone">Номер телефона</label>
-        <input id="callback_client_phone" name="client[phone]">
+        <label class="required" for="callback_client_phone">Номер телефона</label>
+        <input class="required" id="callback_client_phone" name="client[phone]">
 
-        <label for="callback_client_fio">Ваше Имя</label>
-        <input id="callback_client_fio" name="client[fio]">
+        <label class="required" for="callback_client_fio">Ваше Имя</label>
+        <input class="required" id="callback_client_fio" name="client[fio]">
 
-        <label for="callback_client_comments">Тема вопроса</label>
-        <textarea style="height:150px;" id="callback_client_comments" name="client[comments]"></textarea>
+        <label class="required" for="callback_client_comments">Тема вопроса</label>
+        <textarea class="required" style="height:150px;" id="callback_client_comments" name="client[comments]"></textarea>
 
         <input type="checkbox" id="callback_client_urgent" name="client[urgent]" value="1" checked>
         <label class="red"  for="callback_client_urgent">
@@ -1062,29 +1062,60 @@ BX.message({
   </div>
 </div>
 
-<!--<div style="display: none" id="buy_fast_window">
-  <div id="buy_fast_window_content">
-    <div class="fancybox-title"><b>&nbsp;</b></div>
-    <div>
-      <form id="buy_fast_form" enctype="application/x-www-form-urlencoded" action="/buy_fast.php" method="post">
-        <input type="hidden" name="product[id]" value="<?php /*echo $arResult['ID']; */?>">
-        <input type="hidden" name="product[name]" value="<?php /*echo $arResult['NAME']; */?>">
-        <input type="hidden" name="product[URL]" value="<?php /*echo $APPLICATION->GetCurPage(); */?>">
-
-
-        <input placeholder="Ваши Фамилия Имя" name="client[fio]">
-
-        <input placeholder="Номер телефона" name="client[phone]">
-
-        <input placeholder="Контактный Email" type="email" name="client[email]">
-
-        <input type="submit" id="buy_fast_submit" name="submit" value="Купить!">
-      </form>
-    </div>
-  </div>
-</div>
--->
 <script type="text/javascript">
+
+  function apiAnswerHandlerCheckRequired(selector) {
+    var req = $(selector);
+    for(var i=0; i<req.length; i++) {
+      var $field = $(req[i]);
+      var fieldVal = $.trim($field.val());
+      if(!fieldVal.length) {
+        $field.focus();
+        return false;
+      }
+    }
+    return true;
+  }
+
+  function apiAnswerHandler(data, cb) {
+    var answerComment = 'Ошибка сервера\nServer error';
+  switch (data) {
+    case '200':
+      answerComment = 'Спасибо за обращение! Ваш запрос принят, в ближайшее время менеджер свяжется с Вами';
+      break;
+    case '404':
+      answerComment = 'Невозможно определить товар';
+      break;
+    case '403':
+      answerComment = 'Не указаны контактные данные';
+      break;
+    case '400':
+      answerComment = 'Заполните, пожалуйста, поле "Комментарий/Тема вопроса"';
+      break;
+  }
+  var popupAjax = new BX.PopupWindow("popupAjaxSuccess", null, {
+    content: answerComment,
+    closeIcon: {display:'none'},
+    zIndex: 0,
+    offsetLeft: 0,
+    offsetTop: 0,
+    buttons: [
+      new BX.PopupWindowButton({
+        text: "Закрыть",
+        className: "webform-button-link-cancel",
+        events: {click: function(){
+          this.popupWindow.close(); // закрытие окна
+          popupAjax.destroy()
+        }}
+      })
+    ]
+  });
+  popupAjax.show();
+    if(typeof cb == 'function') {
+      cb(data);
+    }
+  }
+
   $(document).ready(function(){
     $('#special_price_window').fancybox({
       width : 450,
@@ -1101,6 +1132,18 @@ BX.message({
     $("#special_price_submit").click(function(e){
       e.preventDefault();
       e.stopPropagation();
+      if (!apiAnswerHandlerCheckRequired('#special_price_window .required')) {
+        return;
+      }
+  /*    var req = $('#special_price_window .required');
+      for(var i=0; i<req.length; i++) {
+        var $field = $(req[i]);
+        var fieldVal = $.trim(field.val());
+        if(!fieldVal.length) {
+          $field.focus();
+          return;
+        }
+      }*/
       var formData = $('#special_price_form').serializeArray();
       var url = $('#special_price_form').attr('action');
       $.ajax({
@@ -1109,11 +1152,12 @@ BX.message({
         type : 'post'
       })
         .success(function(data) {
-        alert('OK');
+          apiAnswerHandler(data);
       })
         .error(function(data) {
-          alert('Error');
+          alert('Ошибка сервера\nServer error');
         });
+      parent.$.fancybox.close();
     });
 
     $('#callback_window').fancybox();
@@ -1129,6 +1173,9 @@ BX.message({
     $("#callback_submit").click(function(e){
       e.preventDefault();
       e.stopPropagation();
+      if (!apiAnswerHandlerCheckRequired('#callback_window input.required, #callback_window textarea.required')) {
+        return;
+      }
       var formData = $('#callback_form').serializeArray();
       var url = $('#callback_form').attr('action');
       $.ajax({
@@ -1137,40 +1184,14 @@ BX.message({
         type : 'post'
       })
         .success(function(data) {
-          alert('OK');
+          apiAnswerHandler(data);
         })
         .error(function(data) {
-          alert('Error');
+          alert('Ошибка сервера\nServer error');
         });
+      parent.$.fancybox.close();
     });
 
-/*    $('#buy_fast_window').fancybox();
-    $('#buy_fast_window_content').click(function(e){
-      if ($(e.target).attr('id') != 'buy_fast_client_urgent' && $(e.target).attr('for') != 'buy_fast_client_urgent')
-        e.preventDefault();
-      e.stopPropagation();
-    });
-    $('.buy_fast_btn').click(function(e){
-      e.preventDefault();
-      $('#buy_fast_window').click();
-    });
-    $("#buy_fast_submit").click(function(e){
-      e.preventDefault();
-      e.stopPropagation();
-      var formData = $('#buy_fast_form').serializeArray();
-      var url = $('#buy_fast_form').attr('action');
-      $.ajax({
-        url : url,
-        data : formData,
-        type : 'post'
-      })
-        .success(function(data) {
-          alert('OK');
-        })
-        .error(function(data) {
-          alert('Error');
-        });
-    });*/
 
 
     $('.buy_fast_btn').click(function(e){
@@ -1184,6 +1205,9 @@ BX.message({
     $("#buy_fast_submit").click(function(e){
       e.preventDefault();
       e.stopPropagation();
+      if (!apiAnswerHandlerCheckRequired('#buy_fast_window .required')) {
+        return;
+      }
       $('#buy_fast_window').slideUp();
       var formData = $('#buy_fast_form').serializeArray();
       var url = $('#buy_fast_form').attr('action');
@@ -1193,39 +1217,10 @@ BX.message({
         type : 'post'
       })
         .success(function(data) {
-					var answerComment = 'Ошибка сервера\nServer error';
-          switch (data) {
-						case '200':
-							answerComment = 'Спасибо за обращение! Ваш запрос принят, в ближайшее время менеджер свяжется с Вами';
-							break;
-						case '404':
-							answerComment = 'Невозможно определить товар';
-							break;
-						case '403':
-							answerComment = 'Не указаны контактные данные';
-							break;
-					}
-					var popupAjax = new BX.PopupWindow("popupAjaxSuccess", null, {
-						content: answerComment,
-						closeIcon: {right: "20px", top: "10px"},
-						zIndex: 0,
-						offsetLeft: 0,
-						offsetTop: 0,
-						buttons: [
-							new BX.PopupWindowButton({
-								text: "Закрыть",
-								className: "webform-button-link-cancel",
-								events: {click: function(){
-									this.popupWindow.close(); // закрытие окна
-									popupAjax.destroy()
-								}}
-							})
-						]
-					});
-					popupAjax.show();
+					apiAnswerHandler(data);
         })
         .error(function(data) {
-          alert('Error');
+          alert('Ошибка сервера\nServer error');
         });
     });
     
