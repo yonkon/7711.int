@@ -5,7 +5,8 @@ function GET_SALE_FILTER(){
   global $DB;
  // global $APPLICATION;
   $arDiscountElementID = array();
-  $CCatalogDiscount = new CCatalogDiscount();
+//  $CCatalogDiscount = new CCatalogDiscount();
+
   $dbProductDiscounts = CCatalogDiscount::GetList(
     array("SORT" => "ASC"),
     array(
@@ -19,24 +20,36 @@ function GET_SALE_FILTER(){
     ),
     false,
     false,
-    array(
-      "ID", "SITE_ID", "ACTIVE", "ACTIVE_FROM", "ACTIVE_TO",
-      "RENEWAL", "NAME", "SORT", "MAX_DISCOUNT", "VALUE_TYPE",
-      "VALUE", "CURRENCY", "PRODUCT_ID"
-    )
+    null
+//array(
+//      "ID", "SITE_ID", "ACTIVE", "ACTIVE_FROM", "ACTIVE_TO",
+//      "RENEWAL", "NAME", "SORT", "MAX_DISCOUNT", "VALUE_TYPE",
+//      "VALUE", "CURRENCY", "PRODUCT_ID"
+//    )
   );
+
   while ($arProductDiscounts = $dbProductDiscounts->Fetch())
   {
-    if($res = $CCatalogDiscount->GetDiscountProductsList(array(), array(">=DISCOUNT_ID" => $arProductDiscounts['PRODUCT_ID']), false, false, array())){
-//    if($res = $CCatalogDiscount->GetDiscountProductsList(array(), array(">=DISCOUNT_ID" => $arProductDiscounts['ID']), false, false, array())){
+//    if($res = $CCatalogDiscount->GetDiscountProductsList(array(), array(">=DISCOUNT_ID" => $arProductDiscounts['PRODUCT_ID']), false, false, array())){
+    if($res = CCatalogDiscount::GetDiscountProductsList(array(), array(">=DISCOUNT_ID" => $arProductDiscounts['ID']), false, false, array())){
       while($ob = $res->GetNext()){
         if(!in_array($ob["PRODUCT_ID"],$arDiscountElementID))
           $arDiscountElementID[] = $ob["PRODUCT_ID"];
-      }}
+      }
+    }
   }
 
   return $arDiscountElementID;
-
+//  (
+//    ((isset($arProduct['PARENT_ID']) ?
+//      ((isset($arProduct['ID']) && ($arProduct['ID'] == 4233)) || $arProduct['PARENT_ID'] == 4233) :
+//      (isset($arProduct['ID']) && ($arProduct['ID'] == 4233))
+//    )) ||
+//    ((isset($arProduct['PARENT_ID']) ?
+//      ((isset($arProduct['ID']) && ($arProduct['ID'] == 4232)) || $arProduct['PARENT_ID'] == 4232) :
+//      (isset($arProduct['ID']) && ($arProduct['ID'] == 4232))
+//    ))
+//    || ((isset($arProduct['PARENT_ID']) ? ((isset($arProduct['ID']) && ($arProduct['ID'] == 3812)) || $arProduct['PARENT_ID'] == 3812) : (isset($arProduct['ID']) && ($arProduct['ID'] == 3812)))) || (isset($arProduct['SECTION_ID']) && (in_array(94, $arProduct['SECTION_ID']))))
 }
 
 $APPLICATION->SetTitle("");
