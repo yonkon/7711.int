@@ -1,4 +1,38 @@
-<?php $host7711 = "http://7711.kz"; ?>
+<?php
+$host7711 = "http://7711kz.int";
+$brandPropName = empty($_REQUEST['brandPropName']) ? 'producer' : $_REQUEST['brandPropName'] ;
+$brandPropID = 9;
+
+switch($brandPropName) {
+	case 'brand':
+		$brandPropID = 4;
+		break;
+	case 'producer':
+		$brandPropID = 9;
+		break;
+	default:
+		$brandPropID = 9;
+}
+$producersSql = "SELECT DISTINCT `VALUE`
+FROM  `b_iblock_element_property`
+WHERE  `IBLOCK_PROPERTY_ID` = {$brandPropID}";
+$arBrands = array();
+$rsBrands = $DB->Query($producersSql);
+while($arBrand = $rsBrands->Fetch()) {
+	$brandName = $arBrand['VALUE'];
+	$brandFirstLetter = mb_strtoupper(mb_substr($brandName, 0, 1 ));
+	if($brandFirstLetter >= '0' && $brandFirstLetter <='z') {
+		$brandGroup = 'before_z';
+	} else {
+		$brandGroup = 'after_z';
+	}
+	$arBrands[$brandGroup][$brandFirstLetter][] = $brandName;
+}
+foreach($arBrands as &$arBrandGroups) {
+	ksort($arBrandGroups);
+}
+unset($arBrandGroups);
+?>
 <script type="text/javascript">
 var id_menu = new Array('sub_menu_1','sub_menu_2','sub_menu_3','sub_menu_4','sub_menu_5','sub_menu_6','sub_menu_7','sub_menu_8','sub_menu_9','sub_menu_10','sub_menu_11','sub_menu_12','sub_menu_15','sub_menu_16','sub_menu_17','sub_menu_18','sub_menu_19','sub_menu_20','sub_menu_21','sub_menu_22','sub_menu_23','sub_menu_24','sub_menu_25','sub_menu_26');
 startList = function allclose() {
@@ -7,9 +41,9 @@ startList = function allclose() {
 	}
 }
 function openMenu( id, $this){
-  $('a.podp').text('+');
+	var ttext = $this.text();
+	$('a.podp').text('+');
 	if (typeof $this != 'undefined' && $this.length) {
-		var ttext = $this.text();
 		$this.text(ttext == '+'?'-':'+');
 	}
   $('#menu_body ul ul').not('#'+id).slideUp();
@@ -35,7 +69,7 @@ window.onload=startList;
 <h2 class="cat_le">Каталог товаров</h2>
 <div class="menu_header">
   <div class="menu_header_red">
-    <a href="#" class="mha1 active">Категори</a>
+    <a href="#" class="mha1 active">Категории</a>
     <a href="#" class="mha2">Бренды</a>
     <a href="#" class="mha3">Дисконт</a>
     <div class="clear"></div>
@@ -59,6 +93,11 @@ window.onload=startList;
       $('.menu_header').animate({
         'background-position-x' : xpos
       }, 'fast', 'linear');
+
+			(ind == 0) ? $('#menu_body').show() : $('#menu_body').hide();
+			(ind == 1) ? $('#menu_brands').show() : $('#menu_brands').hide();
+			(ind == 2) ? $('#menu_discount').show() : $('#menu_discount').hide();
+
 		});
 	</script>
 </div>
@@ -320,7 +359,81 @@ window.onload=startList;
  </li>
 	</ul>
 </div>
+<div id="menu_brands" style="display: none;">
+	<div id="menu_brands_tabs">
+		<?php
+		$tabSelected = ' class="selected" ';
+		foreach ($arBrands as $groupName => $groupItems): ?>
+			<div id="menu_brands_tab_<? echo $groupName; ?>" <? echo($tabSelected);
+			$tabSelected = ''; ?>>
+				<span class="tleft">
+					<span class="tright">
+						<span class="tcenter">
+							<?php echo($groupName == 'before_z' ? 'A-Z' : 'А-Я'); ?>
+						</span>
+					</span>
+				</span>
+			</div>
+		<? endforeach; ?>
+	</div>
+	<?php
+	$tabSelected = "selected";
+	foreach ($arBrands as $groupName => $groupItems): ?>
+		<div class="menu_brands_group <? echo($tabSelected);
+		$tabSelected = ''; ?>" id="menu_brands_group_<? echo $groupName; ?>">
+			<div class="clearfix"></div>
+			<div class="menu_brands_letters">
+				<?php
+				$tabSelected = 'selected';
+				foreach ($groupItems as $letter => $letterItems): ?>
+					<a class="menu_brands_letter <? echo($tabSelected);
+					$tabSelected = ''; ?>"><? echo $letter; ?></a>
+				<? endforeach; ?>
+			</div>
+			<div class="menu_brands_letter_items_container">
+				<?php
+				$tabSelected = 'selected';
+				foreach ($groupItems as $letter => $letterItems): ?>
+					<div class="menu_brands_letter_items <? echo($tabSelected);
+					$tabSelected = ''; ?>" data-letter="<? echo $letter; ?>">
+						<ul>
+							<?php
+							foreach ($letterItems as $brand): ?>
+								<li><a href="/catalog?brand=<? echo urlencode($brand) ?>"><? echo $brand; ?></a></li>
+							<? endforeach; ?>
+						</ul>
+					</div>
+				<? endforeach; ?>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	<? endforeach; ?>
+
+</div>
  <br>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.menu_brands_letter').click(function(e){
+			var $this = $(this);
+			e.preventDefault();
+			$('.menu_brands_letter').removeClass('selected');
+			$('.menu_brands_letter_items').removeClass('selected');
+			$this.addClass('selected');
+			var letter = $this.text();
+			$('.menu_brands_letter_items[data-letter='+letter+']').addClass('selected');
+		});
+		$('#menu_brands_tab_before_z .tcenter').click(function(){
+
+			$('#menu_brands_tab_before_z').addClass('selected');
+			$('#menu_brands_group_before_z').addClass('selected');
+
+			$('#menu_brands_tab_after_z').removeClass('selected');
+			$('#menu_brands_group_after_z').removeClass('selected');
+
+		});
+	});
+</script>
 
  <script>
 function get(dday) {

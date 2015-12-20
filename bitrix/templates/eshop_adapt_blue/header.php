@@ -184,7 +184,7 @@ $curPage = $APPLICATION->GetCurPage(true);
 
 				<div class="header_inner_bottom_line_container">
 					<div class="header_inner_bottom_line">
-						<?if ($wizTemplateId == "eshop_adapt_horizontal"):?>
+						<?if ( false && $wizTemplateId == "eshop_adapt_horizontal"):?>
 						<?$APPLICATION->IncludeComponent(
 	"bitrix:menu", 
 	"catalog_horizontal2", 

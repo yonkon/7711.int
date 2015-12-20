@@ -226,6 +226,8 @@ class CBitrixCatalogSmartFilter extends CBitrixComponent
 
 	public function getResultItems()
 	{
+//		$cbitrixcatalog = new CBitrixCatalogSmartFilter();
+//		$testItems = $cbitrixcatalog->getIBlockItems(2);
 		$items = $this->getIBlockItems($this->IBLOCK_ID);
 		$this->arResult["PROPERTY_COUNT"] = count($items);
 		$this->arResult["PROPERTY_ID_LIST"] = array_keys($items);

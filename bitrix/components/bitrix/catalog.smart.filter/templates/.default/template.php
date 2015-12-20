@@ -20,8 +20,8 @@ $templateData = array(
 <div class="bx_filter <?=$templateData["TEMPLATE_CLASS"]?> <?if ($arParams["FILTER_VIEW_MODE"] == "horizontal"):?>bx_horizontal<?endif?>">
 	<div class="bx_filter_section">
     <div class="filter_tabs">
-      <span class="filter_tab_btn unact"><a href="#" id="filter_btn_std">Стандартный</a></span>
-      <span class="filter_tab_btn show"><a href="#" id="filter_btn_ext">Расширенный</a></span>
+      <span class="filter_tab_btn show"><a href="#" id="filter_btn_std">Стандартный</a></span>
+      <span class="filter_tab_btn unact"><a href="#" id="filter_btn_ext">Расширенный</a></span>
     </div>
 <script type="text/javascript">
   $(document).ready(function(){
@@ -190,7 +190,7 @@ $templateData = array(
         <?
       }
 			?>
-			<div class="extended_filters">
+			<div class="extended_filters hidden">
 			<?
 
 			//not prices

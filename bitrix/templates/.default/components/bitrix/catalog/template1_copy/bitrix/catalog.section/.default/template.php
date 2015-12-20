@@ -157,11 +157,15 @@ foreach ($arResult['ITEMS'] as $key => $arItem)
 	?>
 	<?php if(!empty($_REQUEST['viewSchema']) && $_REQUEST['viewSchema'] == "List") {?>
 	<div class="product_line bx_catalog_item_container" id="<? echo $strMainID; ?>">
+		<a href="<? echo $arItem['DETAIL_PAGE_URL']; ?>" class="listView_image" style="background-image: url('<? echo $arItem['PREVIEW_PICTURE']['SRC']; ?>')" title="<? echo $productTitle; ?>">
+		</a>
 		<div class="bx_catalog_item_articul">Код товара: <?php echo $arItem['PROPERTIES']['artnumber']['VALUE']; ?></div>
 		<div class="bx_catalog_item_title catalog_item_title">
 			<a href="<? echo $arItem['DETAIL_PAGE_URL']; ?>" title="<? echo $productTitle; ?>"><? echo $productTitle; ?></a>
 		</div>
-		<div class="catalog_item_description"><? echo $arItem['DETAIL_TEXT'];?></div>
+		<div class="clearfix">&nbsp;</div>
+    <!--		<div class="catalog_item_description">--><?// echo substr(strip_tags($arItem['DETAIL_TEXT']), 0, 250);?><!--&</div>-->
+    <div class="catalog_item_description"><? echo ($arItem['PREVIEW_TEXT']);?></div>
 				<div class="w50_inline-block_container mTop05">
 		<?
 		$showSubscribeBtn = false;
@@ -667,7 +671,8 @@ foreach ($arResult['ITEMS'] as $key => $arItem)
 	}
 	?><div class="bx_catalog_item_articul">Код товара: <?php echo $arItem['PROPERTIES']['artnumber']['VALUE']; ?></div>
 		<div class="bx_catalog_item_title catalog_item_title"><a href="<? echo $arItem['DETAIL_PAGE_URL']; ?>" title="<? echo $productTitle; ?>"><? echo $productTitle; ?></a></div>
-		<div class="catalog_item_description"><? echo $arItem['DETAIL_TEXT'];?></div>
+<!--		<div class="catalog_item_description">--><?// echo substr(strip_tags($arItem['DETAIL_TEXT']), 0, 250);?><!--&</div>-->
+		<div class="catalog_item_description"><? echo ($arItem['PREVIEW_TEXT']);?></div>
 
 		<div class="w50_inline-block_container">
 		<?

@@ -167,8 +167,8 @@
 }
 .bx_catalog_list_home .bx_catalog_item_controls .bx_catalog_item_controls_blocktwo a{
 	margin:1%;
-	width: 48%;
-	min-width:100px;
+	width: 98%;
+	/*min-width:100px;*/
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
