@@ -75,7 +75,7 @@ $strAlt = (
 	? $arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_ALT"]
 	: $arResult['NAME']
 );
-//TODO shikon спец цена, обратній звонокб купить в 1 клик, добавить к сравнению, версия для печати (+перенести кнопку печати)
+$APPLICATION->SetPageProperty('html_title', '<div style="color:red"><h1>АБЫРВАЛГ</h1></div>');
 ?>
 <link rel="stylesheet" href="/bitrix/js/fancybox/source/jquery.fancybox.css">
 <!--<script type="text/javascript" src="/bitrix/js/fancybox/source/jquery.fancybox.js"></script>-->
@@ -711,26 +711,27 @@ else
 		</div>
 		<div class="bx_rb">
 <div class="item_info_section">
-<?
+
+	<?/*
 if ('' != $arResult['DETAIL_TEXT'])
 {
-?>
+*/?><!--
 	<div class="bx_item_description">
-		<div class="bx_item_section_name_gray" style="border-bottom: 1px solid #f2f2f2;"><? echo GetMessage('FULL_DESCRIPTION'); ?></div>
-<?
+		<div class="bx_item_section_name_gray" style="border-bottom: 1px solid #f2f2f2;"><?/* echo GetMessage('FULL_DESCRIPTION'); */?></div>
+<?/*
 	if ('html' == $arResult['DETAIL_TEXT_TYPE'])
 	{
 		echo $arResult['DETAIL_TEXT'];
 	}
 	else
 	{
-		?><p><? echo $arResult['DETAIL_TEXT']; ?></p><?
+		*/?><p><?/* echo $arResult['DETAIL_TEXT']; */?></p><?/*
 	}
-?>
+*/?>
 	</div>
-<?
+--><?/*
 }
-?>
+*/?>
 </div>
 		</div>
 		<div class="bx_lb">
@@ -771,6 +772,7 @@ if ('Y' == $arParams['USE_COMMENTS'])
 		"FB_COLORSCHEME" => "light",
 		"FB_ORDER_BY" => "reverse_time",
 		"VK_TITLE" => "",
+		"DETAIL_TEXT" => $arResult['DETAIL_TEXT'],
 		"TEMPLATE_THEME" => $arParams['~TEMPLATE_THEME']
 	),
 	$component,
@@ -781,7 +783,7 @@ if ('Y' == $arParams['USE_COMMENTS'])
 ?>
 </div>
 		</div>
-			<div style="clear: both;"></div>
+			<div style="=clear: both;"></div>
 	</div>
 	<div class="clb"></div>
 </div><?

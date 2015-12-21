@@ -77,9 +77,15 @@ if (!$templateData['BLOG']['BLOG_FROM_AJAX'])
 			'contID' => 'bx-cat-soc-comments-blg_'.$arResult['ELEMENT']['ID']
 		);
 
-		$arData["BLOG"] =  array(
-			"NAME" => ($arParams['BLOG_TITLE'] != '' ? $arParams['BLOG_TITLE'] : GetMessage('IBLOCK_CSC_TAB_COMMENTS')),
+		$arData["DETAILS"] =  array(
+			"NAME" => "Расширенное описание",
 			"ACTIVE" => "Y",
+			"CONTENT" => '<div class="description" id="bx-cat-soc-comments-det_'.$arResult['ELEMENT']['ID'].'">'.html_entity_decode($arParams['DETAIL_TEXT']).'</div>'
+		);
+
+    $arData["BLOG"] =  array(
+			"NAME" => ($arParams['BLOG_TITLE'] != '' ? $arParams['BLOG_TITLE'] : GetMessage('IBLOCK_CSC_TAB_COMMENTS')),
+			"ACTIVE" => "N",
 			"CONTENT" => '<div id="bx-cat-soc-comments-blg_'.$arResult['ELEMENT']['ID'].'">'.GetMessage("IBLOCK_CSC_COMMENTS_LOADING").'</div>'
 		);
 	}
@@ -145,6 +151,7 @@ if (!$templateData['BLOG']['BLOG_FROM_AJAX'])
 		{
 			$arTabsParams["WIDTH"] = $arResult["WIDTH"];
 		}
+		//
 		?><div id="<? echo $templateData['TABS_FRAME_ID']; ?>" class="bx_soc_comments_div bx_important <? echo $templateData['TEMPLATE_CLASS']; ?>"><?
 		$APPLICATION->IncludeComponent(
 			"bitrix:catalog.tabs",

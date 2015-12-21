@@ -1157,6 +1157,22 @@ if(isset($arResult["ID"]))
 			$APPLICATION->SetTitle($arResult["IPROPERTY_VALUES"]["ELEMENT_PAGE_TITLE"], $arTitleOptions);
 		else
 			$APPLICATION->SetTitle($arResult["NAME"], $arTitleOptions);
+    $itemData = $DB->Query("SELECT *
+FROM  `b_iblock_element`
+WHERE  `ID` ={$arResult['ID']} LIMIT 1")->Fetch();
+    $arResult["PREVIEW_TEXT"] = $itemData["PREVIEW_TEXT"];
+    $itemTitleBar =
+      "<div class=\"element_title\">
+                <div class=\"catalog-element_code\" id=\"catalog-element_code\" data-code=\"\">
+                КОД ТОВАРА
+  <div class=\"catalog-element_code_s\">{$arResult['PROPERTIES']['artnumber']['VALUE']}</div>
+        </div>
+        <div class=\"name_block\">
+            <h1 itemprop=\"name\">{$arResult["NAME"]}</h1>
+            <div class=\"name_block_text\">{$arResult["PREVIEW_TEXT"]}</div>
+        </div>
+    </div>";
+    $APPLICATION->SetPageProperty('html_title', $itemTitleBar);
 	}
 
 	if ($arParams["SET_BROWSER_TITLE"] === 'Y')

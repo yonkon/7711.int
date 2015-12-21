@@ -286,6 +286,8 @@ $curPage = $APPLICATION->GetCurPage(true);
 				);?>
 			</div>
 			<div class="bx_content_section">
-				<?if ($curPage != SITE_DIR."index.php"):?>
-				<h1><?=$APPLICATION->ShowTitle(false);?></h1>
-				<?endif?>
+				<? if(mb_substr_count($curPage, '/') > 3) {
+          echo $APPLICATION->ShowProperty('html_title');
+        } elseif ($curPage != SITE_DIR."index.php") {?>
+					<h1><?=$APPLICATION->ShowTitle(false);?></h1>
+				<? } ?>

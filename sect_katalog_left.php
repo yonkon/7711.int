@@ -2,7 +2,41 @@
 $host7711 = "http://7711kz.int";
 $brandPropName = empty($_REQUEST['brandPropName']) ? 'producer' : $_REQUEST['brandPropName'] ;
 $brandPropID = 9;
+if(!is_callable(GET_SALE_FILTER)) {
+  function GET_SALE_FILTER()
+{
+  global $DB;
+  $arDiscountElementID = array();
 
+  $dbProductDiscounts = CCatalogDiscount::GetList(
+    array("SORT" => "ASC"),
+    array(
+      "ACTIVE" => "Y",
+      "!>ACTIVE_FROM" => $DB->FormatDate(date("Y-m-d H:i:s"),
+        "YYYY-MM-DD HH:MI:SS",
+        CSite::GetDateFormat("FULL")),
+      "!<ACTIVE_TO" => $DB->FormatDate(date("Y-m-d H:i:s"),
+        "YYYY-MM-DD HH:MI:SS",
+        CSite::GetDateFormat("FULL")),
+    ),
+    false,
+    false,
+    null
+  );
+
+  while ($arProductDiscounts = $dbProductDiscounts->Fetch()) {
+//    if($res = $CCatalogDiscount->GetDiscountProductsList(array(), array(">=DISCOUNT_ID" => $arProductDiscounts['PRODUCT_ID']), false, false, array())){
+    if ($res = CCatalogDiscount::GetDiscountProductsList(array(), array(">=DISCOUNT_ID" => $arProductDiscounts['ID']), false, false, array())) {
+      while ($ob = $res->GetNext()) {
+        if (!in_array($ob["PRODUCT_ID"], $arDiscountElementID))
+          $arDiscountElementID[] = $ob["PRODUCT_ID"];
+      }
+    }
+  }
+
+  return $arDiscountElementID;
+}
+}
 switch($brandPropName) {
 	case 'brand':
 		$brandPropID = 4;
@@ -434,6 +468,37 @@ window.onload=startList;
 		});
 	});
 </script>
+
+<div id="menu_discount">
+  <ul>
+    <?php
+    $discountIds = GET_SALE_FILTER();
+    $discountIdsSql = empty($discountIds) ? '' : "AND e.ID IN (".join(', ', $discountIds) .") ";
+    $discountsSectionSql =
+      "SELECT
+	  s.*,
+	  COUNT(s.ID) as items_count,
+	  CONCAT_WS('/', f.SUBDIR, f.FILE_NAME) AS picture
+FROM `b_iblock_element` e
+join b_iblock_section s on s.ID = e.IBLOCK_SECTION_ID
+join b_iblock_element_property p ON p.IBLOCK_ELEMENT_ID = e.ID AND p.IBLOCK_PROPERTY_ID=9
+LEFT JOIN b_file f ON f.ID = s.PICTURE
+WHERE 1 {$discountIdsSql} GROUP BY s.ID";
+
+    $rsSections = $DB->Query($discountsSectionSql);
+    $arSections = array();
+    while($arSection = $rsSections->Fetch()){
+      $arSections[] = $arSection;
+    }
+    ?>
+    <?php foreach($arSections as $section): ?>
+    <li>
+      <img width="32"  src="/upload/<?php echo $section['picture']; ?>" height="32" title="<? echo $section['NAME']; ?>">
+      <a class="menu_left_c" href="/catalog/<? echo $section['CODE']; ?>/index.php?discount=Y"><? echo $section['NAME']. ' (' . $section['items_count'] .')'; ?></a>
+    </li>
+    <?php endforeach; ?>
+  </ul>
+</div>
 
  <script>
 function get(dday) {

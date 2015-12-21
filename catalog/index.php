@@ -3,9 +3,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 
 function GET_SALE_FILTER(){
   global $DB;
- // global $APPLICATION;
   $arDiscountElementID = array();
-//  $CCatalogDiscount = new CCatalogDiscount();
 
   $dbProductDiscounts = CCatalogDiscount::GetList(
     array("SORT" => "ASC"),
@@ -21,11 +19,6 @@ function GET_SALE_FILTER(){
     false,
     false,
     null
-//array(
-//      "ID", "SITE_ID", "ACTIVE", "ACTIVE_FROM", "ACTIVE_TO",
-//      "RENEWAL", "NAME", "SORT", "MAX_DISCOUNT", "VALUE_TYPE",
-//      "VALUE", "CURRENCY", "PRODUCT_ID"
-//    )
   );
 
   while ($arProductDiscounts = $dbProductDiscounts->Fetch())
