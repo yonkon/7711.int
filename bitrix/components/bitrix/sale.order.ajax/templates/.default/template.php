@@ -206,22 +206,22 @@ if (!function_exists("cmpBySort"))
 				<?
 			}
 
-			include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/person_type.php");
-			include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/props.php");
+//			include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/new/person_type.php");
+			include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/new/props.php");
 			if ($arParams["DELIVERY_TO_PAYSYSTEM"] == "p2d")
 			{
-				include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/paysystem.php");
-				include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/delivery.php");
+				include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/new/paysystem.php");
+				include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/new/delivery.php");
 			}
 			else
 			{
-				include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/delivery.php");
-				include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/paysystem.php");
+				include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/new/delivery.php");
+				include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/new/paysystem.php");
 			}
 
-			include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/related_props.php");
+			include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/new/related_props.php");
 
-			include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/summary.php");
+			include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/new/summary.php");
 			if(strlen($arResult["PREPAY_ADIT_FIELDS"]) > 0)
 				echo $arResult["PREPAY_ADIT_FIELDS"];
 			?>

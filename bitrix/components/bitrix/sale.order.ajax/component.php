@@ -267,7 +267,8 @@ foreach ($arParams["PRODUCT_COLUMNS"] as $key => $value) // making grid headers 
 	$arResult["GRID"]["HEADERS"][] = $arColumn;
 }
 
-if (!$USER->IsAuthorized() && $arParams["ALLOW_AUTO_REGISTER"] == "N")
+//убираем запрет на авторегистрацию
+if (false && !$USER->IsAuthorized() && $arParams["ALLOW_AUTO_REGISTER"] == "N")
 {
 	$arResult["AUTH"]["USER_LOGIN"] = ((strlen($_POST["USER_LOGIN"]) > 0) ? htmlspecialcharsbx($_POST["USER_LOGIN"]) : htmlspecialcharsbx(${COption::GetOptionString("main", "cookie_name", "BITRIX_SM")."_LOGIN"}));
 	$arResult["AUTH"]["captcha_registration"] = ((COption::GetOptionString("main", "captcha_registration", "N") == "Y") ? "Y" : "N");
@@ -445,7 +446,7 @@ if (!$USER->IsAuthorized() && $arParams["ALLOW_AUTO_REGISTER"] == "N")
 	}
 }
 
-if ($USER->IsAuthorized() || $arParams["ALLOW_AUTO_REGISTER"] == "Y" )
+if (true || $USER->IsAuthorized() || $arParams["ALLOW_AUTO_REGISTER"] == "Y" )
 {
 	if(strlen($_REQUEST["ORDER_ID"]) <= 0)
 	{
@@ -699,9 +700,12 @@ if ($USER->IsAuthorized() || $arParams["ALLOW_AUTO_REGISTER"] == "Y" )
 		// when order is placed
 		if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["confirmorder"]) && ($arParams["DELIVERY_NO_SESSION"] == "N" || check_bitrix_sessid()))
 		{
-			if(IntVal($_POST["PERSON_TYPE"]) > 0)
-				$arUserResult["PERSON_TYPE_ID"] = IntVal($_POST["PERSON_TYPE"]);
-			if(IntVal($_POST["PERSON_TYPE_OLD"]) == $arUserResult["PERSON_TYPE_ID"])
+			if(IntVal($_POST["PERSON_TYPE"]) <= 0) {
+        $_POST["PERSON_TYPE"] = 2;
+      }
+      $arUserResult["PERSON_TYPE_ID"] = IntVal($_POST["PERSON_TYPE"]);
+
+      if(IntVal($_POST["PERSON_TYPE_OLD"]) == $arUserResult["PERSON_TYPE_ID"])
 			{
 				if(isset($_POST["PROFILE_ID"]))
 					$arUserResult["PROFILE_ID"] = IntVal($_POST["PROFILE_ID"]);
@@ -724,9 +728,8 @@ if ($USER->IsAuthorized() || $arParams["ALLOW_AUTO_REGISTER"] == "Y" )
 					$arUserResult["PROFILE_CHANGE"] = "N";
 			}
 
-			if(IntVal($arUserResult["PERSON_TYPE_ID"]) <= 0)
-				$arResult["ERROR"][] = GetMessage("SOA_ERROR_PERSON_TYPE");
-
+			if(IntVal($arUserResult["PERSON_TYPE_ID"]) <= 0){
+				$arResult["ERROR"][] = GetMessage("SOA_ERROR_PERSON_TYPE");}
 			foreach($_POST as $k => $v)
 			{
 				if(strpos($k, "ORDER_PROP_") !== false)
@@ -835,8 +838,8 @@ if ($USER->IsAuthorized() || $arParams["ALLOW_AUTO_REGISTER"] == "Y" )
 						}
 
 						if (IntVal($curVal)<=0)
-							$bErrorField = True;
-						else
+{							/*$bErrorField = True;*/
+}						else
 							$arUserResult["ORDER_PROP"][$arOrderProps["ID"]] = $curVal;
 					}
 					elseif ($arOrderProps["IS_PROFILE_NAME"]=="Y" || $arOrderProps["IS_PAYER"]=="Y" || $arOrderProps["IS_EMAIL"]=="Y" || $arOrderProps["IS_ZIP"]=="Y")
@@ -845,46 +848,46 @@ if ($USER->IsAuthorized() || $arParams["ALLOW_AUTO_REGISTER"] == "Y" )
 						{
 							$arUserResult["PROFILE_NAME"] = Trim($curVal);
 							if (strlen($arUserResult["PROFILE_NAME"])<=0)
-								$bErrorField = True;
-						}
+{							/*	$bErrorField = True;*/
+}						}
 						if ($arOrderProps["IS_PAYER"]=="Y")
 						{
 							$arUserResult["PAYER_NAME"] = Trim($curVal);
 							if (strlen($arUserResult["PAYER_NAME"])<=0)
-								$bErrorField = True;
-						}
+{				/*				$bErrorField = True;*/
+}						}
 						if ($arOrderProps["IS_EMAIL"]=="Y")
 						{
 							$arUserResult["USER_EMAIL"] = Trim($curVal);
 							if (strlen($arUserResult["USER_EMAIL"])<=0)
-								$bErrorField = True;
-							elseif(!check_email($arUserResult["USER_EMAIL"]))
+{								/*$bErrorField = True;*/
+}							elseif(!check_email($arUserResult["USER_EMAIL"]))
 								$arResult["ERROR"][] = GetMessage("SOA_ERROR_EMAIL");
 						}
 						if ($arOrderProps["IS_ZIP"]=="Y")
 						{
 							$arUserResult["DELIVERY_LOCATION_ZIP"] = Trim($curVal);
 							if (strlen($arUserResult["DELIVERY_LOCATION_ZIP"])<=0)
-								$bErrorField = True;
-						}
+{								/*$bErrorField = True;*/
+}						}
 					}
 					elseif ($arOrderProps["REQUIED"]=="Y")
 					{
 						if ($arOrderProps["TYPE"]=="TEXT" || $arOrderProps["TYPE"]=="TEXTAREA" || $arOrderProps["TYPE"]=="RADIO" || $arOrderProps["TYPE"]=="SELECT" || $arOrderProps["TYPE"] == "CHECKBOX")
 						{
 							if (strlen($curVal)<=0)
-								$bErrorField = True;
-						}
+{							/*	$bErrorField = True;*/
+}						}
 						elseif ($arOrderProps["TYPE"]=="LOCATION")
 						{
 							if (IntVal($curVal)<=0)
-								$bErrorField = True;
-						}
+{								/*$bErrorField = True;*/
+}						}
 						elseif ($arOrderProps["TYPE"]=="MULTISELECT")
 						{
 							if (!is_array($curVal) || count($curVal)<=0)
-								$bErrorField = True;
-						}
+{								/*$bErrorField = True;*/
+}						}
 						elseif ($arOrderProps["TYPE"]=="FILE")
 						{
 							if (is_array($curVal))
@@ -892,15 +895,15 @@ if ($USER->IsAuthorized() || $arParams["ALLOW_AUTO_REGISTER"] == "Y" )
 								foreach ($curVal as $index => $arFileData)
 								{
 									if (!array_key_exists("name", $arFileData) || strlen($arFileData["name"]) <= 0)
-										$bErrorField = true;
+							{			$bErrorField = true;}
 								}
 							}
 						}
 					}
 
 					if ($bErrorField)
-						$arResult["ERROR"][] = GetMessage("SOA_ERROR_REQUIRE")." \"".$arOrderProps["NAME"]."\"";
-
+					{	$arResult["ERROR"][] = GetMessage("SOA_ERROR_REQUIRE")." \"".$arOrderProps["NAME"]."\"";
+}
 				//}//end isset
 			}//end while
 		}
@@ -990,7 +993,7 @@ if ($USER->IsAuthorized() || $arParams["ALLOW_AUTO_REGISTER"] == "Y" )
 		$dbPersonType = CSalePersonType::GetList(array("SORT" => "ASC", "NAME" => "ASC"), array("LID" => SITE_ID, "ACTIVE" => "Y"));
 		while($arPersonType = $dbPersonType->GetNext())
 		{
-			if($arUserResult["PERSON_TYPE_ID"] == $arPersonType["ID"] || IntVal($arUserResult["PERSON_TYPE_ID"]) <= 0)
+			if($arUserResult["PERSON_TYPE_ID"] <= $arPersonType["ID"] || IntVal($arUserResult["PERSON_TYPE_ID"]) <= 0)
 			{
 				$arUserResult["PERSON_TYPE_ID"] = $arPersonType["ID"];
 				$arPersonType["CHECKED"] = "Y";
@@ -1012,6 +1015,9 @@ if ($USER->IsAuthorized() || $arParams["ALLOW_AUTO_REGISTER"] == "Y" )
 						"USER_ID" => IntVal($USER->GetID())
 					)
 			);
+    /**
+     * @var $arUserProfiles CSaleOrderUserProps[] Array of user profiles for current profile type e.g. personal, company etc.
+     */
 		while($arUserProfiles = $dbUserProfiles->GetNext())
 		{
 			if(!$bFirst && empty($arUserResult["PROFILE_CHANGE"]))
@@ -1026,6 +1032,7 @@ if ($USER->IsAuthorized() || $arParams["ALLOW_AUTO_REGISTER"] == "Y" )
 			$arResult["ORDER_PROP"]["USER_PROFILES"][$arUserProfiles["ID"]] = $arUserProfiles;
 		}
 
+    //if profile found
 		if(IntVal($arUserResult["PROFILE_ID"]) > 0 && empty($arResult["ORDER_PROP"]["USER_PROFILES"][$arUserResult["PROFILE_ID"]]))
 			$arUserResult["PROFILE_ID"] = false;
 		/* User Profiles End */
@@ -1033,7 +1040,9 @@ if ($USER->IsAuthorized() || $arParams["ALLOW_AUTO_REGISTER"] == "Y" )
 		/* Order Props Begin */
 		$arDeleteFieldLocation = array();
 
-		$arFilter = array("PERSON_TYPE_ID" => $arUserResult["PERSON_TYPE_ID"], "ACTIVE" => "Y", "UTIL" => "N", "RELATED" => false);
+		$arFilter = array(
+      //"PERSON_TYPE_ID" => $arUserResult["PERSON_TYPE_ID"],
+       "ACTIVE" => "Y", "UTIL" => "N", "RELATED" => false);
 		if(!empty($arParams["PROP_".$arUserResult["PERSON_TYPE_ID"]]))
 			$arFilter["!ID"] = $arParams["PROP_".$arUserResult["PERSON_TYPE_ID"]];
 
@@ -1066,6 +1075,7 @@ if ($USER->IsAuthorized() || $arParams["ALLOW_AUTO_REGISTER"] == "Y" )
 			}
 		}
 
+    //format profile specified properties e.g. fio, prop. group etc.,
 		while ($arProperties = $dbProperties->GetNext())
 		{
 			$arProperties = getOrderPropFormated($arProperties, $arResult, $arUserResult, $arDeleteFieldLocation);
@@ -1813,6 +1823,12 @@ if ($USER->IsAuthorized() || $arParams["ALLOW_AUTO_REGISTER"] == "Y" )
 		{
 			if(!$USER->IsAuthorized() && $arParams["ALLOW_AUTO_REGISTER"] == "Y")
 			{
+        if(!strlen($arUserResult["USER_EMAIL"]) > 0 &&
+          strlen($arUserResult["ORDER_PROP"][3]) > 0
+        ) {
+          $arUserResult["USER_EMAIL"] = preg_replace('\D', '', $arUserResult['USER_PHONE']).'@phone.num';
+        }
+
 				if(strlen($arUserResult["USER_EMAIL"]) > 0)
 				{
 					$NEW_LOGIN = $arUserResult["USER_EMAIL"];
