@@ -338,7 +338,7 @@ $compareBtnMessage = ($arParams['MESS_BTN_COMPARE'] != '' ? $arParams['MESS_BTN_
 
 if ($arParams['USE_PRODUCT_QUANTITY'] == 'Y')
 {
-	if ($arParams['SHOW_BASIS_PRICE'] == 'Y')
+	if (0 && $arParams['SHOW_BASIS_PRICE'] == 'Y')
 	{
 		$basisPriceInfo = array(
 			'#PRICE#' => $arResult['MIN_BASIS_PRICE']['PRINT_DISCOUNT_VALUE'],
@@ -492,7 +492,7 @@ unset($showAddBtn, $showBuyBtn);
 </div>
 
 <?
-if (!empty($arResult['DISPLAY_PROPERTIES']) || $arResult['SHOW_OFFERS_PROPS'])
+if (0 && !empty($arResult['DISPLAY_PROPERTIES']) || $arResult['SHOW_OFFERS_PROPS'])
 {
 ?>
 <div class="item_info_section">

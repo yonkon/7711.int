@@ -1849,12 +1849,15 @@ div#menu_brands li {
 	background-repeat: no-repeat;
 }
 
+#menu_brands .selected {
+  z-index: 2;
+}
 #menu_brands .selected .tleft {
 	background-image: url('/images/tabs_sel_left2.png');
 }
 
 #menu_brands .tcenter {
-	background-image: url('/images/tabs_sel_center2.png');
+	background-image: url('/images/tabs_origin_center2.png');
 	height: 25px;
 	color: #fff;
 	padding: 5px 3px 0px;
@@ -1881,7 +1884,18 @@ div#menu_brands li {
 
 div#menu_brands_tabs {
 	padding-left: 3em;
+  position: absolute;
+  height: 30px;
 }
+
+div#menu_brands_tabs>div {
+	float: left;
+}
+
+div#menu_brands_tabs>div:nth-child(2) {
+  margin-left: -2em;
+}
+
 
 a.menu_brands_letter {
 	background-image: url('/images/alphabk.png');
@@ -1941,6 +1955,8 @@ a.menu_brands_letter.selected {
 	padding: 1em 0;
 	border-radius: 22px 10px 10px 19px;
 	width: 225px;
+  position: absolute;
+  margin-top: 30px;
 }
 
 .brand_section_picture {

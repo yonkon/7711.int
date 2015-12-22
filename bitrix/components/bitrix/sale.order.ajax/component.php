@@ -806,7 +806,7 @@ if (true || $USER->IsAuthorized() || $arParams["ALLOW_AUTO_REGISTER"] == "Y" )
 				false,
 				array("ID", "NAME", "TYPE", "IS_LOCATION", "IS_LOCATION4TAX", "IS_PROFILE_NAME", "IS_PAYER", "IS_EMAIL", "REQUIED", "SORT", "IS_ZIP", "CODE", "MULTIPLE")
 			);
-			while ($arOrderProps = $dbOrderProps->GetNext())
+			while (0 && $arOrderProps = $dbOrderProps->GetNext())
 			{
 				//if(isset($arUserResult["ORDER_PROP"][$arOrderProps["ID"]]) || isset($arUserResult["ORDER_PROP"]["COUNTRY_".$arOrderProps["ID"]]))
 				//{
@@ -1819,14 +1819,20 @@ if (true || $USER->IsAuthorized() || $arParams["ALLOW_AUTO_REGISTER"] == "Y" )
 			$orderTotalSum = $arResult["ORDER_PRICE"] + $arResult["DELIVERY_PRICE"] + $arResult["TAX_PRICE"] - $arResult["DISCOUNT_PRICE"];
 		}
 
-		if($arUserResult["CONFIRM_ORDER"] == "Y" && empty($arResult["ERROR"]))
+		if(($orderTotalSum > 0 || $arUserResult["CONFIRM_ORDER"] == "Y") && empty($arResult["ERROR"]))
 		{
+      //регистрируем нового пользователя логиним старого
 			if(!$USER->IsAuthorized() && $arParams["ALLOW_AUTO_REGISTER"] == "Y")
 			{
         if(!strlen($arUserResult["USER_EMAIL"]) > 0 &&
+          strlen($arUserResult["ORDER_PROP"][2]) > 0
+        ) {
+          $arUserResult["USER_EMAIL"] = $arUserResult["ORDER_PROP"][2];
+        }
+        if(!strlen($arUserResult["USER_EMAIL"]) > 0 &&
           strlen($arUserResult["ORDER_PROP"][3]) > 0
         ) {
-          $arUserResult["USER_EMAIL"] = preg_replace('\D', '', $arUserResult['USER_PHONE']).'@phone.num';
+          $arUserResult["USER_EMAIL"] = preg_replace('/[\D]/', '', $arUserResult["ORDER_PROP"][3]).'@phone.num';
         }
 
 				if(strlen($arUserResult["USER_EMAIL"]) > 0)
@@ -1836,6 +1842,9 @@ if (true || $USER->IsAuthorized() || $arParams["ALLOW_AUTO_REGISTER"] == "Y" )
 					$NEW_NAME = "";
 					$NEW_LAST_NAME = "";
 
+					if(strlen($arUserResult["PAYER_NAME"]) <= 0 && strlen($arUserResult["ORDER_PROP"][1])) {
+            $arUserResult["PAYER_NAME"] = $arUserResult["ORDER_PROP"][1];
+          }
 					if(strlen($arUserResult["PAYER_NAME"]) > 0)
 					{
 						$arNames = explode(" ", $arUserResult["PAYER_NAME"]);
