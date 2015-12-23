@@ -1,5 +1,5 @@
 <?php
-$host7711 = "http://7711kz.int";
+$host7711 = "http://7711.kz";
 $brandPropName = empty($_REQUEST['brandPropName']) ? 'producer' : $_REQUEST['brandPropName'] ;
 $brandPropID = 9;
 if(!is_callable(GET_SALE_FILTER)) {
@@ -54,7 +54,7 @@ $arBrands = array();
 $rsBrands = $DB->Query($producersSql);
 while($arBrand = $rsBrands->Fetch()) {
 	$brandName = $arBrand['VALUE'];
-	$brandFirstLetter = mb_strtoupper(mb_substr($brandName, 0, 1 ));
+	$brandFirstLetter = mb_strtoupper(mb_substr($brandName, 0, 1, 'UTF8' ));
 	if($brandFirstLetter >= '0' && $brandFirstLetter <='z') {
 		$brandGroup = 'before_z';
 	} else {
@@ -464,6 +464,15 @@ window.onload=startList;
 
 			$('#menu_brands_tab_after_z').removeClass('selected');
 			$('#menu_brands_group_after_z').removeClass('selected');
+
+		});
+    $('#menu_brands_tab_after_z .tcenter').click(function(){
+
+			$('#menu_brands_tab_after_z').addClass('selected');
+			$('#menu_brands_group_after_z').addClass('selected');
+
+			$('#menu_brands_tab_before_z').removeClass('selected');
+			$('#menu_brands_group_before_z').removeClass('selected');
 
 		});
 	});

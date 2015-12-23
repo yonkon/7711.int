@@ -1541,31 +1541,28 @@ div.w50_inline-block_container .bx_catalog_item_price .bx_catalog_item_controls_
 }
 
 .filter_tab_btn {
-  display: inline-block;
-  width: 49%;
+  /*display: inline-block;*/
+  /*width: 49%;*/
   text-align: center;
-  margin-right: -2px;
+  /*margin-right: -2px;*/
 }
 
 /*.filter_tab_btn:not(:first-of-type) {*/
   /*box-shadow:rgb(170, 170, 170) -3px 0 3px -2px ;*/
 /*}*/
 
-.filter_tab_btn:first-of-type{
+/*.filter_tab_btn:first-of-type{
   margin-right: 2px;
 }
 
 .filter_tab_btn.show:first-of-type {
-  box-shadow: 3px 0px 0px 0px #7ce;
+ box-shadow: 3px 0px 0px 0px #7ce;
 }
 
 .filter_tab_btn.show:not(:first-of-type) {
   box-shadow: -3px 0px 3px -2px #7ce;
-}
+}*/
 
-.filter_tab_btn.unact {
-  background: #fafafa;
-}
 
 .item_buttons_counter_block.quantity>*{
   height: 20px;
@@ -1596,12 +1593,13 @@ div.w50_inline-block_container .bx_catalog_item_price .bx_catalog_item_controls_
 	background: none;
 	border-color: #F2F8FA ;
   border-radius: 8px;
+  border: none;
 }
 
 .bx_filter_parameters_box.active.custom input {
   border-radius: 3px;
   border: 1px solid #9B9393;
-  height: 2em;
+  height: 1.5em;
   box-shadow: inset 0 3px 6px 0 rgba(215,215,215,.75);
 }
 
@@ -2050,4 +2048,142 @@ div.description {
   font-family: "PFDinDisplayProBold", "Arial", "Verdana", "Helvetica";
   color: #4aa9e2;
   margin-top: 5px;
+}
+
+#menu_brands_tab_before_z .tleft {
+  z-index: 2;
+}
+#menu_brands_tab_after_z .tleft {
+  z-index: 1;
+}
+
+.catalog-element_vendor a {
+  color: rgb(54, 135, 184);
+  font-family: PFDinDisplayProMedium, Arial, Verdana, Helvetica;
+  font-size: 11px;
+  height: auto;
+  line-height: 13.5409994125366px;
+  text-decoration: underline;
+}
+.catalog-element_vendor {
+  font-size: 11px;
+  color: #777777;
+  padding-bottom: 5px;
+}
+
+.bx_filter.bx_blue {
+  background-color: #f1f7fb;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 212px;
+  min-width: 0;
+  padding-bottom: 1.5em;
+}
+
+
+a#filter_btn_ext ,
+a#filter_btn_std {
+  font-weight: normal;
+  text-decoration: none;
+  color: #267fb5;
+}
+
+.filter_tab_btn {
+  padding: 0;
+  margin-left: -2px;
+  text-align: center;
+  background: #f1f7fb;
+  display: inline-block;
+  zoom: 1;
+  width: 106px;
+}
+.filter_tab_btn.unact {
+  background: #fafafa;
+}
+.filter_tab_btn.show {
+  background: #f1f7fb;
+}
+.filter_tab_btn.show:not(:first-child) {
+  box-shadow: -3px 0px 3px -2px #aaa
+}
+.filter_tab_btn.unact:not(:first-child) {
+  background: url(/images/catalog_filter_tab2.png) no-repeat right top;
+}
+
+.bx_filter_title {
+  display: none;
+}
+
+.bx_filter .bx_filter_parameters_box_title.no-border{
+  border: none;
+}
+.bx_filter .bx_filter_parameters_box_title {
+  font-size: 12px;
+  display: inline-block;
+  margin-bottom: 10px;
+  cursor: pointer;
+  color: #525252;
+  border-bottom: dotted 1px;
+  position: relative;
+  font-weight: bold;
+}
+
+.bx_filter .bx_filter_button_box, .bx_filter .bx_filter_parameters_box {
+  margin-bottom: 0.5em;
+}
+
+input#set_filter:hover {
+  background-position: -310px -67px;
+}
+
+input#set_filter {
+  -webkit-appearance: none;
+  -webkit-box-shadow: none;
+  -webkit-rtl-ordering: logical;
+  -webkit-user-select: none;
+  -webkit-writing-mode: horizontal-tb;
+  background: rgb(255, 255, 255) url(http://brigo.ru/bitrix/templates/brigo/images/brigo_btns_new.png) -310px -15px;
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+  display: inline-block;
+  height: 35px;
+  line-height: normal;
+  margin: 0px;
+  padding: 1px 6px;
+  text-align: center;
+  vertical-align: baseline;
+  width: 188px;
+}
+
+.bx_filter .bx_ui_slider_handle {
+  margin-top: -16px;
+}
+.bx_filter .bx_ui_slider_range {
+  z-index: 90;
+}
+
+@media (max-width:570px) {
+.worakarea_wrap_container {
+  margin-left: auto;
+}
+  .title.notive img {
+    max-height: 2em;
+    width: auto;
+  }
+  .bx-touch .header_inner_include_aria {
+    padding-top: 0;
+  }
+
+  .header_inner_bottom_line_container.left-menu {
+    display: none;
+  }
+}
+@media(max-width:700px) {
+  .w50_inline-block_container > div, .w50_inline-block {
+  width: auto;
+}
+  .slogan {
+    max-width: 200px;
+  }
 }

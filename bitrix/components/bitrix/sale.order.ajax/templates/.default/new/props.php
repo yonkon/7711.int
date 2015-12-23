@@ -96,9 +96,389 @@ include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/new/props_format.php");
 	</h4>
 	<div id="sale_order_props" <?=($bHideProps && $_POST["showProps"] != "Y")?"style='display:none;'":''?>>
 		<?
-		PrintPropsForm($arResult["ORDER_PROP"]["USER_PROPS_N"], $arParams["TEMPLATE_LOCATION"]);
-		PrintPropsForm($arResult["ORDER_PROP"]["USER_PROPS_Y"], $arParams["TEMPLATE_LOCATION"]);
 		?>
+    <div id="old_user_form">
+      <div data-property-id-row="login">
+        <div class="bx_block r1x3 pt8">
+          Телефон																	<span class="bx_sof_req">*</span>
+        </div>
+        <div class="bx_block r3x1">
+          <input type="text" maxlength="250" size="0" value="" name="ORDER_LOGIN" id="ORDER_LOGIN">
+        </div>
+        <div style="clear: both;"></div><br>
+      </div>
+      <div data-property-id-row="pass">
+        <div class="bx_block r1x3 pt8">
+ Пароль<span class="bx_sof_req">*</span>
+        </div>
+        <div class="bx_block r3x1">
+          <input type="text" maxlength="250" size="0" value="" name="ORDER_PASSWORD" id="ORDER_PASSWORD">
+        </div>
+        <div style="clear: both;"></div><br>
+      </div>
+    </div>
+    <div id="new_user_form">
+      <? /*****FIO*****/ ?>
+      <div data-property-id-row="1">
+        <div class="bx_block r1x3 pt8">
+          Ф.И.О.
+        </div>
+        <div class="bx_block r3x1">
+          <input type="text" maxlength="250" size="40" value="" name="ORDER_PROP_1" id="ORDER_PROP_1">
+        </div>
+        <div style="clear: both;"></div><br>
+      </div>
+      <script>
+        (window.top.BX || BX).saleOrderAjax.addPropertyDesc({'id':'1','attributes':{'type':'TEXT','valueSource':'default'}});
+      </script>
+
+      <? /*****EMAIL*****/ ?>
+      <div data-property-id-row="2">
+        <div class="bx_block r1x3 pt8">
+          E-Mail
+        </div>
+        <div class="bx_block r3x1">
+          <input type="text" maxlength="250" size="40" value="" name="ORDER_PROP_2" id="ORDER_PROP_2">
+
+        </div>
+        <div style="clear: both;"></div><br>
+      </div>
+      <script>
+        (window.top.BX || BX).saleOrderAjax.addPropertyDesc({'id':'2','attributes':{'type':'TEXT','valueSource':'default'}});
+      </script>
+
+      <? /*****Телефон *****/ ?>
+      <div data-property-id-row="3">
+        <div class="bx_block r1x3 pt8">
+          Телефон																	<span class="bx_sof_req">*</span>
+        </div>
+        <div class="bx_block r3x1">
+          <input type="text" maxlength="250" size="0" value="" name="ORDER_PROP_3" id="ORDER_PROP_3">
+        </div>
+        <div style="clear: both;"></div><br>
+      </div>
+      <script>
+        (window.top.BX || BX).saleOrderAjax.addPropertyDesc({'id':'3','attributes':{'type':'TEXT','valueSource':'default'}});
+      </script>
+
+      <? /*****Представитель юридического лица*****/ ?>
+
+      <? /*****РЕКВИЗИТЫ ОРГАНИЗАЦИИ*****/ ?>
+      <? /*****Наименование организации*****/ ?>
+      <? /*****Юридический адрес*****/ ?>
+      <? /*****Почтовый адрес*****Подставить юр.адрес/ ?>
+      <? /*****ИНН *****/ ?>
+      <? /*****КПП *****/ ?>
+      <? /*****БАНКОВСКИЕ РЕКВИЗИТЫ
+       *****/ ?>
+      <? /*****Наименование банка *****/ ?>
+      <? /*****БИК *****/ ?>
+      <? /*****Расчетный счет *****/ ?>
+      <? /*****Корреспондентский счет *****/ ?>
+      <? /*****АДРЕС ДОСТАВКИ
+      Адрес доставки*****Подставить почт.адрес*/ ?>
+
+
+
+
+
+
+      <div data-property-id-row="7">
+
+        <br>
+        <div class="bx_block r1x3 pt8">
+          Адрес доставки															</div>
+
+        <div class="bx_block r3x1">
+          <textarea rows="3" cols="30" name="ORDER_PROP_7" id="ORDER_PROP_7"></textarea>
+
+        </div>
+        <div style="clear: both;"></div>
+      </div>
+
+
+
+      <script>
+
+        (window.top.BX || BX).saleOrderAjax.addPropertyDesc({'id':'7','attributes':{'type':'TEXTAREA','valueSource':'form'}});
+
+      </script>
+
+      <div data-property-id-row="8">
+
+        <div class="bx_block r1x3 pt8">
+          Название компании																	<span class="bx_sof_req">*</span>
+        </div>
+
+        <div class="bx_block r3x1">
+          <input type="text" maxlength="250" size="40" value="" name="ORDER_PROP_8" id="ORDER_PROP_8">
+
+        </div>
+        <div style="clear: both;"></div><br>
+      </div>
+
+
+
+      <script>
+
+        (window.top.BX || BX).saleOrderAjax.addPropertyDesc({'id':'8','attributes':{'type':'TEXT','valueSource':'default'}});
+
+      </script>
+
+      <div data-property-id-row="9">
+
+        <br>
+        <div class="bx_block r1x3 pt8">
+          Юридический адрес															</div>
+
+        <div class="bx_block r3x1">
+          <textarea rows="4" cols="40" name="ORDER_PROP_9" id="ORDER_PROP_9"></textarea>
+
+        </div>
+        <div style="clear: both;"></div>
+      </div>
+
+
+
+      <script>
+
+        (window.top.BX || BX).saleOrderAjax.addPropertyDesc({'id':'9','attributes':{'type':'TEXTAREA','valueSource':'form'}});
+
+      </script>
+
+      <div data-property-id-row="10">
+
+        <div class="bx_block r1x3 pt8">
+          ИНН															</div>
+
+        <div class="bx_block r3x1">
+          <input type="text" maxlength="250" size="0" value="" name="ORDER_PROP_10" id="ORDER_PROP_10">
+
+        </div>
+        <div style="clear: both;"></div><br>
+      </div>
+
+
+
+      <script>
+
+        (window.top.BX || BX).saleOrderAjax.addPropertyDesc({'id':'10','attributes':{'type':'TEXT','valueSource':'default'}});
+
+      </script>
+
+      <div data-property-id-row="11">
+
+        <div class="bx_block r1x3 pt8">
+          КПП															</div>
+
+        <div class="bx_block r3x1">
+          <input type="text" maxlength="250" size="0" value="" name="ORDER_PROP_11" id="ORDER_PROP_11">
+
+        </div>
+        <div style="clear: both;"></div><br>
+      </div>
+
+
+
+      <script>
+
+        (window.top.BX || BX).saleOrderAjax.addPropertyDesc({'id':'11','attributes':{'type':'TEXT','valueSource':'default'}});
+
+      </script>
+
+      <div data-property-id-row="12">
+
+        <div class="bx_block r1x3 pt8">
+          Контактное лицо																	<span class="bx_sof_req">*</span>
+        </div>
+
+        <div class="bx_block r3x1">
+          <input type="text" maxlength="250" size="0" value="" name="ORDER_PROP_12" id="ORDER_PROP_12">
+
+        </div>
+        <div style="clear: both;"></div><br>
+      </div>
+
+
+
+      <script>
+
+        (window.top.BX || BX).saleOrderAjax.addPropertyDesc({'id':'12','attributes':{'type':'TEXT','valueSource':'default'}});
+
+      </script>
+
+      <div data-property-id-row="13">
+
+        <div class="bx_block r1x3 pt8">
+          E-Mail																	<span class="bx_sof_req">*</span>
+        </div>
+
+        <div class="bx_block r3x1">
+          <input type="text" maxlength="250" size="40" value="" name="ORDER_PROP_13" id="ORDER_PROP_13">
+
+        </div>
+        <div style="clear: both;"></div><br>
+      </div>
+
+
+
+      <script>
+
+        (window.top.BX || BX).saleOrderAjax.addPropertyDesc({'id':'13','attributes':{'type':'TEXT','valueSource':'default'}});
+
+      </script>
+
+      <div data-property-id-row="14">
+
+        <div class="bx_block r1x3 pt8">
+          Телефон															</div>
+
+        <div class="bx_block r3x1">
+          <input type="text" maxlength="250" size="0" value="" name="ORDER_PROP_14" id="ORDER_PROP_14">
+
+        </div>
+        <div style="clear: both;"></div><br>
+      </div>
+
+
+
+      <script>
+
+        (window.top.BX || BX).saleOrderAjax.addPropertyDesc({'id':'14','attributes':{'type':'TEXT','valueSource':'default'}});
+
+      </script>
+
+      <div data-property-id-row="15">
+
+        <div class="bx_block r1x3 pt8">
+          Факс															</div>
+
+        <div class="bx_block r3x1">
+          <input type="text" maxlength="250" size="0" value="" name="ORDER_PROP_15" id="ORDER_PROP_15">
+
+        </div>
+        <div style="clear: both;"></div><br>
+      </div>
+
+
+
+      <script>
+
+        (window.top.BX || BX).saleOrderAjax.addPropertyDesc({'id':'15','attributes':{'type':'TEXT','valueSource':'default'}});
+
+      </script>
+
+      <div data-property-id-row="16">
+
+        <div class="bx_block r1x3 pt8">
+          Индекс																	<span class="bx_sof_req">*</span>
+        </div>
+
+        <div class="bx_block r3x1">
+          <input type="text" maxlength="250" size="8" value="101000" name="ORDER_PROP_16" id="ORDER_PROP_16">
+
+        </div>
+        <div style="clear: both;"></div><br>
+      </div>
+
+
+
+      <script>
+
+        (window.top.BX || BX).saleOrderAjax.addPropertyDesc({'id':'16','attributes':{'type':'TEXT','valueSource':'default','isZip':true}});
+
+      </script>
+
+      <div data-property-id-row="18">
+
+        <div class="bx_block r1x3 pt8">
+          Местоположение																	<span class="bx_sof_req">*</span>
+        </div>
+
+        <div class="bx_block r3x1">
+
+
+
+          <div class="location-block-wrapper">
+
+
+
+            <div id="sls-88878" class="bx-sls ">
+
+
+              <div class="dropdown-block bx-ui-sls-input-block">
+
+                <span class="dropdown-icon"></span>
+                <input type="text" autocomplete="off" name="ORDER_PROP_18" value="" class="dropdown-field" placeholder="Enter name ..." style="display: none;"><div class="bx-ui-sls-container" style="margin: 0px; padding: 0px; border: none; position: relative;"><input type="text" disabled="disabled" autocomplete="off" class="bx-ui-sls-route" style="padding: 6px 0px 0px 8px; margin: 0px;"><input type="text" autocomplete="off" value="" class="bx-ui-sls-fake" placeholder="Enter name ..."></div>
+
+                <div class="dropdown-fade2white"></div>
+                <div class="bx-ui-sls-loader"></div>
+                <div class="bx-ui-sls-clear" title="Clear selection" style="display: none;"></div>
+                <div class="bx-ui-sls-pane" style="overflow-y: auto; overflow-x: hidden;"><div class="bx-ui-sls-variants"></div></div>
+
+              </div>
+
+
+
+
+              <div class="bx-ui-sls-error-message">
+              </div>
+
+            </div>
+
+            <script>
+
+              if (!window.BX && top.BX)
+                window.BX = top.BX;
+
+              if(typeof window.BX.locationsDeferred == 'undefined') window.BX.locationsDeferred = {};
+              window.BX.locationsDeferred['18'] = function(){
+
+                if(typeof window.BX.locationSelectors == 'undefined') window.BX.locationSelectors = {};
+                window.BX.locationSelectors['18'] =
+
+                  new BX.Sale.component.location.selector.search({'scope':'sls-88878','source':'/bitrix/components/bitrix/sale.location.selector.search/get.php','query':{'FILTER':{'EXCLUDE_ID':0,'SITE_ID':'s1'},'BEHAVIOUR':{'SEARCH_BY_PRIMARY':'0','LANGUAGE_ID':'en'}},'selectedItem':false,'knownItems':[],'provideLinkBy':'id','messages':{'nothingFound':'Unfortunately search produced no results','error':'There was an error'},'callback':'submitFormProxy','useSpawn':false,'initializeByGlobalEvent':'','globalEventScope':'','pathNames':[],'types':{'1':{'CODE':'COUNTRY'},'2':{'CODE':'REGION'},'3':{'CODE':'CITY'}}});
+
+              };
+
+            </script>
+
+          </div>
+
+        </div>
+        <div style="clear: both;"></div>
+      </div>
+
+
+
+      <script>
+
+        (window.top.BX || BX).saleOrderAjax.addPropertyDesc({'id':'18','attributes':{'type':'LOCATION','valueSource':'form','altLocationPropId':'17'}});
+
+      </script>
+
+      <div data-property-id-row="19">
+
+        <br>
+        <div class="bx_block r1x3 pt8">
+          Адрес доставки															</div>
+
+        <div class="bx_block r3x1">
+          <textarea rows="4" cols="30" name="ORDER_PROP_19" id="ORDER_PROP_19"></textarea>
+
+        </div>
+        <div style="clear: both;"></div>
+      </div>
+
+
+
+      <script>
+
+        (window.top.BX || BX).saleOrderAjax.addPropertyDesc({'id':'19','attributes':{'type':'TEXTAREA','valueSource':'form'}});
+
+      </script>
+
+    </div>
 	</div>
 </div>
 

@@ -179,7 +179,7 @@ $templateData = array(
         ?>
         <div class="bx_filter_parameters_box active custom">
           <span class="bx_filter_container_modef"></span>
-          <div class="bx_filter_parameters_box_title no-after" ><? echo ($arItem['CONTROL_ID'] == 'arrFilter_name') ? "Название" : "Артикул" ;?></div>
+          <div class="bx_filter_parameters_box_title no-border no-after" ><? echo ($arItem['CONTROL_ID'] == 'arrFilter_name') ? "Название" : "Артикул" ;?></div>
           <div class="bx_filter_block" style="display: block; opacity: 1; height: 41px;">
             <div class="bx_filter_parameters_box_container">
               <input type="text" name="<? echo $arItem['CONTROL_NAME'];?>" id="<? echo $arItem['CONTROL_ID'];?>" value="<? echo $arItem['HTML_VALUE'];?>">
@@ -650,8 +650,8 @@ $templateData = array(
 			<div class="bx_filter_button_box active">
 				<div class="bx_filter_block">
 					<div class="bx_filter_parameters_box_container">
-						<input class="bx_filter_search_button" type="submit" id="set_filter" name="set_filter" value="<?=GetMessage("CT_BCSF_SET_FILTER")?>" />
-						<input class="bx_filter_search_reset" type="submit" id="del_filter" name="del_filter" value="<?=GetMessage("CT_BCSF_DEL_FILTER")?>" />
+						<input class="bx_filter_search_button" type="submit" id="set_filter" name="set_filter" value="" />
+<!--						<input class="bx_filter_search_reset" type="submit" id="del_filter" name="del_filter" value="--><?//=GetMessage("CT_BCSF_DEL_FILTER")?><!--" />-->
 
 						<div class="bx_filter_popup_result <?=$arParams["POPUP_POSITION"]?>" id="modef" <?if(!isset($arResult["ELEMENT_COUNT"])) echo 'style="display:none"';?> style="display: inline-block;">
 							<?echo GetMessage("CT_BCSF_FILTER_COUNT", array("#ELEMENT_COUNT#" => '<span id="modef_num">'.intval($arResult["ELEMENT_COUNT"]).'</span>'));?>

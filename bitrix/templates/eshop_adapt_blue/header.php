@@ -132,7 +132,7 @@ $curPage = $APPLICATION->GetCurPage(true);
 				<?if ($curPage == SITE_DIR."index.php"):?></h1><?endif?>
 
 				<div class="slogan">IT-инфраструктура любой сложности для предприятий любого размера</div>
-				<div class="header_inner_container_two">
+				<?if (false): ?><div class="header_inner_container_two">
 <!--					--><?//$APPLICATION->IncludeComponent(
 //	"bitrix:search.title",
 //	"visual1",
@@ -170,6 +170,7 @@ $curPage = $APPLICATION->GetCurPage(true);
 //	false
 //);?><!--<span>--><?//$APPLICATION->IncludeComponent("bitrix:main.include", "", array("AREA_FILE_SHOW" => "file", "PATH" => SITE_DIR."include/schedule.php"), false);?><!--</span>-->
 				</div>
+        <? endif; ?>
 
 				<div class="header_inner_container_one">
 <div class="header_inner_include_aria"><span style="color: #1b5c79;">

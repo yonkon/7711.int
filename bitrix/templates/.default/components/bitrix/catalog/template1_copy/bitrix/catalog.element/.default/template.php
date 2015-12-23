@@ -75,17 +75,13 @@ $strAlt = (
 	? $arResult["IPROPERTY_VALUES"]["ELEMENT_DETAIL_PICTURE_FILE_ALT"]
 	: $arResult['NAME']
 );
-$APPLICATION->SetPageProperty('html_title', '<div style="color:red"><h1>АБЫРВАЛГ</h1></div>');
+//$APPLICATION->SetPageProperty('html_title', '<div style="color:red"><h1>АБЫРВАЛГ</h1></div>');
 ?>
 <link rel="stylesheet" href="/bitrix/js/fancybox/source/jquery.fancybox.css">
 <!--<script type="text/javascript" src="/bitrix/js/fancybox/source/jquery.fancybox.js"></script>-->
 <script type="text/javascript" src="/bitrix/js/fancybox/source/jquery.fancybox.pack.js"></script>
 
-<div class="pechat_div">
-	<a href="javascript:window.print(); void 0;">
-		<img height="15px" src="/images/print.gif">Печать страницы
-	</a>
-</div>
+
 <div class="bx_item_detail <? echo $templateData['TEMPLATE_CLASS']; ?>" id="<? echo $arItemIDs['ID']; ?>">
 <?
 if ('Y' == $arParams['DISPLAY_NAME'])
@@ -256,7 +252,11 @@ if ($arResult['SHOW_SLIDER'])
 </div>
 		</div>
 		<div class="bx_rt">
+      <div class="catalog-element_vendor">Производитель:
+        <span> <a href="/catalog/?brand=<?php echo urlencode($arResult['DISPLAY_PROPERTIES']['MANUFACTURER']['VALUE']); ?>" ><?php echo $arResult['DISPLAY_PROPERTIES']['MANUFACTURER']['VALUE']; ?></a></span>
+      </div>
 <?
+
 $useBrands = ('Y' == $arParams['BRAND_USE']);
 $useVoteRating = ('Y' == $arParams['USE_VOTE_RATING']);
 if ($useBrands || $useVoteRating)
