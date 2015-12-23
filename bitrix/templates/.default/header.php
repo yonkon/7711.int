@@ -3,6 +3,46 @@ IncludeTemplateLangFile(__FILE__);
 ?>
 <html>
 <head>
+  <? if(false) { ?>
+  <style>
+    @media (max-width:570px) {
+      .worakarea_wrap_container {
+        margin-left: auto;
+      }
+      .title.notive img {
+        max-height: 2em;
+        width: auto;
+      }
+      .bx-touch .header_inner_include_aria {
+        padding-top: 0;
+      }
+
+      .header_inner_bottom_line_container.left-menu {
+        display: none;
+      }
+      .slogan {
+        max-width: 90px;
+        font-size: 8pt;
+        margin-left: 0;
+        padding-left: 7pt;
+      }
+      .header_inner_include_aria strong  {
+        padding-top: 11pt !important
+      }
+      .header_inner_include_aria strong a {
+        font-size: 9pt;
+      }
+    }
+    @media(max-width:700px) {
+      .w50_inline-block_container > div, .w50_inline-block {
+        width: auto;
+      }
+      .slogan {
+        max-width: 200px;
+      }
+    }
+  </style>
+  <? } ?>
 <?$APPLICATION->ShowHead();?>
 <title><?$APPLICATION->ShowTitle()?></title>
 </head>

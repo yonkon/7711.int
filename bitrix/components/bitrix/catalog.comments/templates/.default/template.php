@@ -78,7 +78,7 @@ if (!$templateData['BLOG']['BLOG_FROM_AJAX'])
 		);
 
 		$arData["DETAILS"] =  array(
-			"NAME" => "Расширенное описание",
+			"NAME" => "Детали",
 			"ACTIVE" => "Y",
 			"CONTENT" => '<div class="description" id="bx-cat-soc-comments-det_'.$arResult['ELEMENT']['ID'].'">'.html_entity_decode($arParams['DETAIL_TEXT']).'</div>'
 		);

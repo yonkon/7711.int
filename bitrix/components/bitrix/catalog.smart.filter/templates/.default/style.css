@@ -319,13 +319,15 @@
 }
 .bx_filter .bx_ui_slider_handle.left{
 	left:0;
-	margin-left:-21px;
-	background:url(images/handle_left.png) no-repeat right top;
+	margin-left:-8px;
+	/*margin-left:-21px;*/
+	/*background:url(images/handle_left.png) no-repeat right top;*/
 }
 .bx_filter .bx_ui_slider_handle.right{
 	right:0;
-	margin-right:-21px;
-	background:url(images/handle_right.png) no-repeat left top;
+	margin-right:-9px;
+	/*margin-right:-21px;*/
+	/*background:url(images/handle_right.png) no-repeat left top;*/
 }
 
 /*

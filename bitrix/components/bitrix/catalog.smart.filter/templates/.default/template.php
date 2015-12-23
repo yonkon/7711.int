@@ -160,6 +160,66 @@ $templateData = array(
 					</script>
 				<?endif;
 			}
+
+      $arItem = $arResult['ITEMS']['9'];
+      if(
+        !empty($arItem["VALUES"])
+      )
+      { ?>
+    <div class="bx_filter_parameters_box active">
+					<span class="bx_filter_container_modef"></span>
+					<div class="bx_filter_parameters_box_title" onclick="smartFilter.hideFilterProps(this)"><?=$arItem["NAME"]?></div>
+  <?if ($arItem["FILTER_HINT"] <> ""):?>
+    <div class="bx_filter_parameters_box_hint" id="item_title_hint_<?echo $arItem["ID"]?>"></div>
+    <script type="text/javascript">
+      new top.BX.CHint({
+        parent: top.BX("item_title_hint_<?echo $arItem["ID"]?>"),
+        show_timeout: 10,
+        hide_timeout: 200,
+        dx: 2,
+        preventHide: true,
+        min_width: 250,
+        hint: '<?= CUtil::JSEscape($arItem["FILTER_HINT"])?>'
+      });
+    </script>
+  <?endif?>
+  <div class="bx_filter_block">
+    <div class="bx_filter_parameters_box_container brands">
+      <?
+      $arCur = current($arItem["VALUES"]);
+      switch ($arItem["DISPLAY_TYPE"])
+      {
+      default://CHECKBOXES
+      ?>
+      <?foreach($arItem["VALUES"] as $val => $ar):?>
+        <label data-role="label_<?=$ar["CONTROL_ID"]?>" class="bx_filter_param_label double <? echo $ar["DISABLED"] ? 'disabled': '' ?>" for="<? echo $ar["CONTROL_ID"] ?>">
+										<span class="bx_filter_input_checkbox">
+											<input
+                        type="checkbox"
+                        value="<? echo $ar["HTML_VALUE"] ?>"
+                        name="<? echo $ar["CONTROL_NAME"] ?>"
+                        id="<? echo $ar["CONTROL_ID"] ?>"
+                        <? echo $ar["CHECKED"]? 'checked="checked"': '' ?>
+                        onclick="smartFilter.click(this)"
+                        />
+											<span class="bx_filter_param_text" title="<?=$ar["VALUE"];?>"><?=$ar["VALUE"];?><?
+                        if ($arParams["DISPLAY_ELEMENT_COUNT"] !== "N" && isset($ar["ELEMENT_COUNT"])):
+                          ?> (<span data-role="count_<?=$ar["CONTROL_ID"]?>"><? echo $ar["ELEMENT_COUNT"]; ?></span>)<?
+                        endif;?></span>
+										</span>
+        </label>
+      <?endforeach;?>
+        <?
+      }
+      ?>
+    </div>
+    <div class="clb"></div>
+  </div>
+</div>
+    <?  }
+
+
+
       if(empty($arResult['CUSTOM_FILTERS']['arrFilter_name'])) {
         $arResult['CUSTOM_FILTERS']['arrFilter_name'] = array(
           'CONTROL_ID' => 'arrFilter_name',
@@ -176,6 +236,7 @@ $templateData = array(
       }
        sort($arResult['CUSTOM_FILTERS']);
       foreach($arResult['CUSTOM_FILTERS'] as $k=>$arItem) {
+        continue;
         ?>
         <div class="bx_filter_parameters_box active custom">
           <span class="bx_filter_container_modef"></span>
@@ -196,6 +257,7 @@ $templateData = array(
 			//not prices
 			foreach($arResult["ITEMS"] as $key=>$arItem)
 			{
+        if ($key == 9) continue; //пропускаем производителей т.к. выводим раньше
 				if(
 					empty($arItem["VALUES"])
 					|| isset($arItem["PRICE"])
