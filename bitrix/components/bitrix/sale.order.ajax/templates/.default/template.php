@@ -24,6 +24,7 @@ CJSCore::Init(array('fx', 'popup', 'window', 'ajax'));
 ?>
 
 <a name="order_form"></a>
+<script src="/bitrix/js/jquery.mask/jquery.mask.js" type="text/javascript"></script>
 
 <div id="order_form_div" class="order-checkout">
 <NOSCRIPT>

@@ -16,7 +16,8 @@ if (!Loader::includeModule("sale"))
 	ShowError(GetMessage("SOA_MODULE_NOT_INSTALL"));
 	return;
 }
-
+?>
+<?
 $bUseCatalog = Loader::includeModule("catalog");
 $bUseIblock = $bUseCatalog;
 
@@ -701,7 +702,7 @@ if (true || $USER->IsAuthorized() || $arParams["ALLOW_AUTO_REGISTER"] == "Y" )
 		if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["confirmorder"]) && ($arParams["DELIVERY_NO_SESSION"] == "N" || check_bitrix_sessid()))
 		{
 			if(IntVal($_POST["PERSON_TYPE"]) <= 0) {
-        $_POST["PERSON_TYPE"] = 2;
+        $_POST["PERSON_TYPE"] = 1;
       }
       $arUserResult["PERSON_TYPE_ID"] = IntVal($_POST["PERSON_TYPE"]);
 
@@ -859,9 +860,10 @@ if (true || $USER->IsAuthorized() || $arParams["ALLOW_AUTO_REGISTER"] == "Y" )
 						if ($arOrderProps["IS_EMAIL"]=="Y")
 						{
 							$arUserResult["USER_EMAIL"] = Trim($curVal);
-							if (strlen($arUserResult["USER_EMAIL"])<=0)
-{								/*$bErrorField = True;*/
-}							elseif(!check_email($arUserResult["USER_EMAIL"]))
+							if (strlen($arUserResult["USER_EMAIL"])<=0){
+                $bErrorField = True;
+              }
+              elseif(!check_email($arUserResult["USER_EMAIL"]))
 								$arResult["ERROR"][] = GetMessage("SOA_ERROR_EMAIL");
 						}
 						if ($arOrderProps["IS_ZIP"]=="Y")
@@ -993,7 +995,7 @@ if (true || $USER->IsAuthorized() || $arParams["ALLOW_AUTO_REGISTER"] == "Y" )
 		$dbPersonType = CSalePersonType::GetList(array("SORT" => "ASC", "NAME" => "ASC"), array("LID" => SITE_ID, "ACTIVE" => "Y"));
 		while($arPersonType = $dbPersonType->GetNext())
 		{
-			if($arUserResult["PERSON_TYPE_ID"] <= $arPersonType["ID"] || IntVal($arUserResult["PERSON_TYPE_ID"]) <= 0)
+			if($arUserResult["PERSON_TYPE_ID"] == $arPersonType["ID"] || IntVal($arUserResult["PERSON_TYPE_ID"]) <= 0)
 			{
 				$arUserResult["PERSON_TYPE_ID"] = $arPersonType["ID"];
 				$arPersonType["CHECKED"] = "Y";
@@ -1041,7 +1043,7 @@ if (true || $USER->IsAuthorized() || $arParams["ALLOW_AUTO_REGISTER"] == "Y" )
 		$arDeleteFieldLocation = array();
 
 		$arFilter = array(
-      //"PERSON_TYPE_ID" => $arUserResult["PERSON_TYPE_ID"],
+//      "PERSON_TYPE_ID" => $arUserResult["PERSON_TYPE_ID"],
        "ACTIVE" => "Y", "UTIL" => "N", "RELATED" => false);
 		if(!empty($arParams["PROP_".$arUserResult["PERSON_TYPE_ID"]]))
 			$arFilter["!ID"] = $arParams["PROP_".$arUserResult["PERSON_TYPE_ID"]];
@@ -1824,6 +1826,9 @@ if (true || $USER->IsAuthorized() || $arParams["ALLOW_AUTO_REGISTER"] == "Y" )
       //регистрируем нового пользователя логиним старого
 			if(!$USER->IsAuthorized() && $arParams["ALLOW_AUTO_REGISTER"] == "Y")
 			{
+        if(!empty($_POST['ORDER_LOGIN']) && !empty($_POST['ORDER_PASSWORD']) ) {
+          $userSQL = "select b_user u LEFT JOIN b_sale_user_props up ON up.USER_ID = u.ID";
+        }
         if(!strlen($arUserResult["USER_EMAIL"]) > 0 &&
           strlen($arUserResult["ORDER_PROP"][2]) > 0
         ) {

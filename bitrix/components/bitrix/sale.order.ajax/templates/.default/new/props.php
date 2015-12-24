@@ -1,7 +1,6 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/new/props_format.php");
 ?>
-<script src="/bitrix/js/jquery.mask/jquery.mask.js" type="text/javascript"></script>
 <div class="section">
 <h4><?=GetMessage("SOA_TEMPL_PROP_INFO")?></h4>
 	<?
@@ -95,13 +94,43 @@ include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/new/props_format.php");
 		?>
 		<input type="hidden" name="showProps" id="showProps" value="<?=($_POST["showProps"] == 'Y' ? 'Y' : 'N')?>" />
 	</h4>
-	<div id="sale_order_props" <?=($bHideProps && $_POST["showProps"] != "Y")?"style='display:none;'":''?>>
+	<div id="sale_order_props">
 		<?
 		?>
     <div id="sale_order_props_tabs">
-      <span tab="tab1" class="tab tab1 "><span class="tleft first"><span class="tright"><span class="tcenter">У меня есть учетная запись</span></span></span></span>
-      <span tab="tab2" class="tab tab2 "><span class="tleft first"><span class="tright"><span class="tcenter">У меня есть учетная запись</span></span></span></span>
+      <input type="hidden" id="input_save" name="save" value="Y">
+      <input type="hidden" id="IS_USER_NEW" name="IS_USER_NEW" value="0">
+      <span id="sale_user_tab_old" tab="tab1" class="tab tab1 selected">
+        <span class="tleft first">
+          <span class="tright">
+            <span class="tcenter">
+              У меня есть учетная запись
+            </span></span></span></span>
+      <span id="sale_user_tab_new" tab="tab2" class="tab tab2 ">
+        <span class="tleft first">
+          <span class="tright">
+            <span class="tcenter">
+              Я - новый пользователь
+            </span></span></span></span>
     </div>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#sale_user_tab_old').click(function(){
+          $('#new_user_form').removeClass('active');
+          $('#old_user_form').addClass('active');
+          $('#sale_user_tab_new').removeClass('selected');
+          $('#sale_user_tab_old').addClass('selected');
+          $('#IS_USER_NEW').val(0);
+        });
+        $('#sale_user_tab_new').click(function(){
+          $('#old_user_form').removeClass('active');
+          $('#new_user_form').addClass('active');
+          $('#sale_user_tab_old').removeClass('selected');
+          $('#sale_user_tab_new').addClass('selected');
+          $('#IS_USER_NEW').val(1);
+        });
+      });
+    </script>
     <div class="active" id="old_user_form">
       <div data-property-id-row="login">
         <div class="order_label">
@@ -138,10 +167,15 @@ include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/new/props_format.php");
       </div>
       <script>
         (window.top.BX || BX).saleOrderAjax.addPropertyDesc({'id':'12','attributes':{'type':'TEXT','valueSource':'default'}});
+        $(document).ready(function(){
+          $('#ORDER_PROP_1').change(function(){
+            $('#ORDER_PROP_12').val($('#ORDER_PROP_1').val());
+          })
+        });
       </script>
       <? /*****EMAIL*****/ ?>
       <div data-property-id-row="2">
-        <label class="order_label" for="ORDER_PROP_2">E-Mail</label>
+        <label class="order_label" for="ORDER_PROP_2">E-Mail<span class="bx_sof_req">*</span></label>
 <div class="order_input"><input type="text" maxlength="250" size="40" value="" name="ORDER_PROP_2"  id="ORDER_PROP_2"></div>
         <div style="clear: both;"></div><br>
       </div>
@@ -150,13 +184,18 @@ include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/new/props_format.php");
       </script>
 
       <? //jur email?>
-      <div data-property-id-row="13">
+      <div data-property-id-row="13" style="display: none">
         <label class="order_label" for="ORDER_PROP_13">E-Mail																	<span class="bx_sof_req">*</span></label>
 <div class="order_input"><input type="text" maxlength="250" size="40" value="" name="ORDER_PROP_13"  id="ORDER_PROP_13"></div>
         <div style="clear: both;"></div><br>
       </div>
       <script>
         (window.top.BX || BX).saleOrderAjax.addPropertyDesc({'id':'13','attributes':{'type':'TEXT','valueSource':'default'}});
+        $(document).ready(function(){
+          $('#ORDER_PROP_2').change(function(){
+            $('#ORDER_PROP_13').val($('#ORDER_PROP_2').val());
+          })
+        });
       </script>
 
       <? /*****Телефон *****/ ?>
@@ -170,25 +209,46 @@ include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/new/props_format.php");
         (window.top.BX || BX).saleOrderAjax.addPropertyDesc({'id':'3','attributes':{'type':'TEXT','valueSource':'default'}});
       </script>
       <? //JUR PHONE ?>
-      <div data-property-id-row="14" class="display: none;">
+      <div data-property-id-row="14" style="display: none;">
         <label class="order_label phone" for="ORDER_PROP_14">Телефон															</label>
 <div class="order_input"><input type="text" class="phone" maxlength="250" size="0" value="" name="ORDER_PROP_14"  id="ORDER_PROP_14"></div>
         <div style="clear: both;"></div><br>
       </div>
       <script>
         (window.top.BX || BX).saleOrderAjax.addPropertyDesc({'id':'14','attributes':{'type':'TEXT','valueSource':'default'}});
+        $(document).ready(function(){
+          $('#ORDER_PROP_3').change(function(){
+            $('#ORDER_PROP_14').val($('#ORDER_PROP_3').val());
+          })
+        });
       </script>
 
       <? /*****Представитель юридического лица*****/ ?>
-      <div data-property-id-row="3">
-        <input type="checkbox" size="0" value="2" name="PERSON_TYPE"  id="PERSON_TYPE">
+      <div data-property-id-row="4">
+        <input type="hidden"  id="PERSON_TYPE_HIDDEN" value="1" name="PERSON_TYPE">
+        <input type="checkbox" size="0" id="PERSON_TYPE">
         <label class="order_label" for="PERSON_TYPE">Представитель юридического лица</label>
 
         <div style="clear: both;"></div><br>
       </div>
       <script>
-        (window.top.BX || BX).saleOrderAjax.addPropertyDesc({'id':'3','attributes':{'type':'TEXT','valueSource':'default'}});
+        $(document).ready(function(){
+          $('#PERSON_TYPE').click(function(e){
+
+            var $this = $('#PERSON_TYPE');
+            if($this.prop('checked')) {
+              $('#jur_props').slideDown();
+              $('#PERSON_TYPE_HIDDEN').val(2);
+            } else {
+              $('#jur_props').slideUp();
+              $('#PERSON_TYPE_HIDDEN').val(1);
+            }
+          });
+        });
       </script>
+      <div id="jur_props" style="display: none">
+        <div class="groupheader">Реквизиты организации</div>
+
       <? /*****РЕКВИЗИТЫ ОРГАНИЗАЦИИ*****/ ?>
       <? /*****Наименование организации*****/ ?>
       <div data-property-id-row="8">
@@ -210,7 +270,7 @@ include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/new/props_format.php");
       <script>
         (window.top.BX || BX).saleOrderAjax.addPropertyDesc({'id':'9','attributes':{'type':'TEXTAREA','valueSource':'form'}});
       </script>
-
+        <br>
       <? /*****Почтовый адрес*****Подставить юр.адрес/ ?>
       <? /*****ИНН *****/ ?>
       <div data-property-id-row="10">
@@ -249,7 +309,7 @@ include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/new/props_format.php");
         (window.top.BX || BX).saleOrderAjax.addPropertyDesc({'id':'7','attributes':{'type':'TEXTAREA','valueSource':'form'}});
       </script>
       <? //jur dost addr ?>
-      <div data-property-id-row="19">
+      <div data-property-id-row="19" style="display: none">
         <br>
         <label class="order_label" for="ORDER_PROP_19">Адрес доставки															</label>
 <div class="order_input"><textarea rows="4" cols="30" name="ORDER_PROP_19"  id="ORDER_PROP_19"></textarea></div>
@@ -257,8 +317,13 @@ include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/new/props_format.php");
       </div>
       <script>
         (window.top.BX || BX).saleOrderAjax.addPropertyDesc({'id':'19','attributes':{'type':'TEXTAREA','valueSource':'form'}});
+        $(document).ready(function(){
+          $('#ORDER_PROP_7').change(function(){
+            $('#ORDER_PROP_19').val($('#ORDER_PROP_7').val());
+          })
+        });
       </script>
-
+      </div>
 
 
 <? if (false) { ?>

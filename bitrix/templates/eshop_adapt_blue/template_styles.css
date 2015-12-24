@@ -2206,26 +2206,44 @@ div#sale_order_props {
 
 #sale_order_props_tabs {
   margin-top: -4em;
-  margin-bottom: 4em;
-  margin-left: -2em;
+  margin-bottom: 1.5em;
+  margin-left: -27px;
+  border-top-left-radius: 6px;
+  overflow: hidden;
+  border-left: 1px solid #ccc;
 }
 
-#sale_order_props_tabs.selected .tleft{
+#sale_order_props_tabs .selected.tab:first-of-type>span {
+  background-image: url('/images/tabs_sel_left2.png');
+  padding-left: 0;
+}
+
+#sale_order_props_tabs .selected .tleft{
   background-image: url('/images/tabs_sel_left2.png');
 }
-#sale_order_props_tabs.selected .tcenter{
+#sale_order_props_tabs .selected .tcenter{
   background-image: url('/images/tabs_sel_center2.png');
 }
-#sale_order_props_tabs.selected .tright{
+#sale_order_props_tabs .selected .tright{
   background-image: url('/images/tabs_sel_right2.png');
 }
 
 
+#sale_order_props_tabs .selected .tcenter {
+  color: #000;
+}
+
 #sale_order_props_tabs .tcenter {
   background-image: url('/images/tabs_origin_center2.png');
   height: 25px;
-  color: #000;
-  padding: 5px 3px 0px;
+  color: #fff;
+  cursor:  pointer;
+  display:   inline-block;
+  font-family: PFDinDisplayProBold, Arial, Verdana, Helvetica;
+  font-size :   14px;
+  font-weight:  bold;
+  padding: 5px 3px 0px 8px;
+  position:  relative;
 }
 #sale_order_props_tabs .tright {
   padding-right: 36px;
@@ -2241,7 +2259,7 @@ div#sale_order_props {
 }
 
 
-#sale_order_props_tabs .tab.tab:first-of-type>span{
+#sale_order_props_tabs .tab:first-of-type>span{
   padding-left: 5px;
   background-image: url('/images/tabs_origin_left_first2.png');
 }
@@ -2285,6 +2303,7 @@ div#sale_order_props {
 
 
 #order_form_div input[type="text"], #order_form_div input[type="password"], #order_form_div textarea, #order_form_div select {
+  max-width: 94%;
   width: 94%;
   -webkit-appearance: none;
   -webkit-box-shadow: rgb(119, 119, 119) 0px 1px 3px 0px inset;
@@ -2367,5 +2386,29 @@ div#sale_order_props {
   display: block;
 }
 #old_user_form, #new_user_form {
+  display: none;
+}
+
+@media(max-width: 1178px) {
+  .bx_catalog_list_home .bx_catalog_item_price .bx_price {
+    font-size: 10pt;
+    width: 90%;
+    vertical-align: middle;
+  }
+  .bx_catalog_list_home .bx_catalog_item_controls .bx_catalog_item_controls_blocktwo a {
+    padding-left: 6px;
+    padding-right: 6px;
+    /*width: auto;*/
+  }
+}
+
+
+@media(max-width: 1048px) {
+  .bx_catalog_list_home .bx_catalog_item_price .bx_price {
+    font-size: 9pt;
+  }
+}
+
+#jur_props {
   display: none;
 }
