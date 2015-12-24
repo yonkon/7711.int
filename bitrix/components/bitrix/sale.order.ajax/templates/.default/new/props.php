@@ -1,6 +1,7 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/new/props_format.php");
 ?>
+<script src="/bitrix/js/jquery.mask/jquery.mask.js" type="text/javascript"></script>
 <div class="section">
 <h4><?=GetMessage("SOA_TEMPL_PROP_INFO")?></h4>
 	<?
@@ -97,35 +98,32 @@ include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/new/props_format.php");
 	<div id="sale_order_props" <?=($bHideProps && $_POST["showProps"] != "Y")?"style='display:none;'":''?>>
 		<?
 		?>
-    <div id="old_user_form">
+    <div id="sale_order_props_tabs">
+      <span tab="tab1" class="tab tab1 "><span class="tleft first"><span class="tright"><span class="tcenter">У меня есть учетная запись</span></span></span></span>
+      <span tab="tab2" class="tab tab2 "><span class="tleft first"><span class="tright"><span class="tcenter">У меня есть учетная запись</span></span></span></span>
+    </div>
+    <div class="active" id="old_user_form">
       <div data-property-id-row="login">
-        <div class="bx_block r1x3 pt8">
+        <div class="order_label">
           Телефон																	<span class="bx_sof_req">*</span>
         </div>
-        <div class="bx_block r3x1">
+        <div class="order_input">
           <input type="text" maxlength="250" size="0" value="" name="ORDER_LOGIN" id="ORDER_LOGIN">
         </div>
         <div style="clear: both;"></div><br>
       </div>
       <div data-property-id-row="pass">
-        <div class="bx_block r1x3 pt8">
- Пароль<span class="bx_sof_req">*</span>
-        </div>
-        <div class="bx_block r3x1">
-          <input type="text" maxlength="250" size="0" value="" name="ORDER_PASSWORD" id="ORDER_PASSWORD">
-        </div>
+        <label class="order_label">Пароль<span class="bx_sof_req">*</span></label>
+<div class="order_input"><input type="password" maxlength="250" size="0" value="" name="ORDER_PASSWORD" id="ORDER_PASSWORD"></div>
         <div style="clear: both;"></div><br>
       </div>
     </div>
     <div id="new_user_form">
+  <div class="groupheader">Контактное лицо</div>
       <? /*****FIO*****/ ?>
       <div data-property-id-row="1">
-        <div class="bx_block r1x3 pt8">
-          Ф.И.О.
-        </div>
-        <div class="bx_block r3x1">
-          <input type="text" maxlength="250" size="40" value="" name="ORDER_PROP_1" id="ORDER_PROP_1">
-        </div>
+        <label class="order_label" for="ORDER_PROP_1">Ф.И.О.</label>
+<div class="order_input"><input type="text" maxlength="250" size="40" value="" name="ORDER_PROP_1"  id="ORDER_PROP_1"></div>
         <div style="clear: both;"></div><br>
       </div>
       <script>
@@ -134,12 +132,8 @@ include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/new/props_format.php");
 
       <? //jur fio?>
       <div data-property-id-row="12" style="display: none;">
-        <div class="bx_block r1x3 pt8">
-          Контактное лицо
-        </div>
-        <div class="bx_block r3x1">
-          <input type="text" maxlength="250" size="0" value="" name="ORDER_PROP_12" id="ORDER_PROP_12">
-        </div>
+        <label class="order_label" for="ORDER_PROP_12">Контактное лицо</label>
+<div class="order_input"><input type="text" maxlength="250" size="0" value="" name="ORDER_PROP_12"  id="ORDER_PROP_12"></div>
         <div style="clear: both;"></div><br>
       </div>
       <script>
@@ -147,13 +141,8 @@ include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/new/props_format.php");
       </script>
       <? /*****EMAIL*****/ ?>
       <div data-property-id-row="2">
-        <div class="bx_block r1x3 pt8">
-          E-Mail
-        </div>
-        <div class="bx_block r3x1">
-          <input type="text" maxlength="250" size="40" value="" name="ORDER_PROP_2" id="ORDER_PROP_2">
-
-        </div>
+        <label class="order_label" for="ORDER_PROP_2">E-Mail</label>
+<div class="order_input"><input type="text" maxlength="250" size="40" value="" name="ORDER_PROP_2"  id="ORDER_PROP_2"></div>
         <div style="clear: both;"></div><br>
       </div>
       <script>
@@ -162,12 +151,8 @@ include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/new/props_format.php");
 
       <? //jur email?>
       <div data-property-id-row="13">
-        <div class="bx_block r1x3 pt8">
-          E-Mail																	<span class="bx_sof_req">*</span>
-        </div>
-        <div class="bx_block r3x1">
-          <input type="text" maxlength="250" size="40" value="" name="ORDER_PROP_13" id="ORDER_PROP_13">
-        </div>
+        <label class="order_label" for="ORDER_PROP_13">E-Mail																	<span class="bx_sof_req">*</span></label>
+<div class="order_input"><input type="text" maxlength="250" size="40" value="" name="ORDER_PROP_13"  id="ORDER_PROP_13"></div>
         <div style="clear: both;"></div><br>
       </div>
       <script>
@@ -176,24 +161,18 @@ include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/new/props_format.php");
 
       <? /*****Телефон *****/ ?>
       <div data-property-id-row="3">
-        <div class="bx_block r1x3 pt8">
-          Телефон																	<span class="bx_sof_req">*</span>
-        </div>
-        <div class="bx_block r3x1">
-          <input type="text" maxlength="250" size="0" value="" name="ORDER_PROP_3" id="ORDER_PROP_3">
-        </div>
+        <label class="order_label" for="ORDER_PROP_3">Телефон																	<span class="bx_sof_req">*</span></label>
+<div class="order_input"><input class="phone" type="text" maxlength="250" size="0" value="" name="ORDER_PROP_3"  id="ORDER_PROP_3"></div>
         <div style="clear: both;"></div><br>
       </div>
       <script>
+        $(document).ready(function(){ $('input.phone').mask('(999) 999-9999'); });
         (window.top.BX || BX).saleOrderAjax.addPropertyDesc({'id':'3','attributes':{'type':'TEXT','valueSource':'default'}});
       </script>
       <? //JUR PHONE ?>
       <div data-property-id-row="14" class="display: none;">
-        <div class="bx_block r1x3 pt8">
-          Телефон															</div>
-        <div class="bx_block r3x1">
-          <input type="text" maxlength="250" size="0" value="" name="ORDER_PROP_14" id="ORDER_PROP_14">
-        </div>
+        <label class="order_label phone" for="ORDER_PROP_14">Телефон															</label>
+<div class="order_input"><input type="text" class="phone" maxlength="250" size="0" value="" name="ORDER_PROP_14"  id="ORDER_PROP_14"></div>
         <div style="clear: both;"></div><br>
       </div>
       <script>
@@ -202,12 +181,9 @@ include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/new/props_format.php");
 
       <? /*****Представитель юридического лица*****/ ?>
       <div data-property-id-row="3">
-        <div class="bx_block r1x3 pt8">
-          Представитель юридического лица
-        </div>
-        <div class="bx_block r3x1">
-          <input type="checkbox" maxlength="250" size="0" value="" name="PERSON_TYPE" id="PERSON_TYPE">
-        </div>
+        <input type="checkbox" size="0" value="2" name="PERSON_TYPE"  id="PERSON_TYPE">
+        <label class="order_label" for="PERSON_TYPE">Представитель юридического лица</label>
+
         <div style="clear: both;"></div><br>
       </div>
       <script>
@@ -216,12 +192,8 @@ include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/new/props_format.php");
       <? /*****РЕКВИЗИТЫ ОРГАНИЗАЦИИ*****/ ?>
       <? /*****Наименование организации*****/ ?>
       <div data-property-id-row="8">
-        <div class="bx_block r1x3 pt8">
-          Название компании
-        </div>
-        <div class="bx_block r3x1">
-          <input type="text" maxlength="250" size="40" value="" name="ORDER_PROP_8" id="ORDER_PROP_8">
-        </div>
+        <label class="order_label" for="ORDER_PROP_8">Название компании</label>
+<div class="order_input"><input type="text" maxlength="250" size="40" value="" name="ORDER_PROP_8"  id="ORDER_PROP_8"></div>
         <div style="clear: both;"></div><br>
       </div>
       <script>
@@ -231,11 +203,8 @@ include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/new/props_format.php");
       <? /*****Юридический адрес*****/ ?>
       <div data-property-id-row="9">
         <br>
-        <div class="bx_block r1x3 pt8">
-          Юридический адрес															</div>
-        <div class="bx_block r3x1">
-          <textarea rows="4" cols="40" name="ORDER_PROP_9" id="ORDER_PROP_9"></textarea>
-        </div>
+        <label class="order_label" for="ORDER_PROP_9">Юридический адрес															</label>
+<div class="order_input"><textarea rows="4" cols="40" name="ORDER_PROP_9"  id="ORDER_PROP_9"></textarea></div>
         <div style="clear: both;"></div>
       </div>
       <script>
@@ -245,11 +214,8 @@ include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/new/props_format.php");
       <? /*****Почтовый адрес*****Подставить юр.адрес/ ?>
       <? /*****ИНН *****/ ?>
       <div data-property-id-row="10">
-        <div class="bx_block r1x3 pt8">
-          ИНН															</div>
-        <div class="bx_block r3x1">
-          <input type="text" maxlength="250" size="0" value="" name="ORDER_PROP_10" id="ORDER_PROP_10">
-        </div>
+        <label class="order_label" for="ORDER_PROP_10">ИНН															</label>
+<div class="order_input"><input type="text" maxlength="250" size="0" value="" name="ORDER_PROP_10"  id="ORDER_PROP_10"></div>
         <div style="clear: both;"></div><br>
       </div>
       <script>
@@ -257,11 +223,8 @@ include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/new/props_format.php");
       </script>
       <? /*****КПП *****/ ?>
       <div data-property-id-row="11">
-        <div class="bx_block r1x3 pt8">
-          КПП															</div>
-        <div class="bx_block r3x1">
-          <input type="text" maxlength="250" size="0" value="" name="ORDER_PROP_11" id="ORDER_PROP_11">
-        </div>
+        <label class="order_label" for="ORDER_PROP_11">КПП															</label>
+<div class="order_input"><input type="text" maxlength="250" size="0" value="" name="ORDER_PROP_11"  id="ORDER_PROP_11"></div>
         <div style="clear: both;"></div><br>
       </div>
       <script>
@@ -278,11 +241,8 @@ include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/new/props_format.php");
       Адрес доставки*****Подставить почт.адрес*/ ?>
       <div data-property-id-row="7">
         <br>
-        <div class="bx_block r1x3 pt8">
-          Адрес доставки															</div>
-        <div class="bx_block r3x1">
-          <textarea rows="3" cols="30" name="ORDER_PROP_7" id="ORDER_PROP_7"></textarea>
-        </div>
+        <label class="order_label" for="ORDER_PROP_7">Адрес доставки															</label>
+<div class="order_input"><textarea rows="3" cols="30" name="ORDER_PROP_7"  id="ORDER_PROP_7"></textarea></div>
         <div style="clear: both;"></div>
       </div>
       <script>
@@ -291,11 +251,8 @@ include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/new/props_format.php");
       <? //jur dost addr ?>
       <div data-property-id-row="19">
         <br>
-        <div class="bx_block r1x3 pt8">
-          Адрес доставки															</div>
-        <div class="bx_block r3x1">
-          <textarea rows="4" cols="30" name="ORDER_PROP_19" id="ORDER_PROP_19"></textarea>
-        </div>
+        <label class="order_label" for="ORDER_PROP_19">Адрес доставки															</label>
+<div class="order_input"><textarea rows="4" cols="30" name="ORDER_PROP_19"  id="ORDER_PROP_19"></textarea></div>
         <div style="clear: both;"></div>
       </div>
       <script>
