@@ -16,8 +16,11 @@ if (!Loader::includeModule("sale"))
 	ShowError(GetMessage("SOA_MODULE_NOT_INSTALL"));
 	return;
 }
-?>
-<?
+if(!$USER->isAuthorized() && !empty($_POST['ORDER_LOGIN']) &&
+!empty($_POST['ORDER_PASSWORD'])) {
+$orderLogin = $USER->Login($_POST['ORDER_LOGIN'], $_POST['ORDER_PASSWORD'] )        ;
+}
+
 $bUseCatalog = Loader::includeModule("catalog");
 $bUseIblock = $bUseCatalog;
 
@@ -269,7 +272,7 @@ foreach ($arParams["PRODUCT_COLUMNS"] as $key => $value) // making grid headers 
 }
 
 //убираем запрет на авторегистрацию
-if (false && !$USER->IsAuthorized() && $arParams["ALLOW_AUTO_REGISTER"] == "N")
+if (!$USER->IsAuthorized() && $arParams["ALLOW_AUTO_REGISTER"] == "N")
 {
 	$arResult["AUTH"]["USER_LOGIN"] = ((strlen($_POST["USER_LOGIN"]) > 0) ? htmlspecialcharsbx($_POST["USER_LOGIN"]) : htmlspecialcharsbx(${COption::GetOptionString("main", "cookie_name", "BITRIX_SM")."_LOGIN"}));
 	$arResult["AUTH"]["captcha_registration"] = ((COption::GetOptionString("main", "captcha_registration", "N") == "Y") ? "Y" : "N");
@@ -807,7 +810,7 @@ if (true || $USER->IsAuthorized() || $arParams["ALLOW_AUTO_REGISTER"] == "Y" )
 				false,
 				array("ID", "NAME", "TYPE", "IS_LOCATION", "IS_LOCATION4TAX", "IS_PROFILE_NAME", "IS_PAYER", "IS_EMAIL", "REQUIED", "SORT", "IS_ZIP", "CODE", "MULTIPLE")
 			);
-			while (0 && $arOrderProps = $dbOrderProps->GetNext())
+			while ($arOrderProps = $dbOrderProps->GetNext())
 			{
 				//if(isset($arUserResult["ORDER_PROP"][$arOrderProps["ID"]]) || isset($arUserResult["ORDER_PROP"]["COUNTRY_".$arOrderProps["ID"]]))
 				//{
@@ -1559,7 +1562,7 @@ if (true || $USER->IsAuthorized() || $arParams["ALLOW_AUTO_REGISTER"] == "Y" )
 
 				if (IntVal($arUserResult["PAY_SYSTEM_ID"]) == IntVal($arPaySystem["ID"]) || IntVal($arUserResult["PAY_SYSTEM_ID"]) <= 0 && $bFirst)
 				{
-					//$arPaySystem["CHECKED"] = "Y";
+					$arPaySystem["CHECKED"] = "Y";
 					$arResult["PAY_SYSTEM"][$arPaySystem["ID"]]["CHECKED"] = "Y";
 					$arUserResult["PAY_SYSTEM_ID"] = $arPaySystem["ID"];
 				}
@@ -1823,7 +1826,7 @@ if (true || $USER->IsAuthorized() || $arParams["ALLOW_AUTO_REGISTER"] == "Y" )
 
 		if(($orderTotalSum > 0 || $arUserResult["CONFIRM_ORDER"] == "Y") && empty($arResult["ERROR"]))
 		{
-      //регистрируем нового пользователя логиним старого
+      //регистрируем нового пользователя
 			if(!$USER->IsAuthorized() && $arParams["ALLOW_AUTO_REGISTER"] == "Y")
 			{
         if(!empty($_POST['ORDER_LOGIN']) && !empty($_POST['ORDER_PASSWORD']) ) {
@@ -2162,7 +2165,7 @@ if (true || $USER->IsAuthorized() || $arParams["ALLOW_AUTO_REGISTER"] == "Y" )
 
 					if(array_key_exists('json', $_REQUEST) && $_REQUEST['json'] == "Y" && ($USER->IsAuthorized() || $arParams["ALLOW_AUTO_REGISTER"] == "Y"))
 					{
-						if($arUserResult["CONFIRM_ORDER"] == "Y" || $arResult["NEED_REDIRECT"] == "Y")
+						if( true && $arUserResult["CONFIRM_ORDER"] == "Y" || $arResult["NEED_REDIRECT"] == "Y")
 						{
 							$APPLICATION->RestartBuffer();
 							echo json_encode(array("success" => "Y", "redirect" => $arResult["REDIRECT_URL"]));

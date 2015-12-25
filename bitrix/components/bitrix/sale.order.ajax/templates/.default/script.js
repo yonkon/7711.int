@@ -233,6 +233,15 @@ BX.saleOrderAjax = { // bad solution, actually, a singleton at the page
 			}
 		}
 
+        if (typeof parent.window.shikon_initOrderFormJs == 'function') {
+            parent.window.shikon_initOrderFormJs();
+        } else {
+            if (typeof window.shikon_initOrderFormJs == 'function') {
+                window.shikon_initOrderFormJs();
+            } else {
+                setTimeout(initOrderForm, 500);
+            }
+        }
 		this.BXCallAllowed = true;
 	},
 

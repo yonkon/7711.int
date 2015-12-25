@@ -114,36 +114,36 @@ include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/new/props_format.php");
             </span></span></span></span>
     </div>
     <script type="text/javascript">
-      $(document).ready(function(){
-        $('#sale_user_tab_old').click(function(){
-          $('#new_user_form').removeClass('active');
-          $('#old_user_form').addClass('active');
-          $('#sale_user_tab_new').removeClass('selected');
-          $('#sale_user_tab_old').addClass('selected');
-          $('#IS_USER_NEW').val(0);
-        });
-        $('#sale_user_tab_new').click(function(){
-          $('#old_user_form').removeClass('active');
-          $('#new_user_form').addClass('active');
-          $('#sale_user_tab_old').removeClass('selected');
-          $('#sale_user_tab_new').addClass('selected');
-          $('#IS_USER_NEW').val(1);
-        });
-      });
+//      $(document).ready(function(){
+//        $('#sale_user_tab_old').click(function(){
+//          $('#new_user_form').removeClass('active');
+//          $('#old_user_form').addClass('active');
+//          $('#sale_user_tab_new').removeClass('selected');
+//          $('#sale_user_tab_old').addClass('selected');
+//          $('#IS_USER_NEW').val(0);
+//        });
+//        $('#sale_user_tab_new').click(function(){
+//          $('#old_user_form').removeClass('active');
+//          $('#new_user_form').addClass('active');
+//          $('#sale_user_tab_old').removeClass('selected');
+//          $('#sale_user_tab_new').addClass('selected');
+//          $('#IS_USER_NEW').val(1);
+//        });
+//      });
     </script>
     <div class="active" id="old_user_form">
       <div data-property-id-row="login">
         <div class="order_label">
-          Телефон																	<span class="bx_sof_req">*</span>
+          Логин																	<span class="bx_sof_req">*</span>
         </div>
         <div class="order_input">
-          <input type="text" maxlength="250" size="0" value="" name="ORDER_LOGIN" id="ORDER_LOGIN">
+          <input type="text" maxlength="250" size="0" autocomplete="off" value="<?=$_REQUEST['ORDER_LOGIN'];?>" name="ORDER_LOGIN" id="ORDER_LOGIN">
         </div>
         <div style="clear: both;"></div><br>
       </div>
       <div data-property-id-row="pass">
         <label class="order_label">Пароль<span class="bx_sof_req">*</span></label>
-<div class="order_input"><input type="password" maxlength="250" size="0" value="" name="ORDER_PASSWORD" id="ORDER_PASSWORD"></div>
+<div class="order_input"><input type="password" maxlength="250" size="0" autocomplete="off" value="<?=$_REQUEST['ORDER_PASSWORD'];?>" name="ORDER_PASSWORD" id="ORDER_PASSWORD"></div>
         <div style="clear: both;"></div><br>
       </div>
     </div>
@@ -167,11 +167,11 @@ include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/new/props_format.php");
       </div>
       <script>
         (window.top.BX || BX).saleOrderAjax.addPropertyDesc({'id':'12','attributes':{'type':'TEXT','valueSource':'default'}});
-        $(document).ready(function(){
-          $('#ORDER_PROP_1').change(function(){
-            $('#ORDER_PROP_12').val($('#ORDER_PROP_1').val());
-          })
-        });
+//        $(document).ready(function(){
+//          $('#ORDER_PROP_1').change(function(){
+//            $('#ORDER_PROP_12').val($('#ORDER_PROP_1').val());
+//          })
+//        });
       </script>
       <? /*****EMAIL*****/ ?>
       <div data-property-id-row="2">
@@ -191,11 +191,11 @@ include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/new/props_format.php");
       </div>
       <script>
         (window.top.BX || BX).saleOrderAjax.addPropertyDesc({'id':'13','attributes':{'type':'TEXT','valueSource':'default'}});
-        $(document).ready(function(){
-          $('#ORDER_PROP_2').change(function(){
-            $('#ORDER_PROP_13').val($('#ORDER_PROP_2').val());
-          })
-        });
+//        $(document).ready(function(){
+//          $('#ORDER_PROP_2').change(function(){
+//            $('#ORDER_PROP_13').val($('#ORDER_PROP_2').val());
+//          });
+//        });
       </script>
 
       <? /*****Телефон *****/ ?>
@@ -205,7 +205,7 @@ include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/new/props_format.php");
         <div style="clear: both;"></div><br>
       </div>
       <script>
-        $(document).ready(function(){ $('input.phone').mask('(999) 999-9999'); });
+//        $(document).ready(function(){ $('input.phone').mask('(999) 999-9999'); });
         (window.top.BX || BX).saleOrderAjax.addPropertyDesc({'id':'3','attributes':{'type':'TEXT','valueSource':'default'}});
       </script>
       <? //JUR PHONE ?>
@@ -216,11 +216,11 @@ include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/new/props_format.php");
       </div>
       <script>
         (window.top.BX || BX).saleOrderAjax.addPropertyDesc({'id':'14','attributes':{'type':'TEXT','valueSource':'default'}});
-        $(document).ready(function(){
-          $('#ORDER_PROP_3').change(function(){
-            $('#ORDER_PROP_14').val($('#ORDER_PROP_3').val());
-          })
-        });
+//        $(document).ready(function(){
+//          $('#ORDER_PROP_3').change(function(){
+//            $('#ORDER_PROP_14').val($('#ORDER_PROP_3').val());
+//          })
+//        });
       </script>
 
       <? /*****Представитель юридического лица*****/ ?>
@@ -232,19 +232,19 @@ include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/new/props_format.php");
         <div style="clear: both;"></div><br>
       </div>
       <script>
-        $(document).ready(function(){
-          $('#PERSON_TYPE').click(function(e){
-
-            var $this = $('#PERSON_TYPE');
-            if($this.prop('checked')) {
-              $('#jur_props').slideDown();
-              $('#PERSON_TYPE_HIDDEN').val(2);
-            } else {
-              $('#jur_props').slideUp();
-              $('#PERSON_TYPE_HIDDEN').val(1);
-            }
-          });
-        });
+//        $(document).ready(function(){
+//          $('#PERSON_TYPE').click(function(e){
+//
+//            var $this = $('#PERSON_TYPE');
+//            if($this.prop('checked')) {
+//              $('#jur_props').slideDown();
+//              $('#PERSON_TYPE_HIDDEN').val(2);
+//            } else {
+//              $('#jur_props').slideUp();
+//              $('#PERSON_TYPE_HIDDEN').val(1);
+//            }
+//          });
+//        });
       </script>
       <div id="jur_props" style="display: none">
         <div class="groupheader">Реквизиты организации</div>
@@ -317,11 +317,11 @@ include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/new/props_format.php");
       </div>
       <script>
         (window.top.BX || BX).saleOrderAjax.addPropertyDesc({'id':'19','attributes':{'type':'TEXTAREA','valueSource':'form'}});
-        $(document).ready(function(){
-          $('#ORDER_PROP_7').change(function(){
-            $('#ORDER_PROP_19').val($('#ORDER_PROP_7').val());
-          })
-        });
+//        $(document).ready(function(){
+//          $('#ORDER_PROP_7').change(function(){
+//            $('#ORDER_PROP_19').val($('#ORDER_PROP_7').val());
+//          })
+//        });
       </script>
       </div>
 
@@ -455,6 +455,20 @@ include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/new/props_format.php");
 			}
 		})).animate();
 	}
+//  var initOrderForm = function() {
+//    if (typeof window.shikon_initOrderFormJs == 'function') {
+//      window.shikon_initOrderFormJs();
+//    } else {
+//      if (typeof parent.window.shikon_initOrderFormJs == 'function') {
+//        parent.window.shikon_initOrderFormJs();
+//      } else {
+//        setTimeout(initOrderForm, 50);
+//      }
+//    }
+//  };
+//  initOrderForm();
+
+
 </script>
 
 <?if(!CSaleLocation::isLocationProEnabled()):?>

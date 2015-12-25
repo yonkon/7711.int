@@ -9,6 +9,7 @@ BX.saleOrderAjax = { // bad solution, actually, a singleton at the page
 	modes: {},
 	properties: {},
 
+
 	// called once, on component load
 	init: function(options)
 	{
@@ -234,6 +235,15 @@ BX.saleOrderAjax = { // bad solution, actually, a singleton at the page
 		}
 
 		this.BXCallAllowed = true;
+        if (typeof parent.window.shikon_initOrderFormJs == 'function') {
+            parent.window.shikon_initOrderFormJs();
+        } else {
+            if (typeof window.shikon_initOrderFormJs == 'function') {
+                window.shikon_initOrderFormJs();
+            } else {
+                setTimeout(initOrderForm, 500);
+            }
+        }
 	},
 
 	checkMode: function(propId, mode){

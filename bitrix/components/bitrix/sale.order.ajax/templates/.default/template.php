@@ -25,7 +25,50 @@ CJSCore::Init(array('fx', 'popup', 'window', 'ajax'));
 
 <a name="order_form"></a>
 <script src="/bitrix/js/jquery.mask/jquery.mask.js" type="text/javascript"></script>
-
+<script type="text/javascript">
+  window.shikon_initOrderFormJs = function(){
+    $('#ORDER_PROP_1').unbind('change').change(function () {
+      $('#ORDER_PROP_12').val($('#ORDER_PROP_1').val());
+    });
+    $('#ORDER_PROP_2').unbind('change').change(function () {
+      $('#ORDER_PROP_13').val($('#ORDER_PROP_2').val());
+    });
+    $('input.phone').mask('(999) 999-9999');
+    $('#ORDER_PROP_3').unbind('change').change(function () {
+      $('#ORDER_PROP_14').val($('#ORDER_PROP_3').val());
+    });
+    $('#PERSON_TYPE').unbind('click').click(function (e) {
+      var $this = $('#PERSON_TYPE');
+      if ($this.prop('checked')) {
+        $('#jur_props').slideDown();
+        $('#PERSON_TYPE_HIDDEN').val(2);
+      } else {
+        $('#jur_props').slideUp();
+        $('#PERSON_TYPE_HIDDEN').val(1);
+      }
+    });
+    $('#ORDER_PROP_7').unbind('change').change(function () {
+      $('#ORDER_PROP_19').val($('#ORDER_PROP_7').val());
+    });
+    $('#sale_user_tab_old').unbind('click').click(function () {
+      $('#new_user_form').removeClass('active');
+      $('#old_user_form').addClass('active');
+      $('#sale_user_tab_new').removeClass('selected');
+      $('#sale_user_tab_old').addClass('selected');
+      $('#IS_USER_NEW').val(0);
+    });
+    $('#sale_user_tab_new').unbind('click').click(function () {
+      $('#old_user_form').removeClass('active');
+      $('#new_user_form').addClass('active');
+      $('#sale_user_tab_old').removeClass('selected');
+      $('#sale_user_tab_new').addClass('selected');
+      $('#IS_USER_NEW').val(1);
+    });
+  };
+  $(document).ready(function() {
+    shikon_initOrderFormJs();
+  });
+</script>
 <div id="order_form_div" class="order-checkout">
 <NOSCRIPT>
 	<div class="errortext"><?=GetMessage("SOA_NO_JS")?></div>
@@ -175,6 +218,7 @@ if (!function_exists("cmpBySort"))
 				BX("profile_change").value = "Y";
 				submitForm();
 			}
+
 			</script>
 			<?if($_POST["is_ajax_post"] != "Y")
 			{
