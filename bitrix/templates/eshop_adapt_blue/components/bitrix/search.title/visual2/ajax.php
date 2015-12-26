@@ -17,7 +17,8 @@ while($arItemDETURL = $rsItemsDETURL->Fetch()) {
   $arItemsSECTION[$arItemDETURL['ID']] = $arItemDETURL['SECTIONNAME'];
 }
 foreach($arResult["CATEGORIES"]['all'] as $i => $item) {
-
+  $item['URL'] =
+  $arResult['CATEGORIES'][$arItemsSECTION[ $item["ITEM_ID"] ] ]  = $item;
 }
 //TODO shikon: make grouping by categories & steal markup from bri
 foreach($arResult["CATEGORIES"] as $category_id => $arCategory):?>
