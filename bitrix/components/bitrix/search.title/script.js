@@ -55,7 +55,7 @@ function JCTitleSearch(arParams)
 			_this.RESULT.style.width = (pos.width + th_pos.width) + 'px';
 
 			//Move table to left by width of the first column
-			_this.RESULT.style.left = (pos.left - th_pos.width - 1)+ 'px';
+			//_this.RESULT.style.left = (pos.left - th_pos.width - 1)+ 'px';
 
 			//Shrink table when it's too wide
 			if((tbl_pos.width - th_pos.width) > pos.width)
