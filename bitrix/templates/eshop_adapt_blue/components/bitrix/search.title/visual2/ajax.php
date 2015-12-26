@@ -9,10 +9,17 @@ foreach($arResult["CATEGORIES"]['all']['ITEMS'] as $foundItem){
 	$foundItemsIds[] = $foundItem['ID'];
 }
 $arItemsDETURL = array();
+$arItemsSECTION = array();
+$arSectionITEMS = array();
 $rsItemsDETURL = $DB->Query('SELECT e.ID, e.NAME, s.NAME as SECTIONNAME , CONCAT_WS(\'/\', \'/catalog\', s.CODE, e.CODE, \'index.php\') AS DETAIL_URL FROM `b_iblock_element` e JOIN b_iblock_section s ON s.ID = e.IBLOCK_SECTION_ID ');
 while($arItemDETURL = $rsItemsDETURL->Fetch()) {
 	$arItemsDETURL[$arItemDETURL['ID']] = $arItemDETURL['DETAIL_URL'];
+  $arItemsSECTION[$arItemDETURL['ID']] = $arItemDETURL['SECTIONNAME'];
 }
+foreach($arResult["CATEGORIES"]['all'] as $i => $item) {
+
+}
+//TODO shikon: make grouping by categories & steal markup from bri
 foreach($arResult["CATEGORIES"] as $category_id => $arCategory):?>
 	<?foreach($arCategory["ITEMS"] as $i => $arItem):?>
 		<?//echo $arCategory["TITLE"]?>

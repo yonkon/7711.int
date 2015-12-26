@@ -48,7 +48,7 @@
 				}
 			}
 
-			submitForm();
+//			submitForm();
 		}
 	</script>
 	<div class="bx_section">

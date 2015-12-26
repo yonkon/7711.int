@@ -16,16 +16,20 @@ if (!Loader::includeModule("sale"))
 	ShowError(GetMessage("SOA_MODULE_NOT_INSTALL"));
 	return;
 }
-if(!$USER->isAuthorized() && !empty($_POST['ORDER_LOGIN']) &&
-!empty($_POST['ORDER_PASSWORD'])) {
+if(!$USER->isAuthorized() &&
+  empty($_POST['IS_USER_NEW']) &&
+  !empty($_POST['ORDER_LOGIN']) &&
+  !empty($_POST['ORDER_PASSWORD'])
+) {
 $orderLogin = $USER->Login($_POST['ORDER_LOGIN'], $_POST['ORDER_PASSWORD'] )        ;
 }
 
 $bUseCatalog = Loader::includeModule("catalog");
 $bUseIblock = $bUseCatalog;
-
+$bAjax = false;
 if($_REQUEST["AJAX_CALL"] == "Y" || $_REQUEST["is_ajax_post"] == "Y")
 {
+  $bAjax = true;
 	$APPLICATION->RestartBuffer();
 }
 
@@ -272,7 +276,7 @@ foreach ($arParams["PRODUCT_COLUMNS"] as $key => $value) // making grid headers 
 }
 
 //убираем запрет на авторегистрацию
-if (!$USER->IsAuthorized() && $arParams["ALLOW_AUTO_REGISTER"] == "N")
+if (false && !$USER->IsAuthorized() && $arParams["ALLOW_AUTO_REGISTER"] == "N")
 {
 	$arResult["AUTH"]["USER_LOGIN"] = ((strlen($_POST["USER_LOGIN"]) > 0) ? htmlspecialcharsbx($_POST["USER_LOGIN"]) : htmlspecialcharsbx(${COption::GetOptionString("main", "cookie_name", "BITRIX_SM")."_LOGIN"}));
 	$arResult["AUTH"]["captcha_registration"] = ((COption::GetOptionString("main", "captcha_registration", "N") == "Y") ? "Y" : "N");
@@ -857,13 +861,25 @@ if (true || $USER->IsAuthorized() || $arParams["ALLOW_AUTO_REGISTER"] == "Y" )
 						if ($arOrderProps["IS_PAYER"]=="Y")
 						{
 							$arUserResult["PAYER_NAME"] = Trim($curVal);
+              if ($_REQUEST['IS_USER_NEW'] == 0 &&
+                strlen($arUserResult["PAYER_NAME"])<=0 &&
+                $USER->IsAuthorized()
+              ){
+                $arUserResult["PAYER_NAME"] = $USER->GetFullName();
+              }
 							if (strlen($arUserResult["PAYER_NAME"])<=0)
 {				/*				$bErrorField = True;*/
 }						}
 						if ($arOrderProps["IS_EMAIL"]=="Y")
 						{
 							$arUserResult["USER_EMAIL"] = Trim($curVal);
-							if (strlen($arUserResult["USER_EMAIL"])<=0){
+							if ($_REQUEST['IS_USER_NEW'] == 0 &&
+                strlen($arUserResult["USER_EMAIL"])<=0 &&
+                $USER->IsAuthorized()
+              ){
+                $arUserResult["USER_EMAIL"] = $USER->GetEmail();
+              }
+              if (strlen($arUserResult["USER_EMAIL"])<=0){
                 $bErrorField = True;
               }
               elseif(!check_email($arUserResult["USER_EMAIL"]))
@@ -907,7 +923,8 @@ if (true || $USER->IsAuthorized() || $arParams["ALLOW_AUTO_REGISTER"] == "Y" )
 					}
 
 					if ($bErrorField)
-					{	$arResult["ERROR"][] = GetMessage("SOA_ERROR_REQUIRE")." \"".$arOrderProps["NAME"]."\"";
+					{
+            $arResult["ERROR"][] = GetMessage("SOA_ERROR_REQUIRE")." \"".$arOrderProps["NAME"]."\"";
 }
 				//}//end isset
 			}//end while
@@ -1946,12 +1963,15 @@ if (true || $USER->IsAuthorized() || $arParams["ALLOW_AUTO_REGISTER"] == "Y" )
 					}
 					else
 					{
-						$USER->Authorize($arAuthResult);
+						$bUserAuthorised = $USER->Authorize($arAuthResult);
 						if ($USER->IsAuthorized())
 						{
 							if($arParams["SEND_NEW_USER_NOTIFY"] == "Y")
+              {
 								CUser::SendUserInfo($USER->GetID(), SITE_ID, GetMessage("INFO_REQ"), true);
-						}
+              }
+              $USER->Login($NEW_LOGIN, $NEW_PASSWORD);
+            }
 						else
 						{
 							$arResult["ERROR"][] = GetMessage("STOF_ERROR_REG_CONFIRM");
@@ -1962,8 +1982,9 @@ if (true || $USER->IsAuthorized() || $arParams["ALLOW_AUTO_REGISTER"] == "Y" )
 					$arResult["ERROR"][] = GetMessage("STOF_ERROR_EMAIL");
 			}
 
-			if ($arUserResult["PAY_SYSTEM_ID"] <= 0 && $arUserResult["PAY_CURRENT_ACCOUNT"] != "Y")
-				$arResult["ERROR"][] = GetMessage("STOF_ERROR_PAY_SYSTEM");
+			if ($arUserResult["PAY_SYSTEM_ID"] <= 0 && $arUserResult["PAY_CURRENT_ACCOUNT"] != "Y") {
+        $arResult["ERROR"][] = GetMessage("STOF_ERROR_PAY_SYSTEM");
+      }
 
 			if($USER->IsAuthorized() && empty($arResult["ERROR"]))
 			{
@@ -2161,16 +2182,19 @@ if (true || $USER->IsAuthorized() || $arParams["ALLOW_AUTO_REGISTER"] == "Y" )
 
 				if (empty($arResult["ERROR"]))
 				{
-					$arResult["REDIRECT_URL"] = $APPLICATION->GetCurPageParam("ORDER_ID=".urlencode(urlencode($arOrder["ACCOUNT_NUMBER"])), Array("ORDER_ID"));
+//					$arResult["REDIRECT_URL"] = $APPLICATION->GetCurPageParam("ORDER_ID=".urlencode(urlencode($arOrder["ACCOUNT_NUMBER"])), Array("ORDER_ID"));
+					$arResult["REDIRECT_URL"] = "/personal/order/detail/".urlencode(urlencode($arOrder["ID"])) ."/";
 
-					if(array_key_exists('json', $_REQUEST) && $_REQUEST['json'] == "Y" && ($USER->IsAuthorized() || $arParams["ALLOW_AUTO_REGISTER"] == "Y"))
+					if(true || array_key_exists('json', $_REQUEST) && $_REQUEST['json'] == "Y" && ($USER->IsAuthorized() || $arParams["ALLOW_AUTO_REGISTER"] == "Y"))
 					{
-						if( true && $arUserResult["CONFIRM_ORDER"] == "Y" || $arResult["NEED_REDIRECT"] == "Y")
+						if( $bAjax || $arUserResult["CONFIRM_ORDER"] == "Y" || $arResult["NEED_REDIRECT"] == "Y")
 						{
 							$APPLICATION->RestartBuffer();
 							echo json_encode(array("success" => "Y", "redirect" => $arResult["REDIRECT_URL"]));
 							die();
-						}
+						} else {
+              LocalRedirect($arResult["REDIRECT_URL"]);
+            }
 					}
 				}
 				else

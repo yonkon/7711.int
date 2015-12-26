@@ -2,7 +2,9 @@
 include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/new/props_format.php");
 ?>
 <div class="section">
+  <? if(false) { ?>
 <h4><?=GetMessage("SOA_TEMPL_PROP_INFO")?></h4>
+  <? } ?>
 	<?
 	$bHideProps = true;
 

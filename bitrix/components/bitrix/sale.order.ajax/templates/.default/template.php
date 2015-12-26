@@ -121,6 +121,7 @@ if (!function_exists("cmpBySort"))
 	}
 	else
 	{
+
 		if($arResult["USER_VALS"]["CONFIRM_ORDER"] == "Y" || $arResult["NEED_REDIRECT"] == "Y")
 		{
 			if(strlen($arResult["REDIRECT_URL"]) == 0)
@@ -130,6 +131,11 @@ if (!function_exists("cmpBySort"))
 		}
 		else
 		{
+      if(!empty($arResult["ERROR"]) && !empty($_POST))
+      {
+        foreach($arResult["ERROR"] as $v)
+          echo ShowError($v);
+     }
 			?>
 			<script type="text/javascript">
 
@@ -156,7 +162,7 @@ if (!function_exists("cmpBySort"))
 			<?endif?>
 
 			var BXFormPosting = false;
-			function submitForm(val)
+			function submitForm(val, cb)
 			{
 				if (BXFormPosting === true)
 					return true;
@@ -174,6 +180,9 @@ if (!function_exists("cmpBySort"))
 
 				BX.ajax.submit(orderForm, ajaxResult);
 
+        if(typeof cb == 'function') {
+          cb();
+        }
 				return true;
 			}
 
@@ -278,7 +287,7 @@ if (!function_exists("cmpBySort"))
 					<input type="hidden" name="profile_change" id="profile_change" value="N">
 					<input type="hidden" name="is_ajax_post" id="is_ajax_post" value="Y">
 					<input type="hidden" name="json" value="Y">
-					<div class="bx_ordercart_order_pay_center"><a href="javascript:void();" onclick="submitForm('Y'); return false;" id="ORDER_CONFIRM_BUTTON" class="checkout"><?=GetMessage("SOA_TEMPL_BUTTON")?></a></div>
+					<div class="bx_ordercart_order_pay_center"><a href="javascript:void();" onclick="submitForm('Y', shikon_initOrderFormJs); return false;" id="ORDER_CONFIRM_BUTTON" class="checkout"><?=GetMessage("SOA_TEMPL_BUTTON")?></a></div>
 				</form>
 				<?
 				if($arParams["DELIVERY_NO_AJAX"] == "N")
