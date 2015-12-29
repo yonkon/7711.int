@@ -2512,3 +2512,16 @@ table.title-search-result td.title-search-all a {
   text-transform: uppercase;
   color: #267fb5;
 }
+
+
+#applyfilter2:hover {
+  color: #666666;
+}
+
+#applyfilter2 {
+  margin-bottom: 1em;
+  display: inline-block;
+  color: #3687b8;
+  padding-left: 5px;
+  margin-top: -1em;
+}

@@ -45,6 +45,12 @@ $templateData = array(
         $('#filter_btn_std').parent().addClass('unact');
       }
     );
+    $('#applyfilter2').click(
+      function(e) {
+        e.preventDefault();
+        $('.bx_filter_search_reset').click();
+      }
+    )
   });
 </script>
 		<div class="bx_filter_title"><?echo GetMessage("CT_BCSF_FILTER_TITLE")?></div>
@@ -160,7 +166,9 @@ $templateData = array(
 					</script>
 				<?endif;
 			}
-
+      ?>
+				<a href="#reset" id="applyfilter2" >Сбросить фильтр</a>
+      <?
       $arItem = $arResult['ITEMS']['9'];
       if(
         !empty($arItem["VALUES"])
@@ -713,7 +721,7 @@ $templateData = array(
 				<div class="bx_filter_block">
 					<div class="bx_filter_parameters_box_container">
 						<input class="bx_filter_search_button" type="submit" id="set_filter" name="set_filter" value="" />
-<!--						<input class="bx_filter_search_reset" type="submit" id="del_filter" name="del_filter" value="--><?//=GetMessage("CT_BCSF_DEL_FILTER")?><!--" />-->
+						<input class="bx_filter_search_reset" type="submit" id="del_filter" name="del_filter" value="<?=GetMessage("CT_BCSF_DEL_FILTER")?>" style="display: none;" />
 
 						<div class="bx_filter_popup_result <?=$arParams["POPUP_POSITION"]?>" id="modef" <?if(!isset($arResult["ELEMENT_COUNT"])) echo 'style="display:none"';?> style="display: inline-block;">
 							<?echo GetMessage("CT_BCSF_FILTER_COUNT", array("#ELEMENT_COUNT#" => '<span id="modef_num">'.intval($arResult["ELEMENT_COUNT"]).'</span>'));?>
