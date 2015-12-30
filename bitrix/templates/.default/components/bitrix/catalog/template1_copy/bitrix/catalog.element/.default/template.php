@@ -255,6 +255,9 @@ if ($arResult['SHOW_SLIDER'])
       <div class="catalog-element_vendor">Производитель:
         <span> <a href="/catalog/?brand=<?php echo urlencode($arResult['DISPLAY_PROPERTIES']['MANUFACTURER']['VALUE']); ?>" ><?php echo $arResult['DISPLAY_PROPERTIES']['MANUFACTURER']['VALUE']; ?></a></span>
       </div>
+      <div class="catalog-element_vendor">Планируемая дата передачи в отдел доставки:
+        <div> <?php echo html_entity_decode($arResult['DISPLAY_PROPERTIES']['DELIVERY_DATE']['VALUE']['TEXT']); ?></div>
+      </div>
 <?
 
 $useBrands = ('Y' == $arParams['BRAND_USE']);

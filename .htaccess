@@ -1,6 +1,10 @@
 Options -Indexes 
 ErrorDocument 404 /404.php
 
+<Files homepage_text.php>
+deny from all
+</Files>
+
 <IfModule mod_php5.c>
 	php_flag allow_call_time_pass_reference 1
 	php_flag session.use_trans_sid off

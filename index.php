@@ -1,7 +1,11 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+include('homepage_text/index.php'); //7711.kz
 $APPLICATION->SetTitle("Интернет-магазин компании \"UNION\"");
-?><h2>Новинки</h2>
+
+?>
+
+  <h2>Новинки</h2>
  <?$APPLICATION->IncludeComponent(
 	"bitrix:catalog.top",
 	"",

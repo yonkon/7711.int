@@ -2354,6 +2354,10 @@ div#sale_order_props {
 }
 
 @media (max-width:570px) {
+  .bx-catalog-tab-list li a, .bx-catalog-tab-list li>span {
+    padding: 0px 10px;
+  }
+
 .worakarea_wrap_container {
   margin-left: auto;
 }
@@ -2524,4 +2528,26 @@ table.title-search-result td.title-search-all a {
   color: #3687b8;
   padding-left: 5px;
   margin-top: -1em;
+}
+
+.available_html {
+  background-image: url('/images/brigo_detail_status.png');
+  background-repeat: no-repeat;
+  width: 150px;
+  height: 33px;
+  display: inline-block;
+  background-position: 0 9px;
+}
+
+.available_html.available {
+  background-position: 0 9px;
+}
+.available_html.notavalible {
+  background-position: 0 -33px;
+}
+.available_html.future {
+  background-position: 0 -71px;
+}
+.available_html.request {
+  background-position: 0 -123px;
 }

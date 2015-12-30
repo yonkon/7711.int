@@ -36,12 +36,12 @@ if(
 	$arParams["NUM_CATEGORIES"] = intval($arParams["NUM_CATEGORIES"]);
 	if($arParams["NUM_CATEGORIES"] <= 0)
 		$arParams["NUM_CATEGORIES"] = 1;
-		$arParams["NUM_CATEGORIES"] = 9999;
+//		$arParams["NUM_CATEGORIES"] = 9999;
 
 	$arParams["TOP_COUNT"] = intval($arParams["TOP_COUNT"]);
 	if($arParams["TOP_COUNT"] <= 0)
 		$arParams["TOP_COUNT"] = 5;
-  $arParams["TOP_COUNT"] = 9999;
+//  $arParams["TOP_COUNT"] = 9999;
 
 	$arOthersFilter = array("LOGIC"=>"OR");
 
