@@ -2551,3 +2551,7 @@ table.title-search-result td.title-search-all a {
 .available_html.request {
   background-position: 0 -123px;
 }
+
+.delivery_date {
+  padding: 1em 0;
+}
